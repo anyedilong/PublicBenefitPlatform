@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head2.js"></script>
+    <link rel="stylesheet" href="../css/page/personalCenter.css">
+    <style>
+        .rz_shou{
+            display: none;
+        }
+        .xin_send,.xin{
+            display: none;
+        }
+        .rz_ul>li.active .rz_col{
+            display: block;
+        }
+        .rz_ul>li.active .rz_edit,.rz_ul>li.active .rz_c{
+            display: none;
+        }
+        .rz_ul>li.active .rz_shou{
+            display: block;
+        }
+        .upload-img {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        .upload-img img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .upload-inp {
+            cursor: pointer;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg_white">
+        <div class="body-container rz_tab">
+            <div class="">
+                <a href="personalData.html" class="active">个人资料</a>
+                <a href="changePassword.html">密码修改</a>
+                <a href="personContacts.html">家庭成员</a>
+            </div>
+        </div>
+    </div>
+    <div class="body-container rz_gr">
+        <div class="rz_title">我的认证信息</div>
+        <ul class="rz_ul" id="rzUl">
+            <li class="li_gr">
+                <div class="rz_li_t">
+                    <span class="font_e">个人资料</span>
+                    <span class="font_l rz_c" id="uname2"></span>
+                    <span class="rz_edit cursorP"><span>编辑</span>&emsp;<span class="iconfont icon-xiangxiashuangjiantou l_gray"></span></span>
+                    <span class="rz_shou cursorP"><span class="green">收起</span>&emsp;<span class="iconfont icon-xiangxiashuangjiantou l_gray"></span></span>
+                </div>
+                <div class="rz_col">
+                    <div class="layui-row">
+                        <div class="layui-col-md-offset3 layui-col-md8">
+                            <ul class="ul_zl">
+                                <li>
+                                    <span>登录名:</span>
+                                    <span id="uname"></span>
+                                    <span class="xg" id="phoneXg">修改手机号</span>
+                                </li>
+                                <li>
+                                    <span>身份证号:</span>
+                                    <span id="usfzh"></span>
+                                </li>
+                                <li>
+                                    <span>绑定银行卡:</span>
+                                    <span id="ubank"></span>
+                                </li>
+                                <li>
+                                    <span>银行卡号:</span>
+                                    <span id="ubanknum"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="li_tx">
+                <div class="rz_li_t">
+                    <span class="font_e">我的头像</span>
+                    <span class="font_l rz_c"><img src="../img/photo.png" alt="" class="rz_tx_x" id="uploadImgXiao"></span>
+                    <span class="rz_edit cursorP"><span>编辑</span>&emsp;<span class="iconfont icon-xiangxiashuangjiantou l_gray"></span></span>
+                    <span class="rz_shou cursorP"><span class="green">收起</span>&emsp;<span class="iconfont icon-xiangxiashuangjiantou l_gray"></span></span>
+                </div>
+                <div class="rz_col">
+                    <div class="layui-row">
+                        <div class="layui-col-md-offset3 layui-col-md8">
+                            <img src="../img/img_set_usr.png" alt="" class="rz_tx" id="uploadImg">
+                            <div class="upload-img">
+                                <button type="button" class="layui-btn bg_green" id="uploadTx" style="width: 150px">上传头像</button>
+                                <input type="file" class="upload-inp" id="upInp" accept="image/png, image/jpeg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="li_sj">
+                <div class="rz_li_t">
+                    <span class="font_e">绑定手机</span>
+                    <span class="font_l rz_c" id="rzPhone"></span>
+                    <span class="rz_edit cursorP"><span>编辑</span>&emsp;<span class="iconfont icon-xiangxiashuangjiantou l_gray"></span></span>
+                    <span class="rz_shou cursorP"><span class="green">收起</span>&emsp;<span class="iconfont icon-xiangxiashuangjiantou l_gray"></span></span>
+                </div>
+                <div class="rz_col">
+                    <div class="layui-row">
+                        <div class="layui-col-md-offset3 layui-col-md8 gr_form">
+                            <div class="jiu">
+                                <form action="" class="layui-form" id="personalForm">
+                                    <div class="marginb_25 gray">旧手机号：<span id="currentPhone"></span></div>
+                                    <div class="send_yzm marginb_25">
+                                        <div class="layui-input-inline">
+                                            <input id="verifyCode" autocomplete="off" name="code" lay-verify="required" lay-reqText="请输入旧手机号收到的验证码！" class="layui-input" placeholder="请输入旧手机号收到的验证码">
+                                        </div>
+                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-lg btn_count" id="count">60</button>
+                                        <button type="button" class="layui-btn layui-btn-normal layui-btn-lg bg_green btn_send" id="sendCode">发送验证码</button>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="layui-btn layui-btn-warm bg_yellow" lay-submit lay-filter="stepBtn1">下一步</button>
+                                        <button type="button" class="layui-btn layui-btn-primary btn_cancel" id="step1Cancel">取消</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="xin">
+                                <form action="" class="layui-form">
+                                    <div class="layui-form-item marginb_25">
+                                        <label class="layui-form-label gray">新手机号:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="newPhone" lay-verify="required|phone" lay-reqText="请输入新的手机号！" autocomplete="off" placeholder="请输入新的手机号" class="layui-input">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="layui-btn layui-btn-warm bg_yellow" lay-submit lay-filter="stepBtn2">下一步</button>
+                                        <button type="button" class="layui-btn layui-btn-primary btn_cancel" id="step2Cancel">取消</button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="xin_send">
+                                <form action="" class="layui-form">
+                                    <div class="send_yzm marginb_25">
+                                        <div class="layui-input-inline">
+                                            <input  autocomplete="off" name="newCode" lay-verify="required" lay-reqText="请输入新手机号收到的验证码！" class="layui-input" placeholder="请输入新手机号收到的验证码" id="newTel">
+                                        </div>
+                                        <button type="button" class="layui-btn layui-btn-primary layui-btn-lg btn_count" id="countNew">60</button>
+                                        <button type="button" class="layui-btn layui-btn-normal layui-btn-lg bg_green btn_send" id="sendCodeNew">发送验证码</button>
+                                        <div class="clear"></div>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="layui-btn layui-btn-warm bg_yellow" lay-submit lay-filter="stepBtn3">确认</button>
+                                        <button type="button" class="layui-btn layui-btn-primary btn_cancel" id="step3Cancel">取消</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script>
+    $(function () {
+    // var username='15665778526';
+    var userId = localStorage.getItem('userId');
+    var usersfzh = localStorage.getItem('sfzh2');
+    var userbank = localStorage.getItem('bankCardTypeName');
+    var userbanknum = localStorage.getItem('bankCardNumber');
+    var oldPhones = localStorage.getItem('phone');
+    var oldCodes = '';
+    var newPhones = '';
+    $('#uname').html(localStorage.getItem('phone'));
+    $('#uname2').html(localStorage.getItem('phone'));
+    $('#usfzh').html(usersfzh.replace(/(\w{10})\w*(\w{2})/, '$1******$2'));
+    $('#ubank').html(userbank?userbank:'暂无数据');
+    $('#ubanknum').html(userbanknum?userbanknum.replace(/(\d{6})\d*(\d{4})/,'$1****$2'):'暂无数据');
+    $('#rzPhone').html(oldPhones.replace(/(\d{3})\d*(\d{4})/,'$1****$2'));
+    $('#currentPhone').html(oldPhones);
+    layui.use(['layer','form','element','upload'], function() {
+        var layer = layui.layer;
+        var form = layui.form;
+        var upload = layui.upload;
+        form.verify({
+            pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ],
+            phone: [
+                /^1[3456789]\d{9}$/
+                ,'手机号格式错误'
+            ]
+        });
+        //折叠
+        $('#rzUl').on('click','.rz_edit',function () {
+            $(this).parent().parent().addClass('active');
+        });
+        $('#rzUl').on('click','.rz_shou',function () {
+            $(this).parent().parent().removeClass('active');
+        });
+        //修改手机号
+        $('#phoneXg').click(function () {
+            $('.li_sj').addClass('active');
+            // $('.xin').show().siblings().hide();
+        });
+        $('#step1Cancel').click(function () {
+            $('.li_sj').removeClass('active');
+            $('#personalForm')[0].reset();
+        });
+        // 发送验证码
+        $('#sendCode').click(function () {
+            // form.on('submit(stepBtn1)', function(data){
+                // getCode(oldPhones);
+                var jsonParam = {
+                    // 无参数，通过登录的tocken
+                    telephone:oldPhones,
+                };
+                getAjax('/commontools/getIdentCode',jsonParam,function (resultMsg) {
+                    layer.msg('验证码已发送',{
+                        time:1000
+                    });
+                    $('#sendCode').hide();
+                    $('#count').show();
+                    var TIME_COUNT = 60;
+                    if (true) {
+                        var count = TIME_COUNT;
+                        var timer = setInterval(function(){
+                            if (count > 0 && count <= TIME_COUNT) {
+                                count--;
+                                $('#count').html(count)
+                            } else {
+                                clearInterval(timer);
+                                timer = null;
+                                $('#count').hide();
+                                $('#count').html(60);
+                                $('#sendCode').show().html('重新发送验证码');
+                            }
+                        }, 1000)
+                    }
+                });
+                // return false
+            // });
+        });
+        //验证验证码
+        form.on('submit(stepBtn1)', function(data){
+            var jsonParam = {
+                phone: oldPhones,
+                code:data.field.code,
+            };
+            getAjax('/commontools/checkCode',jsonParam,function (resultMsg) {
+                $('.jiu').hide();
+                $('.xin').show();
+                oldCodes = data.field.code;
+            });
+        });
+        $('#step2Cancel').click(function () {
+            $('.jiu').show();
+            $('.xin').hide();
+        });
+        $('#step3Cancel').click(function () {
+            $('.xin').show();
+            $('.xin_send').hide();
+        });
+        //输入新手机号
+        form.on('submit(stepBtn2)', function(data){
+            $('.xin').hide();
+            $('.xin_send').show();
+            newPhones = data.field.newPhone;
+        });
+        // 获取新手机号验证码
+        $('#sendCodeNew').click(function () {
+            var jsonParam = {
+                // 无参数，通过登录的tocken
+                telephone:newPhones,
+            };
+            getAjax('/commontools/getIdentCode',jsonParam,function (resultMsg) {
+                layer.msg('验证码已发送',{
+                    time:1000
+                });
+                $('#sendCodeNew').hide();
+                $('#countNew').show();
+                var TIME_COUNT = 60;
+                if (true) {
+                    var count = TIME_COUNT;
+                    var timer = setInterval(function(){
+                        if (count > 0 && count <= TIME_COUNT) {
+                            count--;
+                            $('#countNew').html(count)
+                        } else {
+                            clearInterval(timer);
+                            timer = null;
+                            $('#countNew').hide();
+                            $('#countNew').html(60);
+                            $('#sendCodeNew').show().html('重新发送验证码');
+                        }
+                    }, 1000)
+                }
+            });
+        });
+        //更换手机号
+        form.on('submit(stepBtn3)', function(data){
+            //验证新验证码
+            var jsonParam2 = {
+                phone: newPhones,
+                code:data.field.newCode,
+            };
+            getAjax('/commontools/checkCode',jsonParam2,function (resultMsg) {
+                var jsonParam3 = {
+                    id:userId,
+                    oldPhone:oldPhones,
+                    oldCode:oldCodes,
+                    newPhone: newPhones,// 新手机号
+                    newCode:data.field.newCode,
+                };
+                getAjax('/sys/customer/updatePhone',jsonParam3,function (resultMsg) {
+                    layer.open({
+                        title: '提示',
+                        icon: 1,
+                        content: '修改成功',
+                        skin: 'my-layui-layer',
+                        btn: ['关闭', '确认'],
+                        btn1: function () {
+                            layer.closeAll();
+                        },
+                        btn2: function () {
+                            layer.closeAll();
+                            localStorage.setItem('phone',newPhones);
+                            history.go();
+                            // 刷新父页面
+                            // parent.location.reload();
+                        }
+                    })
+                });
+            });
+            return false
+        });
+        // 封面上传
+        $('#upInp').change(function () {
+            var files = $('#upInp')[0].files[0]; //获取文件流
+            $('#upImg').attr('src', getObjectURL(files));
+            var jsonParam1 = new FormData();
+            jsonParam1.append('fileData',files);
+            imgAjax('/sys/customer/saveHeadImage', jsonParam1, function (resultMsg) {
+                if (resultMsg.retCode == 0) {
+                    layer.msg('上传成功', {
+                        time: 1000 //2秒关闭（如果不配置，默认是3秒）
+                    }, function(){
+                        history.go();
+                    });
+                } else {
+                    layer.msg(resultMsg.retMsg)
+                }
+            })
+        });
+    });
+    })
+</script>
+</html>

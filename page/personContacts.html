@@ -1,0 +1,597 @@
+<!--常用联系人  personContacts.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head2.js"></script>
+    <link rel="stylesheet" href="../css/page/personalCenter.css">
+    <link rel="stylesheet" href="../css/page/personContacts.css">
+    <title>常用联系人</title>
+</head>
+<body>
+    <div class=" bg_white">
+        <div class="body-container rz_tab">
+            <a href="personalData.html">个人资料</a>
+            <a href="changePassword.html">密码修改</a>
+            <a href="personContacts.html" class="active">家庭成员</a>
+        </div>
+    </div>
+    <div class="body-container rz_gr">
+        <div class="memberList">
+            <div class="rz_title">我的家庭成员</div>
+            <div class="lxrBox">
+                <div class="lxrList" id="lxrList"></div>
+                <div class="lxrList">
+                    <div class="lxr-card lxr-add">
+                        <i class="iconfont">&#xe61b;</i>
+                        <span>添加联系人</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="addMember">
+            <div class="rz_title goBack"><i class="iconfont a_gray icon-arrow-left font_d"></i></div>
+            <form class="layui-form addForm" action="">
+               <div class="layui-form-item">
+                  <label class="layui-form-label">成员类型：</label>
+                  <div class="layui-btn-container familyType">
+                     <button type="button" my-val="1" class="layui-btn get_yz gray">儿童</button>
+                     <button type="button" my-val="2" class="layui-btn gray">成人</button>
+                  </div>
+                  <input type="hidden" name="isChild" id="isChild">
+               </div>
+               <div class="layui-form-item" id="guardian">
+                  <label class="layui-form-label">监护人姓名：</label>
+                  <div class="layui-input-block">
+                     <input type="text" name="guardianName" id="guardianName" lay-verify="jhr" placeholder="请输入监护人姓名" lay-reqtext="请输入监护人姓名" autocomplete="off" class="layui-input">
+                  </div>
+               </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">真实姓名：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" id="name" lay-verify="pass" placeholder="请输入真实姓名" lay-reqtext="请输入真实姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">身份证号：</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="lxrSfzh" id="lxrSfzh" lay-verify="required|identity" placeholder="请输入身份证号" lay-reqtext="请输入身份证号" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">联系电话：</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="phone" name="phone" id="phone"lay-verify="required|phone" placeholder="请输入联系电话" lay-reqtext="请输入联系电话" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">证件上传：</label>
+                    <!--<div class="layui-input-block">-->
+                        <!--<button class="layui-btn get_yz" lay-submit lay-filter="formDemo">立即提交</button>-->
+                        <!--<button type="reset" class="layui-btn layui-btn-primary">取消</button>-->
+                    <!--</div>-->
+                    <div class="layui-upload-drag" id="cardFront">
+                        <img src="../img/img_idcard.png" alt="" class="zw">
+                        <div class="layui-hide" id="uploadDemoView1">
+                            <img src="" alt="暂无图片"  class="zw_c">
+                        </div>
+                        <input type="hidden" name="zmUrl" id="zmUrl"  lay-reqtext="请上传证件照片">
+                    </div>
+                    <div class="layui-upload-drag" id="cardVerso">
+                        <img src="../img/img_idcard_b.png" alt="" class="zw_b">
+                        <div class="layui-hide" id="uploadDemoView2">
+                            <img src="" alt="暂无图片" class="zw_c">
+                        </div>
+                        <input type="hidden" name="fmUrl" id="fmUrl" lay-reqtext="请上传证件照片">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">验证码：</label>
+                    <div class="layui-inline yz_input fl">
+                        <div class="layui-input-inline">
+                            <input type="text" id="code" name="code" lay-verify="required" placeholder="请输入验证码" lay-reqtext="请输入验证码
+" autocomplete="off" class="layui-input yzm">
+                        </div>
+                    </div>
+                    <div class="layui-inline get_btn">
+                        <div class="layui-input-inline">
+                            <button type="button" id="getYz" class="layui-btn get_yz" lay-filter="get_yzm">发送验证码</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">与本人的关系：</label>
+                    <div class="layui-btn-container relationBox">
+                        <!--与客户的关系 1.本人 2.母亲 3.父亲 4.妻子 5.女儿 6.儿子-->
+<!--                        <button type="button" my-val="1" class="layui-btn gray">本人</button>-->
+                        <button type="button" my-val="2" class="layui-btn get_yz gray">母亲</button>
+                        <button type="button" my-val="3" class="layui-btn gray">父亲</button>
+                        <button type="button" my-val="7" class="layui-btn gray">丈夫</button>
+                        <button type="button" my-val="4" class="layui-btn gray">妻子</button>
+                        <button type="button" my-val="5" class="layui-btn gray">女儿</button>
+                        <button type="button" my-val="6" class="layui-btn gray">儿子</button>
+                        <button type="button" my-val="8" class="layui-btn gray">其他</button>
+                    </div>
+                    <input type="hidden" name="gx" id="gx">
+                    <!--<button class="layui-btn get_yz" lay-submit lay-filter="formDemo">母亲</button>-->
+                </div>
+               <div class="layui-form-item" id="gxQt">
+                  <label class="layui-form-label">其他：</label>
+                  <div class="layui-input-block">
+                     <input type="text" name="gxOther" id="gxOther" placeholder="请输入" lay-reqtext="请输入" autocomplete="off" class="layui-input">
+                  </div>
+               </div>
+                <div class="layui-form-item btn_t">
+                    <div class="layui-input-block" style="text-align: center">
+                        <!--<button class="layui-btn bg_yellow btn_w" id="addBtn">确认</button>-->
+                        <button class="layui-btn bg_yellow btn_w" id="addBtn2" lay-submit lay-filter="formDemo">确认</button>
+                        <!--<button type="reset" id="reset" class="layui-btn layui-btn-primary">取消</button>-->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script type="text/javascript">
+    $(function () {
+        layui.use(['form','upload'], function(){
+            var form = layui.form;
+            var $ = layui.jquery
+                ,upload = layui.upload;
+            form.verify({
+                pass: function(value){
+                    if(value.trim() == ''){
+                        return '请输入真实姓名！';
+                    }
+                    if(!/^[\u4e00-\u9fa5_a-zA-Z0-9]+$/.test(value)){
+                        return '您输入的真实姓名内有非法字符，请重新输入！';
+                    }
+                    if(!/^([\u4e00-\u9fa5]{2,6}|[a-zA-Z\.\s]{1,20})$/.test(value)){
+                        return '您输入的真实姓名不正确，请重新输入！';
+                    }
+                }
+            });
+            var jsonParam = {
+                custormerId:localStorage.getItem('userId'),
+                pageSize:'-1' // -1为不分页
+            }
+            var child = '1'
+            var status = ''
+            var lxrId = ''
+            getList();
+            function getList () {
+                getAjax('/sys/customer/getLxrList',jsonParam,function (resultMsg) {
+                    $('#lxrList').html("")
+                    var listdata = resultMsg.data.list;
+                    var html = '';
+                    var touimg = '';
+                    $.each(listdata, function (i, item) {
+                        if (item.gx == '本人') {
+                            html = '<img class="edit-btn" ids="' + item.id + '" src="../img/btn_edit.png" alt="">';
+                            touimg = item.custormerUrl ? item.custormerUrl : '../img/photo.png';
+                        } else {
+                            html =  '<img class="edit-btn" ids="' + item.id + '" src="../img/btn_edit.png" alt="">&nbsp;' +
+                                '<img class="delete-btn" ids="' + item.id + '" src="../img/btn_delete.png" alt="">';
+                            touimg = '../img/photo.png';
+                        }
+                        $('#lxrList').append('<div class="lxr-card">' +
+                            '<div class="card-btn">' + html +
+                            '</div>' +
+                            '<div class="lxr-row"><div class="lxr-img">' +
+                            '<img src="' + touimg + '" alt="">' +
+                            '</div>' +
+                            '<div class="lxr-detail">' +
+                            '<div class="lxr-info">' +
+                            '<div class="lxr-name">' + item.name + '</div>' +
+                            '<div class="lxr-type">' + item.gx + '</div>' +
+                            '</div>' +
+                            '<div class="lxr-lxfs">' +
+                            '<div class="lxr-phone">' +
+                            '<i class="iconfont">&#xe671;</i>' +
+                            '<span>' + item.phone + '</span>' +
+                            '</div>' +
+                            '<div class="lxr-id">' +
+                            '<i class="iconfont">&#xe615;</i>' +
+                            '<span>' + item.sfzh + '</span>' +
+                            '</div></div></div></div></div>');
+                    });
+                });
+            }
+            $(".lxrList").on("click",".lxr-add",function () {
+                status = '1'
+                $(".addMember").show()
+                $(".memberList").hide()
+                $("#name").val('')
+                $("#lxrSfzh").val('')
+                $("#phone").val('')
+                $("#code").val('')
+                $(".zw").show()
+                $(".zw_b").show()
+                layui.$('#uploadDemoView1').addClass('layui-hide').find('img').attr('src', '');
+                layui.$('#uploadDemoView2').addClass('layui-hide').find('img').attr('src', '');
+                $('#zmUrl').val('');
+                $('#fmUrl').val('');
+                $(".relationBox .layui-btn:first").addClass("get_yz").siblings().removeClass("get_yz")
+                layui.form.render();
+            })
+            // 编辑
+            $(".lxrList").on("click",".edit-btn",function () {
+                status = '2'
+                $(".addMember").show()
+                $(".memberList").hide()
+                lxrId = $(this).attr("ids")
+                var jsonParamr={
+                    id: $(this).attr("ids"),
+                    sfzh: localStorage.getItem("sfzh2")
+                }
+                getAjax('/sys/customer/getSysLnrDetails', jsonParamr,function (resultMsg) {
+                    $("#name").val(resultMsg.data.name)
+                    $("#lxrSfzh").val(resultMsg.data.lxrSfzh)
+                    $("#phone").val(resultMsg.data.phone)
+                    $("#gxOther").val(resultMsg.data.gxOther)
+                   for (var i = 0;i < $('.familyType .layui-btn').length; i++) {
+                      var ids = $('.familyType .layui-btn').eq(i).attr('my-val');
+                      if(ids === resultMsg.data.isChild){
+                         $(".familyType .layui-btn").eq(i).addClass("get_yz").siblings().removeClass("get_yz")
+                      }
+                   }
+                   if(resultMsg.data.isChild === '2'){
+                      $("#guardian").hide()
+                      child = '2'
+                   }else{
+                      $("#guardian").show()
+                      child = '1'
+                   }
+                    $("#isChild").val(resultMsg.data.isChild)
+                    $(".zw").hide()
+                    $(".zw_b").hide()
+                    if(resultMsg.data.zmUrl){
+                        layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', resultMsg.data.zmUrl);
+                        layui.$('#uploadDemoView2').removeClass('layui-hide').find('img').attr('src', resultMsg.data.fmUrl);
+                        $('#zmUrl').val(resultMsg.data.zmUrl);
+                        $('#fmUrl').val(resultMsg.data.fmUrl);
+                    }else{
+                        $('.zw').show();
+                        $('.zw_b').show();
+                        layui.$('#uploadDemoView1').addClass('layui-hide')
+                        layui.$('#uploadDemoView2').addClass('layui-hide')
+                    }
+                    // layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', resultMsg.data.zmUrl);
+                    // layui.$('#uploadDemoView2').removeClass('layui-hide').find('img').attr('src', resultMsg.data.fmUrl);
+                    // $('#zmUrl').val(resultMsg.data.zmUrl);
+                    // $('#fmUrl').val(resultMsg.data.fmUrl);
+                    for (var i = 0;i < $('.relationBox .layui-btn').length; i++) {
+                        var ids = $('.relationBox .layui-btn').eq(i).attr('my-val');
+                        if(ids === resultMsg.data.gx){
+                            $(".relationBox .layui-btn").eq(i).addClass("get_yz").siblings().removeClass("get_yz")
+                        }
+                    }
+                    $('#gx').val(resultMsg.data.gx);
+                    layui.form.render();
+                })
+            })
+            // 删除
+            $(".lxrList").on("click",".delete-btn",function () {
+                var ids =  $(this).attr("ids")
+                var toDet = layer.confirm('您确定删除该信息？', {
+                    btn: ['确定','返回'] //按钮
+                }, function(){
+                    var jsonParamr={
+                        id: ids,
+                        custormerId:localStorage.getItem('userId')
+                    }
+                    getAjax('/sys/customer/delLxr', jsonParamr,function (resultMsg) {
+                        if(resultMsg.retCode == 0){
+                            history.go()
+                        }else{
+                            layer.msg('删除失败', {icon: 5,time:1000,anim: 6});
+                        }
+                    })
+                }, function(){
+                    // layer.msg('也可以这样', {
+                    //     time: 20000, //20s后自动关闭
+                    //     btn: ['明白了', '知道了']
+                    // });
+                });
+            })
+            $(".goBack").click(function () {
+                $(".addMember").hide()
+                $(".memberList").show()
+            })
+            // 证件上传
+            // var tzIp = 'http://192.168.1.56:8089';
+            // var authorCookie = localStorage.getItem('authTokenTreat');
+            upload.render({
+                elem: '#cardFront',
+                url: roadPath + '/commontools/saveImage', //改成您自己的上传接口
+                // headers: { authToken: localStorage.getItem('authTokenTreat') },
+                headers: { authToken: get('authTokenTreat','43200000') },
+                field: 'fileData',
+                before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                    // this.headers.authToken = localStorage.getItem('authTokenTreat');
+                    layer.load(); //上传loading
+                    // XMLHttpRequest.setRequestHeader("authToken", authorCookie);
+                },
+                done: function(res, index, upload){
+                    if(res.retCode == 0){
+                        layer.closeAll('loading'); //关闭loading
+                        layer.msg('上传成功');
+                        setTimeout(function () {
+                            layui.$('#uploadDemoView1').removeClass('layui-hide').find('img').attr('src', res.data);
+                        },500)
+                        $('.zw').hide();
+                        $('#zmUrl').val(res.data);
+                    }else{
+                        layer.closeAll('loading'); //关闭loading
+                        layer.msg('上传失败');
+                    }
+                },
+                error: function(index, upload){
+                    layer.closeAll('loading'); //关闭loading
+                    layer.msg('上传失败');
+                }
+            });
+            upload.render({
+                elem: '#cardVerso',
+                url: roadPath + '/commontools/saveImage', //改成您自己的上传接口
+                field: 'fileData',
+                // headers: { authToken: localStorage.getItem('authTokenTreat') },
+                headers: { authToken: get('authTokenTreat','43200000') },
+                before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                    // this.headers.authToken = localStorage.getItem('authTokenTreat');
+                    layer.load(); //上传loading
+                },
+                done: function(res, index, upload){
+                    if(res.retCode == 0) {
+                        layer.closeAll('loading'); //关闭loading
+                        layer.msg('上传成功');
+                        setTimeout(function () {
+                            layui.$('#uploadDemoView2').removeClass('layui-hide').find('img').attr('src', res.data);
+                        },500)
+                        $('.zw_b').hide();
+                        $('#fmUrl').val(res.data);
+                    }else{
+                        layer.closeAll('loading'); //关闭loading
+                        layer.msg('上传失败');
+                    }
+                },
+                error: function(index, upload){
+                    layer.closeAll('loading'); //关闭loading
+                    layer.msg('上传失败');
+                }
+            });
+            // 用户类型
+            $('#isChild').val($('.familyType').children('button').eq(0).attr('my-val'));
+            $(".familyType").on("click","button",function () {
+                $(this).addClass("get_yz").siblings().removeClass("get_yz");
+                $('#isChild').val($(this).attr('my-val'));
+                if($(this).attr('my-val') === '2'){
+                   $("#guardian").hide()
+                   child = '2'
+                }else{
+                   $("#guardian").show()
+                   child = '1'
+                }
+            })
+            // 关系选择
+            $('#gx').val($('.relationBox').children('button').eq(0).attr('my-val'));
+            if( $('#gx').val() === '8'){
+               $("#gxQt").show()
+            }else{
+               $("#gxQt").hide()
+           }
+            $(".relationBox").on("click","button",function () {
+                $(this).addClass("get_yz").siblings().removeClass("get_yz");
+                $('#gx').val($(this).attr('my-val'));
+                console.log($(this).attr('my-val'))
+               if($(this).attr('my-val') === '8'){
+                  $("#gxQt").show()
+               }else{
+                  $("#gxQt").hide()
+               }
+            })
+            // 获取验证码
+            var getClick = false;
+            form.on('submit(get_yzm)', function(data){
+
+            })
+            $('#getYz').click(function () {
+               var _this = $(this);
+               var newVal = $("#lxrSfzh").val()
+               var myDate = new Date();
+               var month = myDate.getMonth() + 1;
+               var day = myDate.getDate();
+               var age = myDate.getFullYear()-newVal.substring(6, 10) - 1;
+               if (newVal.substring(10,12)<month||newVal.substring(10,12)==month&&newVal.substring(12,14)<=day)
+               {
+                  age.age++;
+               }
+               if(child === '1' && age>6){
+                  layer.msg('儿童年龄不能大于7岁！')
+               }else{
+                  var jsonParamr = {
+                     lxrsfzh: $("#lxrSfzh").val()
+                  };
+                  $.ajax({
+                     url: roadPath + '/sys/lnr/isExist',
+                     type: 'POST',
+                     dataType: 'json',
+                     // jsonp: "callback",//服务端用于接收
+                     contentType: 'application/json',
+                     async: false,
+                     data: JSON.stringify(jsonParamr),
+                     beforeSend: function (XMLHttpRequest) {
+                        XMLHttpRequest.setRequestHeader("authToken", authorCookie);
+                     },
+                     success: function (resultMsg) {
+                        if (resultMsg.retCode == 0) {
+                           getClick = true;
+                           var phoneVal = $('#phone').val();
+                           if (phoneVal == '' || !new RegExp("^1\\d{10}$").test(phoneVal)) {
+                              layer.msg('请输入正确的手机号', {icon: 5,time:1000,anim: 6});
+                              $('#phone').focus();
+                              $('#phone').addClass('layui-form-danger');
+                           } else {
+                              var jsonParamr = {
+                                 type : '1',
+                                 idCard: $("#lxrSfzh").val(),
+                                 name: $("#name").val(),
+                              }
+                              $.ajax({
+                                 url: roadPath + '/sys/customer/realNameTest',
+                                 type: 'POST',
+                                 dataType: 'json',
+                                 // jsonp: "callback",//服务端用于接收
+                                 contentType: 'application/json',
+                                 async: false,
+                                 data: JSON.stringify(jsonParamr),
+                                 beforeSend: function (XMLHttpRequest) {
+                                    XMLHttpRequest.setRequestHeader("authToken", authorCookie);
+                                    // layui.use('layer', function () {
+                                    //     index = layer.load(1, {
+                                    //         shade: [0.1,'#fff'] //0.1透明度的白色背景
+                                    //     });
+                                    // });
+                                 },
+                                 success: function (resultMsg) {
+                                    if (resultMsg.retCode == 0) {
+                                       $('#phone').removeClass('layui-form-danger');
+                                       getAjax('/commontools/getIdentCode', {telephone: phoneVal}, function (resultMsg) {
+                                          if (resultMsg.retCode == 0) {
+                                             layer.msg("已发送验证码")
+                                             var count = 60;
+                                             var countDown = setInterval(() => {
+                                                if (count === 0) {
+                                                   _this.text('重新发送').removeAttr('disabled').addClass('get_yz').css({
+                                                      background: '#01B887',
+                                                      color: '#fff',
+                                                   });
+                                                   clearInterval(countDown);
+                                                } else {
+                                                   _this.attr('disabled', true).removeClass('get_yz').css({
+                                                      background: '#d8d8d8',
+                                                      color: '#707070',
+                                                   });
+                                                   _this.text(count + '秒后可重新获取');
+                                                }
+                                                count--;
+                                             }, 1000);
+                                          } else {
+                                             layer.open("验证码发送频繁")
+                                          }
+                                       })
+                                    }else{
+                                       layer.msg(resultMsg.retMsg)
+                                    }
+                                 },
+                                 error: function (error,a,b) { // 请求失败处理
+                                    console.log(error);
+                                    console.log(a);
+                                    console.log(b);
+                                 }
+                              })
+                           }
+                        } else {
+                           layer.msg(resultMsg.retMsg)
+                        }
+                     },
+                     error: function (error, a, b) { // 请求失败处理
+                        console.log(error);
+                        console.log(a);
+                        console.log(b);
+                     }
+                  })
+               }
+            });
+            //监听提交
+            // $('#addBtn').click(function (e) {
+            //     e.preventDefault();
+            //     $('#addBtn2').click()
+            //     var phoneVal = $('#phone').val();
+            //     var codeVal = $('#code').val();
+            //     if (getClick) {
+            //         var jsonParams={
+            //             phone: phoneVal,
+            //             code: codeVal,
+            //         }
+            //         getAjax('/commontools/checkCode', jsonParams,function (resultMsg) {
+            //             if(resultMsg.retCode == 0){
+            //
+            //             }else{
+            //                 layer.msg('验证码输入不正确', {icon: 5,time:1000,anim: 6});
+            //             }
+            //         })
+            //     }
+            //     // else {
+            //     //     layer.msg('请先获取验证码', {icon: 5,time:1000,anim: 6});
+            //     // }
+            // });
+            // $('#addBtn2').click(function () {
+            //     form.on('submit(formDemo)', function(data){
+            //         getAjax('/sys/customer/addLxr', data.field,function (resultMsg) {
+            //             if(resultMsg.retCode == 0){
+            //                 getList();
+            //                 $(".addMember").hide();
+            //                 $(".memberList").show();
+            //             }
+            //         })
+            //         return false;
+            //     });
+            // });
+            form.on('submit(formDemo)', function(data){
+               if(child === '1'){
+                  if(data.field.guardianName == ''){
+                     layer.msg('请填写监护人真实姓名', {icon: 5,time:1000,anim: 6});
+                  }
+               }else{
+                  if(data.field.fmUrl == '' || data.field.zmUrl == '' ){
+                     layer.msg('请上传身份证照片！', {icon: 5,time:1000,anim: 6});
+                  }else if (getClick){
+                     var phoneVal = $('#phone').val();
+                     var codeVal = $('#code').val();
+                     // if (getClick) {
+                     var jsonParams={
+                        phone: phoneVal,
+                        code: codeVal,
+                     };
+                     getAjax('/commontools/checkCode', jsonParams,function (resultMsg) {
+                        if(resultMsg.retCode == 0){
+                           data.field.sfzh = localStorage.getItem("sfzh2");
+                           data.field.custormerId = localStorage.getItem("userId");
+                           // data.field.isChild = '';
+                           if(status === '1'){
+                              getAjax('/sys/customer/addLxr', data.field,function (resultMsg) {
+                                 if(resultMsg.retCode == 0){
+                                    history.go()
+                                 }
+                              })
+                           }else if(status === '2'){
+                              data.field.id = lxrId
+                              getAjax('/sys/customer/updateLxr', data.field,function (resultMsg) {
+                                 if(resultMsg.retCode == 0){
+                                     history.go()
+                                 }
+                              })
+                           }
+                        }else{
+                           layer.msg('验证码输入不正确', {icon: 5,time:1000,anim: 6});
+                        }
+                     })
+                  }else{
+                     layer.msg('请先获取验证码', {icon: 5,time:1000,anim: 6});
+                  }
+               }
+                return false;
+            });
+
+            $("#reset").click(function(){
+                $('.zw').show();
+                $('.zw_b').show();
+                layui.$('#uploadDemoView1').addClass('layui-hide')
+                layui.$('#uploadDemoView2').addClass('layui-hide')
+            })
+        });
+    })
+</script>
+</html>

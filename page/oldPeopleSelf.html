@@ -1,0 +1,251 @@
+<!--老年人自理能力-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <!-- 引入vant -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.5/lib/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.5/lib/vant.min.js"></script>
+    <style>
+        .tcm_zd{
+            border-bottom: 1px solid #EBEDED;
+            position: relative;
+            margin: 50px 0;
+        }
+        .tcm_zd>span{
+            font-size: 24px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 0 40px;
+            background: #fff;
+        }
+        .tcm_ms{
+            width: 80%;
+            margin: 50px auto 0;
+            line-height: 42px;
+            text-indent: 2em;
+            position: relative;
+        }
+        .tcm_ms .iconfont{
+            position: absolute;
+            top: -15px;
+            left: -20px;
+        }
+        .tcm_jg{
+            width: 90%;
+            margin: 0 auto;
+            line-height: 30px;
+        }
+        .pf{
+            height: 100%;
+            display: flex;
+            flex-direction:column;
+            justify-content: center;
+            align-items: center;
+        }
+        .fs{
+            font-size: 48px;
+            color: #FDB037;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box" id="app">
+    <div class="layui-row showLoading">
+        <div class="layui-col-md8">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> >自理能力评估</div>
+            <div class="bg_white mar_r pad30">
+                <div class="top_box">
+                    <div class="top_title">自理能力评估结果</div>
+                    <div class="l_gray">评估日期：<span class="mar_r" id="sfrq"></span>评估机构：<span id="orgName"></span></div>
+                </div>
+                <div class="tc" style="margin-top: 50px;">
+                    <van-circle
+                            v-model="currentRate"
+                            :rate="rate"
+                            size="220px"
+                            :color="gradientColor"
+                            :stroke-width="70"
+                            :speed="100"
+                            layer-color="#ebedf0"
+                    >
+                        <slot>
+                            <div class="pf gray">
+                                总评分
+                                <div class="fs" id="zdf"></div>
+                            </div>
+                        </slot>
+                    </van-circle>
+                </div>
+                <div class="tcm_ms gray">
+                    <span class="iconfont icon-zhuangshiyongyinhao l_gray"></span>
+                    评分说明：（1）0~3分者为可自理；（2）4-8分者为轻度依赖；
+                    （3）9~18分者为中度依赖；（4）大于等于19分者为重度依赖。
+                </div>
+                <div class="tcm_zd">
+                    <span class="gray">健康指导</span>
+                </div>
+                <div class="tcm_jg gray" id="jkzd">生活自理能力稍差，请稍加关注。</div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class=" bg_white bmfw_main pad20">
+                <div class="bm_title">评估历史</div>
+                <ul class="health_list"></ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        layui.use(['layer','laypage'], function() {
+            layer.load(0, {shade: false});
+            var laypage = layui.laypage;
+            var oldId = '';
+            // 记录分页
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+            var jsonParam = {
+                sfzh:localStorage.getItem("sfzh"),
+                pageNo:'1',
+                jmid:localStorage.getItem("jmid"),
+            };
+            //获取列表
+            getOldList();
+            function getOldList(){
+                getAjax('/health/follow/getJkpgList',jsonParam,function (resultMsg) {
+                    layer.closeAll();
+                    $('.showLoading').css('opacity','1');
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html = '';
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>';
+                    }else{
+                        $.each(resultMsg.data.list,function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            if(item.zdf>=0 && item.zdf<=3){
+                                item.pgText='可自理';
+                            }else if(item.zdf>=4 && item.zdf<=8){
+                                item.pgText='轻度依赖';
+                            }else if(item.zdf>=9 && item.zdf<=18){
+                                item.pgText='中度依赖';
+                            }else if(item.zdf>=19){
+                                item.pgText='不能自理';
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum">'+item.pgText+'('+item.zdf+'分)</div>' +
+                                '<div class="font_s l_gray fontNum">评估时间：<span class="jcrq">'+item.sfrq+'</span></div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                    }
+                    $(".health_list").html(html);
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                    oldId = resultMsg.data.list[0].id;
+                    getOldDetails(oldId);
+                });
+            }
+            //分页跳转
+            hosPage.jump = function (obj) {
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/health/follow/getJkpgList', jsonParam, function (resultMsg) {
+                    var html ='';
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list,function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            if(item.zdf>=0 && item.zdf<=3){
+                                item.pgText='可自理';
+                            }else if(item.zdf>=4 && item.zdf<=8){
+                                item.pgText='轻度依赖';
+                            }else if(item.zdf>=9 && item.zdf<=18){
+                                item.pgText='中度依赖';
+                            }else if(item.zdf>=19){
+                                item.pgText='不能自理';
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum">'+item.pgText+'('+item.zdf+'分)</div>' +
+                                '<div class="font_s l_gray fontNum">评估时间：<span class="jcrq">'+item.sfrq+'</span></div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                        oldId = resultMsg.data.list[0].id;
+                    }
+                    $(".health_list").html(html)
+                })
+            };
+            //获取详情
+            function getOldDetails(id) {
+                var jsonParam2 = {
+                    id:id
+                };
+                getAjax('/health/follow/getJkpg',jsonParam2,function (resultMsg) {
+                    $('#sfrq').html(resultMsg.data.sfrq);
+                    $('#orgName').html(resultMsg.data.orgName);
+                    $('#zdf').html(resultMsg.data.zdf);
+                    localStorage.setItem('oldDf',resultMsg.data.zdf);
+                    new Vue({
+                        el: '#app',
+                        data() {
+                            return {
+                                rate:parseInt(localStorage.getItem('oldDf') * 5),
+                                currentRate: 37,
+                                text:'22',
+                                gradientColor: {
+                                    '0%': '#27DC89',
+                                    // '50%': '#F0AD19',
+                                    '100%': '#F0AD19',
+                                },
+                            };
+                        }
+                    });
+                    if(resultMsg.data.zdf>=0 && resultMsg.data.zdf<=3){
+                        $('#jkzd').html('生活可以自理，请继续保持。')
+                    }else if(resultMsg.data.zdf>=4 && resultMsg.data.zdf<=8){
+                        $('#jkzd').html('生活自理能力稍差，请稍加关注。')
+                    }else if(resultMsg.data.zdf>=9 && resultMsg.data.zdf<=18){
+                        $('#jkzd').html('生活自理能力差，请多加关注。')
+                    }else if(resultMsg.data.zdf>=19){
+                        $('#jkzd').html('生活自理能力很差，请时刻关注。')
+                    }
+                })
+            }
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+                oldId = $(this).attr("ids");
+                getOldDetails(oldId);
+            });
+        })
+    });
+    
+</script>
+</html>

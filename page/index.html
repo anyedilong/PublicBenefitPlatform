@@ -1,0 +1,153 @@
+<!--首页-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <script src="../js/cryptojs.js"></script>
+    <link rel="stylesheet" href="../css/page/index.css">
+</head>
+<body>
+    <div>
+        <div class="body-banner layui-row">
+            <img src="../img/banner.png" alt="">
+        <!--系统消息-->
+        <div class="n_box">
+            <span class="iconfont icon-icon_tongz n_box_icon"></span>
+            <div class="layui-carousel" id="test1" lay-filter="test1" style="line-height: 30px;margin-top: 15px;background: #fff;">
+<!--                <div carousel-item="">-->
+<!--                    <div>通知信息通知信息通知信息通知信息通知信息通知信息通知信息通通知信息通知信息通知信息通知信息通知信息通知信息通知信息通知信息知信息</div>-->
+<!--                    <div>条目2</div>-->
+<!--                    <div>条目3</div>-->
+<!--                    <div>条目4</div>-->
+<!--                    <div>条目5</div>-->
+<!--                </div>-->
+            </div>
+            <a class="green b_gray cursorP" href="systemInfo.html" id="n_view">查看更多</a>
+            <div class="n_box_date"><span style="font-size: 24px" id="n_month">03</span> <br>-<br><span style="font-size: 24px" id="n_date">21</span></div>
+        </div>
+    </div>
+    <!--便民服务-->
+    <div class="bg_white" style="padding:20px 0 50px 0">
+        <div class="body-container">
+            <div class="cardTit">便民服务</div>
+            <div class="bm_box" id="bmBox">
+                <div class="a_gray cursorP" id="yygh1">
+                    <div class="square bg_lightblue">
+                        <span class="iconfont icon-icon_severice_yy"></span>
+                    </div>
+                    <p >预约挂号</p>
+                    <p>居民可以为自己及家人进行在线预约挂号</p>
+                </div>
+                <div class="a_gray cursorP" id="tjb1">
+                    <div class="square bg_blue">
+                        <span class="iconfont icon-icon_severice_tj"></span>
+                    </div>
+                    <p>健康体检表</p>
+                    <p>可以查看您及家人的体检信息</p>
+                </div>
+                <div class="a_gray cursorP" id="jcbg1">
+                    <div class="square bg_lightgreen">
+                        <span class="iconfont icon-icon_severice_jc"></span>
+                    </div>
+                    <p>检查报告</p>
+                    <p>可以查看您及家人在医院就诊期间的检查报告</p>
+                </div>
+                <div class="a_gray cursorP" id="jybg1">
+                    <div class="square bg_yellow">
+                        <span class="iconfont icon-icon_severice_jy"></span>
+                    </div>
+                    <p>检验报告</p>
+                    <p>可以查看您及家人在医院就诊期间的检验报告</p>
+                </div>
+                <div class="a_gray cursorP" id="gdgn1">
+                    <div class="square bg_gray square_more">
+                        <span class="iconfont icon-icon_more"></span>
+                    </div>
+                    <p>更多功能</p>
+                    <p>可以查看您及家人的更多健康信息</p>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!--政策法规-->
+        <div class="zcfg ">
+            <div class="body-container">
+                <div class="cardTit">政策法规</div>
+                <div class="layui-row layui-col-space30">
+                    <div class="layui-col-md5" id="zcfgzd">
+<!--                        <img src="" class="marginb_10" id="zcOneImg" alt="暂无图片">-->
+<!--                        <div class="zc_title marginb_10 text_one" id="zcOneTit"><a href="" class="a_gray"></a></div>-->
+<!--                        <div class="zc_des gray" id="zcOneDes"></div>-->
+                    </div>
+                    <div class="layui-col-md7">
+                        <ul class="index_news" id="zcfgList"></ul>
+                        <a href="policy.html" id="viewZc" type="button" class="layui-btn bg_green fr">查看更多 <span class="iconfont icon-arrow-right"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--健康资讯-->
+        <div class=" bg_white" style="padding-top: 1px;">
+            <div class="body-container">
+                <div class="cardTit">健康资讯</div>
+                    <ul class="myTab" id="zxTab">
+<!--                        <li class="active">中医</li>-->
+                    </ul>
+                    <div class="layui-row" id="zxContent" style="min-height: 200px">
+                        <div class="layui-col-md5">
+                            <div class="layui-carousel" id="test3" style="height: 380px">
+                                <div carousel-item="" id="zxCarousel">
+<!--                                            <div>-->
+<!--                                                <img src="../img/img.png" class="marginb_10" alt="暂无图片">-->
+<!--                                                <div class="zc_title marginb_10 text_one"><a href="" class="a_gray">中共中央、国务院向社会公布的关于深化医药卫生体制改革中共中央、国务院向社会公布的关于深化医药卫生体制改革</a></div>-->
+<!--                                                <div class="zc_des gray">-->
+<!--                                                    有效减轻居民就医费用负担，切实缓解‘看病难、看病贵’”的近期目标，以及“建立健全覆盖城乡居民的基本医疗卫生制度，为群众提供安全、有效、方便、价廉的医疗卫生服务”的长远目标。-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div>条目2</div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md7">
+                            <ul class="index_news" id="zxList"></ul>
+                            <button id="viewZx" type="button" class="layui-btn bg_green fr">查看更多 <span class="iconfont icon-arrow-right"></span></button>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <!--办事指南-->
+        <div class=" bszn">
+            <div class="body-container">
+                <div class="cardTit">办事指南</div>
+                <div class="layui-row layui-col-space30" id="guideList">
+<!--                    <div class="layui-col-md4">-->
+<!--                        <img src="../img/img_yygh.png" class="zn_img">-->
+<!--                        <div class="zn_news" id="guideYy">-->
+<!--                            <p class="text_one" title="不知道如何进行线上预约不知道如何进行线上预约？"><a href="" class="a_gray">不知道如何进行线上预约不知道如何进行线上预约？</a></p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                </div>
+            </div>
+        </div>
+        <!--友情链接-->
+        <div class='bg_white' style="padding: 1px 0;">
+            <div class='body-container yqlj'>
+                <div class='cardTit'>
+                    友情链接
+                </div>
+                <div class='body-card'>
+                    <div id='linkurl' class='link-box'>
+<!--                        <div class='link-cord'>-->
+<!--                            <a href='www.baidu.com' target='_blank' class='b_gray'>曲靖市预约挂号平台</a>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+</html>

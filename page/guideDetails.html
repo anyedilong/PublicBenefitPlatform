@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head.js"></script>
+    <style>
+        .news_nr{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="layui-col-md12 bmfw_main">
+            <div class="title_href">当前位置：<a href="guideList.html">办事指南</a> >办事指南详情</div>
+            <div class="bg_white mar_r pad30">
+                <div class="top_box">
+                    <div class="top_title" id="fbtit"></div>
+                    <div class="l_gray">发布日期：<span class="mar_r" id="fbrq"></span>
+<!--                        发布人：<span class="mar_r" id="fbr"></span>-->
+                    </div>
+                </div>
+                <div id="fbnr" class="news_nr"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/page/foot.js"></script>
+<script>
+    $(function () {
+        layui.use(['layer'], function() {
+            var newsId = GetQueryString('id');
+            var jsonParam = {
+                id:newsId,
+            };
+            //获取详情
+            getNewsDetails();
+            function getNewsDetails() {
+                getAjax('/guide/show',jsonParam,function (resultMsg) {
+                    $(".showLoading").css("opacity",'1');
+                    $('#fbtit').html(resultMsg.data.title);
+                    $('#fbrq').html(resultMsg.data.createTime);
+                    $('#fbnr').html(resultMsg.data.content);
+                });
+            }
+        })
+    })
+</script>
+</body>
+</html>

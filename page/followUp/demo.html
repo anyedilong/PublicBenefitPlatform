@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>儿童随访记录表</title>
+   <script src="../../js/page/commen.js"></script>
+   <style>
+      .childDetail>li{
+         display: none;
+      }
+      /*.sfBox {*/
+      /*height: 1280px !important;*/
+      /*}*/
+   </style>
+</head>
+<body>
+<div class="layui-row sfContainer">
+   <div class="layui-col-xs8 layui-col-md8 bmfw_main bg_white sfBox pad30">
+      <ul class="childDetail">
+         <li class="litab newborn">
+            <div class="rightCard">
+               <div class="top_box">
+                  <div class="top_title"><span id="name"></span>家庭访视记录表</div>
+                  <div class="l_gray font_s">随访日期：<span class="mar_r">暂无数据</span><span class="green mar_r">随访方式：暂无数据</span>随访医生：暂无数据</div>
+               </div>
+               <ul class="consUl">
+                  <li class="consLi">
+                     <div class="cons-label">性别</div>
+                     <div class="cons-txt newbornSfz" id="xbName" name="xb"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">出生日期</div>
+                     <div class="cons-txt newbornSfz" id="csrq" name="csrq"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身份证号</div>
+                     <div class="cons-txt newbornSfz" id="sfzh" name="sfzh"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">家庭住址</div>
+                     <div class="cons-txt newbornSfz" id="jtzz" name="jtzz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">父亲</div>
+                     <div class="cons-txt tizheng">
+                        <div style="">
+                           <span>姓名：</span>
+                           <span class="newbornSfz" id="fqm" name="fqm"></span>
+                        </div>
+                        <div>
+                           <span>职业：</span>
+                           <span class="newbornSfz" id="fqgz" name="fqgz"></span>
+                        </div>
+                        <div>
+                           <span>联系电话：</span>
+                           <span class="newbornSfz" id="fqdh" name="fqdh"></span>
+                        </div>
+                        <div>
+                           <span>出生日期：</span>
+                           <span class="newbornSfz" id="fqcsrq" name="fqcsrq"></span>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">母亲</div>
+                     <div class="cons-txt tizheng">
+                        <div style="">
+                           <span>姓名：</span>
+                           <span class="newbornSfz" id="mqm" name="mqm"></span>
+                        </div>
+                        <div>
+                           <span>职业：</span>
+                           <span class="newbornSfz" id="mqgz" name="mqgz"></span>
+                        </div>
+                        <div>
+                           <span>联系电话：</span>
+                           <span class="newbornSfz" id="mqdh" name="mqdh"></span>
+                        </div>
+                        <div>
+                           <span>出生日期：</span>
+                           <span class="newbornSfz" id="mqcsrq" name="mqcsrq"></span>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">出生孕周</div>
+                     <div class="cons-txt newbornSfz" id="csyz" name="csyz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">母亲妊娠期患病情况</div>
+                     <div class="cons-txt newbornSfz" id="mqrsqhbqkName" name="mqrsqhbqkName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">助产机构名称</div>
+                     <div class="cons-txt" >
+                        <span class="newbornSfz" id="zcjgmc" name="zcjgmc"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">出生情况</div>
+                     <div class="cons-txt newbornSfz" id="csqkName" name="csqkName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">新生儿窒息</div>
+                     <div class="cons-txt newbornSfz" id="xsezxName" name="xsezxName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">畸型</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="sfjxName" name="ywgName"></span>
+                        描述：<span class="newbornSfz" id="jxms" name="ywgycms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">新生儿听力筛查</div>
+                     <div class="cons-txt newbornSfz" id="xsetlscName" name="xsetlsc"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">新生儿疾病筛查</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="xsejbscName" name="ywgName"></span>
+                        其他：<span class="newbornSfz" id="qtjbms" name="ywgycms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">新生儿出生体重(kg)</div>
+                     <div class="cons-txt newbornSfz" id="cstz" name="cstz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">目前体重(kg)</div>
+                     <div class="cons-txt newbornSfz" id="mqtz" name="mqtz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">出生身长(cm)</div>
+                     <div class="cons-txt newbornSfz" id="cssc" name="cssc"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">喂养方式</div>
+                     <div class="cons-txt newbornSfz" id="wyfsName" name="wyfsName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">吃奶量(mL/次)</div>
+                     <div class="cons-txt newbornSfz" id="cnl" name="cnl"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">吃奶次数(次/日)</div>
+                     <div class="cons-txt newbornSfz" id="cncs" name="cncs"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">呕吐(kg)</div>
+                     <div class="cons-txt newbornSfz" id="otName" name="otName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">大便</div>
+                     <div class="cons-txt newbornSfz" id="dbName" name="dbName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">大便次数(次/日)</div>
+                     <div class="cons-txt newbornSfz" id="dbcs" name="dbcs"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体温(℃)</div>
+                     <div class="cons-txt newbornSfz" id="tw" name="tw"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">心率(次/分钟)</div>
+                     <div class="cons-txt newbornSfz" id="ml" name="ml"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">呼吸频率(次/分钟)</div>
+                     <div class="cons-txt newbornSfz" id="hxpl" name="hxpl"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">面色</div>
+                     <div class="cons-txt newbornSfz" id="msName" name="msName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">黄疸部位</div>
+                     <div class="cons-txt newbornSfz" id="hdName" name="hdName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">前囟</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="zx" name="zx"></span>cm × <span class="newbornSfz" id="yx" name="yx"></span>cm
+                        <span class="newbornSfz" id="xmName"></span>
+                        其他：<span class="newbornSfz" id="xmqt"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">眼睛</div>
+                     <div class="cons-txt">
+                        <span class="newbornSfz" id="ywgName" name="ywgName"></span>
+                        描述：<span class="newbornSfz" id="ywgycms" name="ywgycms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">四肢活动度</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="szhddName" name="szhddName"></span>
+                        描述：<span class="newbornSfz" id="szhddycms" name="szhddycms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">耳外观</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="ewgName" name="ewgName"></span>
+                        描述：<span class="newbornSfz" id="ewgms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">颈部包块</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="jbbkName" name="jbbkName"></span>
+                        描述：<span class="newbornSfz" id="jbbkycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">鼻</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="bzName" name="jbbkName"></span>
+                        描述：<span class="newbornSfz" id="bycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">皮肤</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="pfName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="pfqt" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">口腔</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="kqName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="kqycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">肛门</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="gmName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="gmycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">心肺听诊</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="xftzName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="xftzms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">胸部</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="chestName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="chestValue" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">腹部触诊</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="fbczName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="fbczycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">脊柱</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="jzName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="jzycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">外生殖器</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="wszqName" name="pfName"></span>
+                        描述：<span class="newbornSfz" id="wszqycms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">脐带</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="qdName" name="pfName"></span>
+                        其他：<span class="newbornSfz" id="qdqt" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">转诊建议</div>
+                     <div class="cons-txt newbornSfz" id="zzjyName" name="zzjy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">原因</div>
+                     <div class="cons-txt newbornSfz" id="zzyy" name="zzyy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">机构及科室</div>
+                     <div class="cons-txt newbornSfz" id="jgjks" name="jgjks"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">指导</div>
+                     <div class="cons-txt newbornSfz">
+                        <span class="newbornSfz" id="zdName" name="pfName"></span>
+                        其他：<span class="newbornSfz" id="zdms" name="ewgms"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">本次访视日期</div>
+                     <div class="cons-txt newbornSfz" id="bcsfrq" name="bcsfrq"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">下次随访地点</div>
+                     <div class="cons-txt newbornSfz" id="xcsfdd" name="xcsfdd"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">随访照片</div>
+                     <div class="cons-txt">
+                        <div class="consPic">
+                           <div><img src="../../img/noload.png"></div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">医生签字</div>
+                     <div class="cons-txt">
+                        <div class="consQianm">
+                           <div>医生未上传手写签名</div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">下次随访日期</div>
+                     <div class="cons-txt newbornSfz" id="xcsfrq" name="xcsfrq"></div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+         <li class="litab toEight">
+            <div class="rightCard">
+               <div class="top_box">
+                  <div class="top_title">1～8月龄儿童健康检查记录表</div>
+                  <div class="l_gray font_s">随访日期：<span class="mar_r">暂无数据</span><span class="green mar_r">随访方式：暂无数据</span>随访医生：暂无数据</div>
+               </div>
+               <div class="cardTit" id="stage1"></div>
+               <ul class="consUl">
+                  <li class="consLi">
+                     <div class="cons-label">随访日期</div>
+                     <div class="cons-txt toEightSfz" id="sfrq1" name="sfrq"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体 重(kg)</div>
+                     <div class="cons-txt toEightSfz" id="tz1" name="tz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体重等级</div>
+                     <div class="cons-txt toEightSfz" id="tzfxName1" name="tzfxName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身 长(cm)</div>
+                     <div class="cons-txt toEightSfz" id="sc1" name="sc"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身长等级</div>
+                     <div class="cons-txt toEightSfz" id="scfxName1" name="scfxName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">头围(cm)</div>
+                     <div class="cons-txt toEightSfz" id="tw1" name="tw"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体征</div>
+                     <div class="cons-txt tizheng">
+                        <div style="">
+                           <span>面色：</span>
+                           <span class="toEightSfz" id="msName1" name="msName"></span>
+                        </div>
+                        <div>
+                           <span>皮肤：</span>
+                           <span class="toEightSfz" id="pfName1" name="pfName"></span>
+                        </div>
+                        <div>
+                           <span>前囟(前囟*后囟cm):</span>
+                           <span class="toEightSfz" id="xmName1" name="xmName"></span>
+                           <span class="toEightSfz" id="qxm1" name="qxm"></span>
+                           <span class="toEightSfz" id="hxm1" name="hxm"></span>
+                        </div>
+                        <div>
+                           <span>颈部包块：</span>
+                           <span class="toEightSfz" id="jbbkName1" name="jbbkName"></span>
+                        </div>
+                        <div>
+                           <span>眼 睛：</span>
+                           <span class="toEightSfz" id="ywgName1" name="ywgName"></span>
+                        </div>
+                        <div>
+                           <span>耳：</span>
+                           <span class="toEightSfz" id="ewgName1" name="ewgName1"></span>
+                        </div>
+                        <div>
+                           <span>听力：</span>
+                           <span class="toEightSfz" id="tlName1" name="tlName1"></span>
+                        </div>
+                        <div>
+                           <span>口腔：</span>
+                           <span class="toEightSfz" id="kqName1" name="kqName1"></span>
+                        </div>
+                        <div>
+                           <span>胸部：</span>
+                           <span class="toEightSfz" id="chestName1" name="chestName1"></span>
+                        </div>
+                        <div>
+                           <span>腹部：</span>
+                           <span class="toEightSfz" id="fbName1" name="fbName1"></span>
+                        </div>
+                        <div>
+                           <span>脐部：</span>
+                           <span class="toEightSfz" id="qbName1" name="qbName1"></span>
+                        </div>
+                        <div>
+                           <span>四肢：</span>
+                           <span class="toEightSfz" id="szName1" name="szName1"></span>
+                        </div>
+                        <div>
+                           <span>可疑佝偻病症状：</span>
+                           <span class="toEightSfz" id="kyglbzzName1" name="kyglbzzName1"></span>
+                        </div>
+                        <div>
+                           <span>可疑佝偻病体征：</span>
+                           <span class="toEightSfz" id="kyglbtzName1" name="kyglbtzName1"></span>
+                        </div>
+                        <div>
+                           <span>肛门/外生殖器：</span>
+                           <span class="toEightSfz" id="gmhwszqName1" name="gmhwszqName1"></span>
+                        </div>
+                        <div>
+                           <span>血红蛋白值：</span>
+                           <span class="toEightSfz" id="xhdbz1" name="xhdbz1"></span>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">户外活动(小时/日)</div>
+                     <div class="cons-txt toEightSfz" id="hwhd1" name="hwhd1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">服用维生素 D(IU/日)</div>
+                     <div class="cons-txt toEightSfz" id="fywssd1" name="fywssd1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">发育评估</div>
+                     <div class="cons-txt">
+                        <span class="toEightSfz" id="fypgName1" name="fypgName1"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">两次随访间患病情况</div>
+                     <div class="cons-txt toEightSfz" id="lcsfjhbqkName1" name="lcsfjhbqkName1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">肺炎(次)</div>
+                     <div class="cons-txt toEightSfz" id="fy1" name="fy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">腹泻(次)</div>
+                     <div class="cons-txt toEightSfz" id="fx1" name="fx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">外伤(次)</div>
+                     <div class="cons-txt toEightSfz" id="ws1" name="ws"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">其他(次)</div>
+                     <div class="cons-txt toEightSfz" id="qt1" name="qt1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">转诊建议</div>
+                     <div class="cons-txt toEightSfz" id="zzjyName1" name="zzjyName1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">原因</div>
+                     <div class="cons-txt toEightSfz" id="zzyy1" name="zzyy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">机构及科室</div>
+                     <div class="cons-txt toEightSfz" id="jgjks1" name="jgjks"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">指导</div>
+                     <div class="cons-txt toEightSfz" id="zdName1" name="zdName1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">随访照片</div>
+                     <div class="cons-txt">
+                        <div class="consPic">
+                           <div><img src="../../img/noload.png"></div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">医生签字</div>
+                     <div class="cons-txt">
+                        <div class="consQianm">
+                           <div>医生未上传手写签名</div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">下次随访日期</div>
+                     <div class="cons-txt toEightSfz" id="xcsfrq1" name="xcsfrq1"></div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+         <li class="litab twelveToThirty">
+            <div class="rightCard">
+               <div class="top_box">
+                  <div class="top_title">12～30月龄儿童健康检查记录表</div>
+                  <div class="l_gray font_s">随访日期：<span class="mar_r" id="sfrq3" name="sfrq3">暂无数据</span><span class="green mar_r">随访方式：暂无数据</span>随访医生：暂无数据</div>
+               </div>
+               <div class="cardTit" id="stage2"></div>
+               <ul class="consUl">
+                  <li class="consLi">
+                     <div class="cons-label">随访日期</div>
+                     <div class="cons-txt tSfz" id="sfrq33" name="sfrq33"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体 重(kg)</div>
+                     <div class="cons-txt tSfz" id="tz2" name="tz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体重等级</div>
+                     <div class="cons-txt tSfz" id="tzfxName2" name="tzfx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身 长(cm)</div>
+                     <div class="cons-txt tSfz" id="sc2" name="sc"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身长等级</div>
+                     <div class="cons-txt tSfz" id="scfxName2" name="scfx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">面色</div>
+                     <div class="cons-txt tSfz" id="msName2" name="ms"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">皮肤</div>
+                     <div class="cons-txt tSfz" id="pfName2" name="pf"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">前囟（前囟*后囟cm）</div>
+                     <div class="cons-txt">
+                        <span class="toEightSfz" id="xinmenName2" name="xinmen"></span>
+                        <span class="toEightSfz" id="qxm2" name="qxm">无数据</span>
+                        <span class="toEightSfz" id="hxm2" name="hxm">无数据</span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">眼睛</div>
+                     <div class="cons-txt tSfz" id="ywgName2" name="ywg"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">耳外观</div>
+                     <div class="cons-txt tSfz" id="ewgName2" name="ewg"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">听力</div>
+                     <div class="cons-txt tSfz" id="tlName2" name="tl"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">出牙/龋齿数（颗）</div>
+                     <div class="cons-txt">
+                        <span class="toEightSfz" id="zcy2" name="zcy">无数据</span>/
+                        <span class="toEightSfz" id="ycy2" name="ycy">无数据</span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">胸部</div>
+                     <div class="cons-txt tSfz" id="chestName2" name="chest"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">腹部</div>
+                     <div class="cons-txt tSfz" id="fbName2" name="fb"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">四肢</div>
+                     <div class="cons-txt tSfz" id="szName2" name="sz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">步态</div>
+                     <div class="cons-txt tSfz" id="btName2" name="bt"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">可疑佝偻病体征</div>
+                     <div class="cons-txt tSfz" id="kyglbtzName2" name="kyglbtz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">血红蛋白值</div>
+                     <div class="cons-txt tSfz" id="xhdbz2" name="xhdbz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">户外活动(小时/日)</div>
+                     <div class="cons-txt tSfz" id="hwhd2" name="hwhd"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">服用维生素 D(IU/日)</div>
+                     <div class="cons-txt tSfz" id="fywssd2" name="fywssd"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">发育评估</div>
+                     <div class="cons-txt">
+                        <span class="toEigh tSfz" id="fypgName2" name="fypg"></span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">两次随访间患病情况</div>
+                     <div class="cons-txt tSfz" id="lcsfjhbqkName2" name="lcsfjhbqk"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">肺炎(次)</div>
+                     <div class="cons-txt tSfz" id="fy2" name="fy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">腹泻(次)</div>
+                     <div class="cons-txt tSfz" id="fx2" name="fx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">外伤(次)</div>
+                     <div class="cons-txt tSfz" id="ws2" name="ws"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">其他(次)</div>
+                     <div class="cons-txt tSfz" id="qt12" name="qt1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">转诊建议</div>
+                     <div class="cons-txt tSfz" id="zzjyName2" name="zzjy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">机构及科室</div>
+                     <div class="cons-txt tSfz" id="jgjks2" name="jgjks"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">转诊原因</div>
+                     <div class="cons-txt tSfz" id="zzyy2" name="zzyy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">指导</div>
+                     <div class="cons-txt tSfz" id="zdName2" name="zd"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">随访照片</div>
+                     <div class="cons-txt">
+                        <div class="consPic">
+                           <div><img src="../../img/noload.png"></div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">医生签字</div>
+                     <div class="cons-txt">
+                        <div class="consQianm">
+                           <div>医生未上传手写签名</div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">下次随访日期</div>
+                     <div class="cons-txt tSfz" id="xcsfrq2" name="xcsfrq"></div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+         <li class="litab threeToSix">
+            <div class="rightCard">
+               <div class="top_box">
+                  <div class="top_title">3～6岁儿童健康检查记录表</div>
+                  <div class="l_gray font_s">
+                     随访日期：<span class="mar_r ttsSfz" id="sfrq5">暂无数据</span>
+                     <span class="green mar_r">随访方式：<i class="ttsSfz" id="sffs5">暂无数据</i></span>
+                     随访医生：<i class="ttsSfz" id="sfys5">暂无数据</i></div>
+               </div>
+               <div class="cardTit" id="stage3"></div>
+               <ul class="consUl">
+                  <!--<li class="consLi">-->
+                  <!--<div class="cons-label">随访日期</div>-->
+                  <!--<div class="cons-txt ttsSfz" id="sfrq4" name="sfrq"></div>-->
+                  <!--</li>-->
+                  <li class="consLi">
+                     <div class="cons-label">体重(kg)</div>
+                     <div class="cons-txt ttsSfz" id="tz3" name="tz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体重等级</div>
+                     <div class="cons-txt ttsSfz" id="tzfxName3" name="tzfx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身高(cm)</div>
+                     <div class="cons-txt ttsSfz" id="sc3" name="sc"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">身高等级</div>
+                     <div class="cons-txt ttsSfz" id="scfxName3" name="scfx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体重/身高</div>
+                     <div class="cons-txt ttsSfz" id="ts3" name="ts"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体重/身高等级</div>
+                     <div class="cons-txt ttsSfz" id="tsdj3" name="tsdj"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">体格发育评价</div>
+                     <div class="cons-txt ttsSfz" id="tgfypjName3" name="tgfypj"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">视力</div>
+                     <div class="cons-txt ttsSfz" id="sl3" name="sl"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">听力</div>
+                     <div class="cons-txt ttsSfz" id="tlName3" name="tl3"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">出牙/龋齿数（颗）</div>
+                     <div class="cons-txt">
+                        <span class="ttsSfz" id="zc3" name="zc">无数据</span>
+                        <span class="ttsSfz" id="yc3" name="yc">无数据</span>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">胸部</div>
+                     <div class="cons-txt ttsSfz" id="chestName3" name="chestName"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">腹部</div>
+                     <div class="cons-txt ttsSfz" id="fbName3" name="fb"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">血红蛋白值 (g/L)</div>
+                     <div class="cons-txt ttsSfz" id="xhdbz3" name="xhdbz"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">其他</div>
+                     <div class="cons-txt ttsSfz" id="qt3" name="qt"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">发育评估</div>
+                     <div class="cons-txt ttsSfz" id="fypgName3" name="fypg"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">两次随访间患病情况</div>
+                     <div class="cons-txt ttsSfz" id="lcsfjhbqkName3" name="lcsfjhbqk"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">肺炎(次)</div>
+                     <div class="cons-txt ttsSfz" id="fy3" name="fy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">腹泻(次)</div>
+                     <div class="cons-txt ttsSfz" id="fx3" name="fx"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">外伤(次)</div>
+                     <div class="cons-txt ttsSfz" id="ws3" name="ws"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">其他(次)</div>
+                     <div class="cons-txt ttsSfz" id="qt13" name="qt1"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">转诊建议</div>
+                     <div class="cons-txt ttsSfz" id="zzjyName3" name="zzjy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">转诊原因</div>
+                     <div class="cons-txt ttsSfz" id="zzyy3" name="zzyy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">机构及科别</div>
+                     <div class="cons-txt ttsSfz" id="jgjks3" name="zzyy"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">指导</div>
+                     <div class="cons-txt ttsSfz" id="zdName3" name="zd"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">随访照片</div>
+                     <div class="cons-txt">
+                        <div class="consPic">
+                           <div><img src="../../img/noload.png"></div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">医生签字</div>
+                     <div class="cons-txt">
+                        <div class="consQianm">
+                           <div>医生未上传手写签名</div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">下次随访日期</div>
+                     <div class="cons-txt ttsSfz" id="xcsfrq3" name="xcsfrq"></div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+         <li class="litab childTcm">
+            <div class="rightCard">
+               <div class="top_box">
+                  <div class="top_title">3～6岁儿童健康检查记录表</div>
+                  <div class="l_gray font_s">
+                     随访日期：<span class="mar_r ttsSfz" id="sfrq4">暂无数据</span>
+                     <span class="green mar_r">随访方式：<i class="ttsSfz" id="sffs6">暂无数据</i></span>
+                     随访医生：<i class="ttsSfz" id="sfys6">暂无数据</i></div>
+               </div>
+               <!--                    <div class="cardTit" id="stage3"></div>-->
+               <ul class="consUl">
+                  <li class="consLi">
+                     <div class="cons-label">随访日期</div>
+                     <div class="cons-txt" id="sfrq6" name="sfrq"></div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">中医药健康管理服务</div>
+                     <div class="cons-txt" id="zyyglfwName" name="zyyglfwName">无数据</div>
+                     <div class="cons-txt" id="zyyjkglfwName" name="zyyjkglfwName">无数据</div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">其他</div>
+                     <div class="cons-txt" id="zyyglfwqt" name="zyyglfwqt">无数据</div>
+                     <div class="cons-txt" id="zyyjkglfwqt" name="zyyjkglfwqt">无数据</div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">医生签字</div>
+                     <div class="cons-txt">
+                        <div class="consQianm">
+                           <div>医生未上传手写签名</div>
+                        </div>
+                     </div>
+                  </li>
+                  <li class="consLi">
+                     <div class="cons-label">下次随访日期</div>
+                     <div class="cons-txt" id="xcsfrq4" name="xcsfrq"></div>
+                  </li>
+               </ul>
+            </div>
+         </li>
+      </ul>
+   </div>
+   <div class="layui-col-xs4 layui-col-md4">
+      <div class="bg_white bmfw_main pad30 rightBox" style="margin-left: 30px">
+         <div class="bm_title"><div class="hetBox">随访记录</div> <div class="date_r hetBox font_s gray"><input type="text" class="layui-input" id="getDate"><i class="iconfont icon-tubiaozhizuo- iconJ"></i></div></div>
+         <!--<div class="bm_title">随访记录 <div><span><input type="text" class="layui-input" id="year" placeholder="yyyy"></span></div></div>-->
+         <ul class="health_list">
+            <!--<li class="myFlex tit_mar">-->
+            <!--<span class="bg_lightgreen font_d health_num">03</span>-->
+            <!--<div class="data_plan">-->
+            <!--<div class="green font_e serialNum">儿童随访记录表</div>-->
+            <!--<div class="font_s l_gray">随访日期：2019-10-10</div>-->
+            <!--</div>-->
+            <!--</li>-->
+         </ul>
+         <div id="getPage" class="rightPage"></div>
+      </div>
+   </div>
+</div>
+<script src="../../js/page/child.js"></script>
+</body>
+</html>

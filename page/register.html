@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/index.css">
+    <style>
+        .bodyBanner-form, .form-btn button, .docCard-box, .docCard-pic {
+            behavior: url(../js/PIE/PIE.htc);
+            position: relative;
+        }
+        .yqlj{
+            display: none;
+        }
+        .regWay{
+            padding: 80px 7%;
+        }
+        .regWay li{
+            cursor: pointer;
+            width: 44%;padding: 46px 0 50px 0;
+            text-align: center;
+            box-shadow:0px 0px 21px 0px rgba(3,176,118,0.26); border-radius: 16px;
+        }
+        .regWay li:first-child{
+            position: relative;
+        }
+        .regWay li:first-child img{
+            position: absolute;
+            top:0;left: 0;
+        }
+        .regWay li:nth-child(2){
+            box-shadow:0px 0px 21px 0px rgba(162,174,170,0.26) !important;
+        }
+        .bdr50{
+            display: inline-block;
+            border-radius: 50%;
+            width: 80px;height: 80px;text-align: center;line-height: 80px;
+            font-size: 40px !important; color:#fff;margin-bottom: 30px;
+        }
+        .ga_reg{
+            background: #469FF1;
+        }
+        .yl_reg{
+            background: #08D170;
+        }
+        .tc{
+            text-align: center;
+        }
+        .cardTit{
+            margin: 60px 0 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="headBar-inner layui-col-md-offset2 layui-col-md8">
+            <div class="cardTit tc">欢迎使用居民健康服务管理平台</div>
+            <div class="l_gray font_l tc">该平台需要用户实名注册，以保护居民隐私，平台将严格遵守保密协议</div>
+            <ul class="clearfix regWay">
+                <li class="fl" id="gaReg">
+                    <img src="../img/img_tj.png" alt="">
+                    <div class="bdr50 ga_reg">
+                        <i class="iconfont icon-jingwuicon-"></i>
+                    </div>
+                    <div class="a_gray font_e">公安实名认证</div>
+                </li>
+                <li class="fr" id="ylReg">
+                    <div class="bdr50 yl_reg">
+                        <i class="iconfont icon-ai-pay-copy"></i>
+                    </div>
+                    <div class="a_gray font_e">银联卡实名认证</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+   $(function () {
+       $("#gaReg").click(function () {
+           window.location.href = "registerGa.html";
+       })
+       $("#ylReg").click(function () {
+           window.location.href = "registerYl.html";
+       })
+   })
+</script>
+</html>

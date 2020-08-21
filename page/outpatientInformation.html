@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .layui-tab-title{
+            margin-bottom: 20px;
+        }
+        .layui-tab-title li{
+            font-size: 18px;
+        }
+        .infoUl {
+            margin-top: 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-box showLoading">
+        <div class="layui-row">
+            <div class="layui-col-md8 bmfw_main">
+                <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> >门诊信息</div>
+                <div class="bg_white mar_r pad30">
+<!--                    <div class="top_box">-->
+<!--                        <div class="top_title">双向转诊单（转出）</div>-->
+<!--                        <div class="l_gray">转诊日期：<span class="mar_r">2020-02-29</span>转诊医生：李大夫</div>-->
+<!--                    </div>-->
+                    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+                        <ul class="layui-tab-title">
+                            <li class="layui-this">门诊病历</li>
+                            <li>门诊处方</li>
+                            <li>门诊诊断</li>
+                        </ul>
+                        <div class="layui-tab-content">
+                            <div class="layui-tab-item layui-show">
+                                <ul class="infoUl info_men">
+                                    <li>
+                                        <div class="liLabel">医院代码</div>
+                                        <div id="orgCode" name="orgCode"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">医院名称</div>
+                                        <div id="orgName" name="orgName"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">科室代码</div>
+                                        <div id="depCode" name="depCode"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">科室名称</div>
+                                        <div id="depName" name="depName"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">病历号</div>
+                                        <div id="caseNum" name="tcaseNumw"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">身份证号码</div>
+                                        <div id="sfzh" name="sfzh"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">姓名</div>
+                                        <div id="name" name="name"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">性别</div>
+                                        <div id="sex" name="sex"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">年龄</div>
+                                        <div id="age" name="age"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">就诊时间</div>
+                                        <div id="visitingTime" name="visitingTime"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">主诉</div>
+                                        <div id="chiefCompliant" name="chiefCompliant"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">现病史</div>
+                                        <div id="presentIllness" name="presentIllness"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">既往史</div>
+                                        <div id="pastHistory" name="pastHistory"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">体格检查</div>
+                                        <div id="physicalExam" name="physicalExam"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">处理意见</div>
+                                        <div id="treatIdea" name="treatIdea"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">医生姓名</div>
+                                        <div id="doctorName" name="doctorName"></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">就诊类别</div>
+                                        <div id="visitingTypeText" name="visitingTypeText"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="layui-tab-item">
+                                <ul class="consUl info_cf">
+                                    <li class="consLi">
+                                        <div class="cons-label">门诊号</div>
+                                        <div class="cons-txt" id="outpatientNum" name="outpatientNum">暂无数据</div>
+                                    </li>
+                                    <li class="consLi">
+                                        <div class="cons-label">处方号</div>
+                                        <div class="cons-txt" id="recipeNum" name="recipeNum">暂无数据</div>
+                                    </li>
+                                    <li class="consLi">
+                                        <div class="cons-label">开立日期</div>
+                                        <div class="cons-txt" id="prescribeDate" name="prescribeDate">暂无数据</div>
+                                    </li>
+                                    <li class="consLi">
+                                        <div class="cons-label">处方类别</div>
+                                        <div class="cons-txt" id="recipeType" name="recipeType">暂无数据</div>
+                                    </li>
+                                    <li class="consLi">
+                                        <div class="cons-label">科室名称</div>
+                                        <div class="cons-txt" id="depName1" name="depName">暂无数据</div>
+                                    </li>
+                                    <li class="consLi">
+                                        <div class="cons-label">医院名称</div>
+                                        <div class="cons-txt" id="orgName1" name="orgName">暂无数据</div>
+                                    </li>
+                                </ul>
+                                    <div class="consLi">
+                                        <div class="cons-label">处方明细</div>
+                                    </div>
+                                    <div class="">
+                                        <table id="cfmxTable"></table>
+<!--                                        <table class="my-table hov-table" id="mingxi">-->
+<!--                                            <thead>-->
+<!--                                            <tr>-->
+<!--                                                <th>药品分类</th>-->
+<!--                                                <th>名称</th>-->
+<!--                                                <th>规格</th>-->
+<!--                                                <th style="min-width: 60px;">单位</th>-->
+<!--                                                <th>单价</th>-->
+<!--                                                <th>数量</th>-->
+<!--                                                <th>用药方式</th>-->
+<!--                                                <th>草药付数</th>-->
+<!--                                                <th >剂量</th>-->
+<!--                                                <th >执行频率</th>-->
+<!--                                                <th >处方项类别</th>-->
+<!--                                                <th >用量</th>-->
+<!--                                            </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody></tbody>-->
+<!--                                        </table>-->
+                                    </div>
+                                    <div class="consLi">
+                                        <div class="cons-label">处方诊断</div>
+                                    </div>
+                                    <div class="consLi">
+                                        <table id="cfzdTable"></table>
+<!--                                        <table class="my-table hov-table" id="zhenduan">-->
+<!--                                            <thead>-->
+<!--                                            <tr>-->
+<!--                                                <th>诊断类型</th>-->
+<!--                                                <th>诊断名称</th>-->
+<!--                                            </tr>-->
+<!--                                            </thead>-->
+<!--                                            <tbody></tbody>-->
+<!--                                        </table>-->
+                                    </div>
+<!--                                </ul>-->
+                            </div>
+                            <div class="layui-tab-item">
+                                <table id="mzzdTable"></table>
+<!--                                <table class="my-table hov-table" id="menzhenzhenduan">-->
+<!--                                    <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>诊断名称</th>-->
+<!--                                        <th>诊断日期</th>-->
+<!--                                    </tr>-->
+<!--                                    </thead>-->
+<!--                                    <tbody></tbody>-->
+<!--                                </table>-->
+<!--                                <div class="table-nodata">暂无数据</div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <div class="right_height"></div>
+                <div class=" bg_white bmfw_main pad20">
+                    <div class="bm_title">门诊诊疗记录</div>
+                    <ul class="health_list">
+<!--                        <li class="myFlex tit_mar">-->
+<!--                            <span class="bg_lightgreen font_d health_num">03</span>-->
+<!--                            <div class="data_plan">-->
+<!--                                <div class="green font_e serialNum">转出单</div>-->
+<!--                                <div class="font_s l_gray">转诊日期：2019-10-10</div>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                        <li class="myFlex tit_mar">-->
+<!--                            <span class="bg_lightgreen font_d health_num">02</span>-->
+<!--                            <div class="data_plan">-->
+<!--                                <div class="a_gray font_e serialNum">回转单</div>-->
+<!--                                <div class="font_s l_gray">转诊日期：2019-10-10</div>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                        <li class="myFlex tit_mar">-->
+<!--                            <span class="bg_lightgreen font_d health_num">01</span>-->
+<!--                            <div class="data_plan">-->
+<!--                                <div class="a_gray font_e serialNum">回转单</div>-->
+<!--                                <div class="font_s l_gray">转诊日期：2019-10-10</div>-->
+<!--                            </div>-->
+<!--                        </li>-->
+                    </ul>
+                    <div id="getPage" class="rightPage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/page/foot.js"></script>
+    <script>
+        $(function () {
+            layui.use(['laypage','element','table'], function(){
+               var layer = layui.layer;
+               layer.load();
+                var laypage = layui.laypage;
+                var element = layui.element;
+                var table = layui.table;
+                var outDetails = '';
+                var mzId = '';
+                // 体检记录分页
+                var hosPage = {
+                    elem: 'getPage'
+                    , count: 100
+                    , layout: ['prev', 'next']
+                    , limit: 10  //得到每页显示的条数
+                    , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+                };
+                var jsonParam = {
+                    sfzh:localStorage.getItem("sfzh"),
+                    pageNo:'1',
+                    pageSize:'10'
+                };
+                //获取列表
+                getOutList();
+                function getOutList(){
+                   layer.load();
+                    getAjax('/region/outpatient/getOutpatientPage',jsonParam,function (resultMsg) {
+                        hosPage.count = resultMsg.data.count;
+                        laypage.render(hosPage);
+                        var html = '';
+                        if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                            html += '<li>暂无数据</li>';
+                        }else{
+                            $.each(resultMsg.data.list,function (i, item) {
+                                item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                                if(item.num < 10){
+                                    item.num = '0'+item.num
+                                }
+                                var mzStr = JSON.stringify(item);
+                                html+=' <li class="tit_mar clearfix" ids="'+item.id+'">' +
+                                    '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                    '<div class="data_plan fl">' +
+                                    '<div class="a_gray font_e serialNum">'+item.orgName+'</div>' +
+                                    '<div class="font_s l_gray fontNum">就诊日期：<span class="jcrq">'+item.visitingTime+'</span></div>' +
+                                    '</div>' +
+                                    '</li>'
+                            });
+                        }
+                        $(".health_list").html(html);
+                        $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                        mzId = $('.health_list li:first-child').attr('ids');
+                        getOutDetails(mzId);
+                        getMzzdDetail(mzId);
+                        getOutCfDetails(mzId);
+                    });
+                   layer.closeAll();
+                   $('.showLoading').css('opacity','1');
+                }
+                //分页跳转
+                hosPage.jump = function (obj) {
+                   layer.load();
+                    jsonParam.pageSize = obj.limit;
+                    jsonParam.pageNo = obj.curr;
+                    getAjax('/region/outpatient/getOutpatientPage', jsonParam, function (resultMsg) {
+                        var html ='';
+                        if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                            html += '<li>暂无数据</li>'
+                        }else{
+                            $.each(resultMsg.data.list,function (i, item) {
+                                item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                                if(item.num < 10){
+                                    item.num = '0'+item.num
+                                }
+                                var mzStr = JSON.stringify(item);
+                                html+=' <li class="tit_mar clearfix" ids="'+item.id+'" details="'+mzStr+'">' +
+                                    '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                    '<div class="data_plan fl">' +
+                                    '<div class="a_gray font_e serialNum">'+item.orgName+'</div>' +
+                                    '<div class="font_s l_gray fontNum">评估日期：<span class="jcrq">'+item.visitingTime+'</span></div>' +
+                                    '</div>' +
+                                    '</li>'
+                            });
+                            outDetails = $('.health_list li:first-child').attr('details');
+                            mzId = $('.health_list li:first-child').attr('ids');
+                        }
+                        $(".health_list").html(html)
+                    })
+                   layer.closeAll();
+                   $('.showLoading').css('opacity','1');
+                };
+                //获取病历详情
+                function getOutDetails(id) {
+                   layer.load();
+                    var jsonParam={
+                        id:id
+                    };
+                    getAjax('/region/outpatient/getOutpatientDetail',jsonParam,function (resultMsg) {
+                        for (var i = 0;i < $('.info_men li').length; i++) {
+                            var ids = $('.info_men li').eq(i).find('div').eq(1).attr('id');
+                            if(resultMsg.data !== undefined){
+                                if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                    $('#' + ids).html(resultMsg.data[ids])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                    })
+                   layer.closeAll();
+                   $('.showLoading').css('opacity','1');
+                }
+                //获取处方详情
+                function getOutCfDetails(id) {
+                   layer.load();
+                    var jsonParam2 = {
+                        mzId:id
+                    };
+                    getAjax('/region/outpatient/getOutpatientCfList',jsonParam2,function (resultMsg) {
+                        for (var i = 0;i < $('.info_cf li').length; i++) {
+                            var ids = $('.info_cf li').eq(i).find('div').eq(1).attr('id');
+                            if(resultMsg.data[0] !== undefined){
+                                if(resultMsg.data[0][ids] != "" && resultMsg.data[0][ids]){
+                                    $('#' + ids).html(resultMsg.data[0][ids])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                                $('#depName1').html((resultMsg.data[0].depName != '' && resultMsg.data[0].depName) ? resultMsg.data[0].depName : '暂无数据');
+                                $('#orgName1').html(resultMsg.data[0].orgName != '' && resultMsg.data[0].orgName ? resultMsg.data[0].orgName : '暂无数据');
+                                if(resultMsg.data[0].recipeType == '1'){
+                                    $('#recipeType').html('大病处方')
+                                }else if(resultMsg.data[0].recipeType == '2'){
+                                    $('#recipeType').html('普通处方')
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据");
+                                $('#depName1').html("暂无数据");
+                                $('#orgName1').html("暂无数据")
+                            }
+                        }
+                        var tablecfmx = {
+                            elem: '#cfmxTable',
+                            cellMinWidth: 80,
+                            even: true,
+                            cols: [[
+                                {field:'drugClassName', title: '项目分类',minWidth:100}
+                                ,{field:'drugName', title: '名称',minWidth:200}
+                                ,{field:'spec', title: '规格',minWidth:100}
+                                ,{field:'unit', title: '单位',minWidth:60}
+                                ,{field:'price', title: '单价',minWidth:100}
+                                ,{field:'quantity', title: '数量',minWidth:60}
+                                ,{field:'itemTypeText', title: '处方项类别',minWidth:100}
+                                // ,{field:'orderDosage', title: '用量',minWidth:100}
+                            ]],
+                            data: []
+                        };
+                        table.render(tablecfmx);
+                        //处方诊断
+                        var tablecfzd = {
+                            elem: '#cfzdTable',
+                            cellMinWidth: 120,
+                            even: true,
+                            cols: [[
+                                {field:'diseaseName', title: '诊断名称',minWidth:100}
+                                ,{field:'diagnosisType', title: '诊断类型',minWidth:100}
+                            ]],
+                            data: []
+                        };
+                        table.render(tablecfzd);
+                        if(resultMsg.data[0] !== undefined){
+                            tablecfmx.data = resultMsg.data[0].recipelist;
+                            table.render(tablecfmx);
+                            tablecfzd.data = resultMsg.data[0].diagnosislist;
+                            table.render(tablecfzd);
+                        }
+                    });
+                   layer.closeAll();
+                   $('.showLoading').css('opacity','1');
+                }
+                //获取门诊诊断
+                function getMzzdDetail(id){
+                   layer.load();
+                    var jsonParam2 = {
+                        mzId:id
+                    };
+                    getAjax('/region/outpatient/getOutpatientZDList',jsonParam2,function (resultMsg) {
+                        var tablemzzd = {
+                            elem: '#mzzdTable',
+                            cellMinWidth: 80,
+                            even: true,
+                            cols: [[
+                                {field:'diseaseName', title: '诊断名称'}
+                                ,{field:'diagnosisTime', title: '诊断日期'}
+                            ]],
+                            data: []
+                        };
+                        table.render(tablemzzd);
+                        if(resultMsg.data){
+                            tablemzzd.data = resultMsg.data;
+                            table.render(tablemzzd);
+                        }
+                    })
+                   layer.closeAll();
+                   $('.showLoading').css('opacity','1');
+                }
+                $(".health_list").on("click","li",function () {
+                    $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+                    $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+                    mzId = $(this).attr("ids");
+                    getOutDetails(mzId);
+                    getOutCfDetails(mzId);
+                    getMzzdDetail(mzId)
+                });
+            })
+        })
+    </script>
+</body>
+</html>

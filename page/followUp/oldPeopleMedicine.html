@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>中医药健康管理服务记录表</title>
+    <script src="../../js/page/commen.js"></script>
+    <style>
+        .consOld .consLi .cons-txt{
+            width: auto !important;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row sfContainer">
+    <div class="layui-col-xs8 layui-col-md8 bmfw_main bg_white sfBox pad30">
+        <div class="top_box">
+            <div class="top_title">中医药健康管理服务记录表</div>
+            <div class="l_gray">随访日期：<span class="mar_r">暂无数据</span>随访医生：暂无数据</div>
+        </div>
+        <ul class="consUl consOld">
+            <li class="consLi">
+                <div class="cons-label">您精力充沛吗？（指精神头足，乐于做事）</div>
+                <div class="cons-txt sfz" id="jlcp" name="jlcp">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易疲乏吗？（指体力如何，是否稍微活动一下或做一点家务劳动就感到累）</div>
+                <div class="cons-txt sfz" id="rypf" name="rypf">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易气短，呼吸短促，接不上气吗？</div>
+                <div class="cons-txt sfz" id="hxdc" name="hxdc">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您说话声音低弱无力吗?（指说话没有力气）</div>
+                <div class="cons-txt sfz" id="sydrwl" name="sydrwl">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您感到闷闷不乐、情绪低沉吗?（指心情不愉快，情绪低落）</div>
+                <div class="cons-txt sfz" id="qxdc" name="qxdc">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易精神紧张、焦虑不安吗?（指遇事是否心情紧张）</div>
+                <div class="cons-txt sfz" id="jzjl" name="jzjl">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您因为生活状态改变而感到孤独、失落吗？</div>
+                <div class="cons-txt sfz" id="gdsl" name="gdsl">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易感到害怕或受到惊吓吗?</div>
+                <div class="cons-txt sfz" id="hphjx" name="hphjx">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您感到身体超重不轻松吗?(感觉身体沉重)[BMI 指数=体重（kg）/身高 2（m）]</div>
+                <div class="cons-txt sfz" id="stcz" name="stcz">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您眼睛干涩吗?</div>
+                <div class="cons-txt sfz" id="yjgs" name="yjgs">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您手脚发凉吗?（不包含因周围温度低或穿的少导致的手脚发冷）</div>
+                <div class="cons-txt sfz" id="sjfl" name="sjfl">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您胃脘部、背部或腰膝部怕冷吗？（指上腹部、背部、腰部或膝关节等，有一处或多处怕冷）</div>
+                <div class="cons-txt sfz" id="wwbbhxbfl" name="wwbbhxbfl">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您比一般人耐受不了寒冷吗？（指比别人容易害怕冬天或是夏天的冷空调、电扇等）</div>
+                <div class="cons-txt sfz" id="nhqk" name="nhqk">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易患感冒吗?（指每年感冒的次数）</div>
+                <div class="cons-txt sfz" id="rygm" name="rygm">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您没有感冒时也会鼻塞、流鼻涕吗? </div>
+                <div class="cons-txt sfz" id="lbt" name="lbt">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您有口粘口腻，或睡眠打鼾吗？</div>
+                <div class="cons-txt sfz" id="knkn" name="knkn">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易过敏(对药物、食物、气味、花粉或在季节交替、气候变化时) 吗?</div>
+                <div class="cons-txt sfz" id="gm" name="gm">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您的皮肤容易起荨麻疹吗? (包括风团、风疹块、风疙瘩)</div>
+                <div class="cons-txt sfz" id="xmz" name="xmz">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您的皮肤在不知不觉中会出现青紫瘀斑、皮下出血吗?（指皮肤在没有外伤的情况下出现青一块紫一块的情况）</div>
+                <div class="cons-txt sfz" id="pfqzyb" name="pfqzyb">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您的皮肤一抓就红，并出现抓痕吗?（指被指甲或钝物划过后皮肤的反应）</div>
+                <div class="cons-txt sfz" id="pfzh" name="pfzh">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您皮肤或口唇干吗?</div>
+                <div class="cons-txt sfz" id="kcgz" name="kcgz">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您有肢体麻木或固定部位疼痛的感觉吗？</div>
+                <div class="cons-txt sfz" id="ztmm" name="ztmm">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您面部或鼻部有油腻感或者油亮发光吗?（指脸上或鼻子）</div>
+                <div class="cons-txt sfz" id="mbyn" name="mbyn">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您面色或目眶晦黯，或出现褐色斑块/斑点吗?</div>
+                <div class="cons-txt sfz" id="msha" name="msha">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您有皮肤湿疹、疮疖吗？</div>
+                <div class="cons-txt sfz" id="pfsz" name="pfsz">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您感到口干咽燥、总想喝水吗？</div>
+                <div class="cons-txt sfz" id="kgsz" name="kgsz">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您感到口苦或嘴里有异味吗?（指口苦或口臭）</div>
+                <div class="cons-txt sfz" id="kkyyw" name="kkyyw">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您腹部肥大吗?（指腹部脂肪肥厚）</div>
+                <div class="cons-txt sfz" id="fbfd" name="fbfd">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您吃(喝)凉的东西会感到不舒服或者怕吃(喝)凉的东西吗？（指不喜欢吃凉的食物，或吃了凉的食物后会不舒服）</div>
+                <div class="cons-txt sfz" id="clbsf" name="clbsf">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您有大便黏滞不爽、解不尽的感觉吗?(大便容易粘在马桶或便坑壁上)</div>
+                <div class="cons-txt sfz" id="dbnzbs" name="dbnzbs">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您容易大便干燥吗?</div>
+                <div class="cons-txt sfz" id="dbgz" name="dbgz">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您舌苔厚腻或有舌苔厚厚的感觉吗?（如果自我感觉不清楚可由调查员观察后填写）</div>
+                <div class="cons-txt sfz" id="sthm" name="sthm">暂无数据</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">您舌下静脉瘀紫或增粗吗？（可由调查员辅助观察后填写）</div>
+                <div class="cons-txt sfz" id="sxjmyz" name="sxjmyz">暂无数据</div>
+            </li>
+            <li class="consLi myLi">
+                <div class="cons-label" style="white-space: nowrap; width: 120px;">体质类型</div>
+                <div class="cons-txt">
+                    <table id="zyyTable"></table>
+                    <!--<table class="my-table hov-table" id="zytable">-->
+                        <!--<thead>-->
+                        <!--<tr class="firstHead">-->
+                            <!--<th colspan="1" rowspan="2" style="width: 100px;">体质类型</th>-->
+                            <!--<th colspan="2">体质辨识</th>-->
+                            <!--<th colspan="1" rowspan="2" style="width: 200px;">中医药保健指导（人）</th>-->
+                        <!--</tr>-->
+                        <!--<tr class="twoHead">-->
+                            <!--<th style="width: 100px;">得分</th>-->
+                            <!--<th style="width: 100px;">倾向</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                            <!--<tr>-->
+                                <!--<td>dsd</td>-->
+                                <!--<td>辅导辅导</td>-->
+                                <!--<td>辅导费</td>-->
+                                <!--<td>re</td>-->
+                            <!--</tr>-->
+                            <!--<tr>-->
+                                <!--<td>dsd</td>-->
+                                <!--<td>辅导辅导</td>-->
+                                <!--<td>辅导费</td>-->
+                                <!--<td>re</td>-->
+                            <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
+                </div>
+            </li>
+            <li class="consLi myLi">
+                <div class="cons-label">随访照片</div>
+                <div class="cons-txt">
+                    <div class="consPic">
+                        <div><img src="../..//img/noload.png"></div>
+                    </div>
+                </div>
+            </li>
+            <li class="consLi myLi">
+                <div class="cons-label">医生签字</div>
+                <div class="cons-txt">
+                    <div class="consQianm">
+                        <div>医生未上传手写签名</div>
+                    </div>
+                </div>
+            </li>
+            <li class="consLi myLi">
+                <div class="cons-label">填表日期</div>
+                <div class="cons-txt sfz" id="jlrq" name="jlrq">暂无数据</div>
+            </li>
+        </ul>
+    </div>
+    <div class="layui-col-xs4 layui-col-md4">
+        <div class="bg_white bmfw_main pad30 rightBox" style="margin-left: 30px">
+            <div class="bm_title"><div class="hetBox">随访记录</div> <div class="date_r hetBox font_s gray"><input type="text" class="layui-input" id="getDate"><i class="iconfont icon-tubiaozhizuo- iconJ"></i></div></div>
+            <!--<div class="bm_title">随访记录 <div><span><input type="text" class="layui-input" id="year" placeholder="yyyy"></span></div></div>-->
+            <ul class="health_list">
+                <li class="myFlex tit_mar">
+                    <span class="bg_lightgreen font_d health_num">03</span>
+                    <div class="data_plan">
+                        <div class="green font_e serialNum">中医药管理</div>
+                        <div class="font_s l_gray">随访日期：2019-10-10</div>
+                    </div>
+                </li>
+            </ul>
+            <div id="getPage" class="rightPage"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        layui.use(['laydate', 'laypage', 'layer', 'table'], function() {
+            var laydate = layui.laydate;
+            var table = layui.table;
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+                , jump: function (obj) {
+                }
+            };
+            var myDate = new Date();
+            $("#getDate").val(myDate.getFullYear())
+            //年选择器
+            // lay('#getDate').on('click', function(e) { //假设 test1 是一个按钮
+            $("#getDate").click(function () {
+                $(".iconJ").addClass("iconTrans")
+            })
+            laydate.render({
+                elem: '#getDate',
+                type: 'year',
+                btns: ['now','confirm'],
+                max: getNowFormatDate(),
+                done: function (value, dates, edate) {
+                    $(".iconJ").removeClass("iconTrans");
+                    jsonParam.searchTime=value;
+                    getList();
+                }
+            });
+            function getNowFormatDate() {
+                var date = new Date();
+                var seperator1 = "-";
+                var seperator2 = ":";
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
+                return currentdate;
+            }
+            // 记录
+            var jsonParam = {
+                // sfzh: '452132195011090617',
+                sfzh: localStorage.getItem("sfzh"),
+                jmid: localStorage.getItem("jmid"),
+                pageNo: 1,
+                pageSize :10,
+               searchTime: $("#getDate").val()
+            }
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green")
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray")
+                getDetails($(this).attr("ids"))
+            })
+            getList()
+            function getList() {
+                getAjax('/health/follow/getLnrZyyList', jsonParam, function (resultMsg) {
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html = ''
+                    if (resultMsg.data.list.length == 0 || resultMsg.data.list == undefined) {
+                        html += '<li>暂无数据</li>'
+                    } else {
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo * (resultMsg.data.list.length - i)
+                            if (item.num < 10) {
+                                item.num = '0' + item.num
+                            }
+                            html+='<li class="myFlex tit_mar" ids="'+item.id+'">' +
+                                '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                                '<div class="data_plan">' +
+                                '<div class="green font_e serialNum">'+item.tz+'</div>' +
+                                '<div class="font_s l_gray">随访日期：'+item.sfrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        getDetails(resultMsg.data.list[0].id)
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            }
+            hosPage.jump = function (obj) {
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/health/follow/getLnrZyyList', jsonParam, function (resultMsg) {
+                    var html =''
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+='<li class="myFlex tit_mar" ids="'+item.id+'">' +
+                                '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                                '<div class="data_plan">' +
+                                '<div class="green font_e serialNum">'+item.tz+'</div>' +
+                                '<div class="font_s l_gray">随访日期：'+item.sfrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        getDetails(resultMsg.data.list[0].id)
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            };
+            function getDetails(id) {
+                var jsonParams = {
+                    tzid : id,
+                }
+                getAjax('/health/follow/getLnrZyy', jsonParams, function (resultMsg) {
+                    var item = resultMsg.data
+                    var html =''
+                    html+='<div class="top_title">'+item.tz+'</div>' +
+                        '<div class="l_gray">随访日期：<span class="mar_r">'+item.sfrq+'</span><span class="green mar_r">随访方式：'+item.sffs+'</span>随访医生：'+item.sfys+'</div>'
+                    $(".top_box").html(html)
+                    for (var i = 0;i < $('.consUl .sfz').length; i++) {
+                        var ids = $('.consUl .sfz').eq(i).attr('id');
+                        if(resultMsg.data.lnrZytzXqDto!== undefined){
+                            if(resultMsg.data.lnrZytzXqDto[ids] != "" && resultMsg.data.lnrZytzXqDto[ids]){
+                                $('#' + ids).html(resultMsg.data.lnrZytzXqDto[ids])
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }else{
+                            $('#' + ids).html("暂无数据")
+                        }
+                    }
+                    var tableobj = {
+                        elem: '#zyyTable',
+                        cellMinWidth: 80,
+                        even: true,
+                        cols: [[
+                            {field:'tzName', title: '体质类型',minWidth:100}
+                            ,{field:'tzDf', title: '得分',minWidth:100}
+                            ,{field:'tzqx', title: '倾向',minWidth:100}
+                            ,{field:'tzJyMs', title: '中医药保健指导（人）',minWidth:100}
+                        ]],
+                        data: []
+                    };
+                    if(resultMsg.data.tzDtoList){
+                        $.each(resultMsg.data.tzDtoList,function (i,item) {
+                            if(item.tzStatus === "2"){
+                                item.tzqx = "倾向"
+                            }else if(item.tzStatus == "1"){
+                                item.tzqx = "是"
+                            }else{
+                                item.tzqx = "无"
+                            }
+                        })
+                        tableobj.data = resultMsg.data.tzDtoList;
+                    }
+                    table.render(tableobj);
+                })
+            }
+        })
+    })
+</script>
+</html>

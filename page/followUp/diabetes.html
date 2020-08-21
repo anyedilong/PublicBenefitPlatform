@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>糖尿病随访记录表</title>
+    <script src="../../js/page/commen.js"></script>
+</head>
+<body>
+    <div class="layui-row sfContainer showLoading">
+        <div class="layui-col-xs8 layui-col-md8 bmfw_main bg_white pad30">
+           <div class="sfNo">暂无数据</div>
+           <div class="sfBox">
+              <div class="top_box">
+                   <div class="top_title">糖尿病随访记录表</div>
+                   <div class="l_gray font_s">随访日期：<span class="mar_r">暂无数据</span><span class="green mar_r">随访方式：暂无数据</span>随访医生：暂无数据</div>
+               </div>
+               <ul class="consUl">
+                   <li class="consLi">
+                       <div class="cons-label">随访日期</div>
+                       <div class="cons-txt sfz" id="sfrq" name="sfrq">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">随访方式</div>
+                       <div class="cons-txt sfz" id="sffsName" name="sffsName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">症状</div>
+                       <div class="cons-txt sfz" id="zzName" name="zzName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">空腹血糖值(mmol/L)</div>
+                       <div class="cons-txt sfz" id="kfxtz" name="kfxtz">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">体征</div>
+                       <div class="cons-txt tizheng">
+                           <div style="">
+                               <span class="span-label">血压(mmHg)</span>
+                               <span id="gxy" name="gxy" class="sfz">暂无数据</span>/
+                               <span id="dxy" name="dxy" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">体重(kg)</span>
+                               <span id="tz" name="tz" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">体质指数(kg/m<sup>2</sup>)</span>
+                               <span id="tzzs" name="tzzs" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">足背动脉搏动</span>
+                               <span id="zbdmbdName" name="zbdmbdName" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">其他</span>
+                               <span id="qtzz1" name="qtzz1" class="sfz">暂无数据</span>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">吸烟</div>
+                       <div class="cons-txt tizheng">
+                           <div>
+                               <span class="span-label">目前(支/天)</span>
+                               <span id="rxyl" name="rxyl" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">目标(支/天)</span>
+                               <span id="xcsfrxylmb" name="xcsfrxylmb" class="sfz">暂无数据</span>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">饮酒</div>
+                       <div class="cons-txt tizheng">
+                           <div>
+                               <span class="span-label">目前(两/天)</span>
+                               <span id="ryjl" name="ryjl" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">目标(两/天)</span>
+                               <span id="xcsfryjlmb" name="xcsfryjlmb" class="sfz">暂无数据</span>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">运动</div>
+                       <div class="cons-txt">
+                           <span id="mzydcs" name="mzydcs" class="sfz">暂无数据</span>&nbsp;
+                           <span id="mcydsj" name="mcydsj" class="sfz">暂无数据</span>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">主食(克/天)</div>
+                       <div class="cons-txt sfz" id="zsmtdsk" name="zsmtdsk">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">心理调整</div>
+                       <div class="cons-txt sfz" id="xltzName" name="xltzName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">遵医行为</div>
+                       <div class="cons-txt sfz" id="zyxwName" name="zyxwName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">辅助检查</div>
+                       <div class="cons-txt sfz" id="fzjc" name="fzjc">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">服药依从性</div>
+                       <div class="cons-txt sfz" id="fyycxName" name="fyycxName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">药物不良反应</div>
+                       <div class="cons-txt sfz" id="blfyms" name="blfyms">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">低血糖反应</div>
+                       <div class="cons-txt sfz" id="dxtfyName" name="dxtfyName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">此次随访分类</div>
+                       <div class="cons-txt sfz" id="sfflName" name="sfflName">暂无数据</div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">目前用药</div>
+                       <div class="cons-txt">
+                          <table class="my-table" id="yaowutable">
+                             <thead>
+                             <tr class="bgtr">
+                                <th>药物名称</th>
+                                 <th>用药频次</th>
+                                <th>单次剂量</th>
+                             </tr>
+                             </thead>
+                             <tbody></tbody>
+                          </table>
+                          <div class="table-nodata">暂无数据</div>
+                           <!--<table id="grtTable"></table>-->
+                           <!--<table class="my-table" id="yaowutable">-->
+                               <!--<thead>-->
+                               <!--<tr class="bgtr">-->
+                                   <!--<th>药物名称</th>-->
+                                   <!--<th>单次剂量</th>-->
+                                   <!--<th>用药频次</th>-->
+                               <!--</tr>-->
+                               <!--</thead>-->
+                               <!--<tbody>-->
+                               <!--<tr>-->
+                                   <!--<td>dsd</td>-->
+                                   <!--<td>辅导辅导</td>-->
+                                   <!--<td>辅导费</td>-->
+                               <!--</tr>-->
+                               <!--<tr>-->
+                                   <!--<td>dsd</td>-->
+                                   <!--<td>辅导辅导</td>-->
+                                   <!--<td>辅导费</td>-->
+                               <!--</tr>-->
+                               <!--</tbody>-->
+                           <!--</table>-->
+                           <!--<div class="table-nodata">暂无数据</div>-->
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">胰岛素</div>
+                       <div class="cons-txt tizheng">
+                           <div>
+                               <span class="span-label">种类</span>
+                               <span id="ydszl" name="ydszl" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">用法和用量</span>
+                               <span id="ydsyfhyl" name="ydsyfhyl" class="sfz">暂无数据</span>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">转诊</div>
+                       <div class="cons-txt tizheng">
+                           <div>
+                               <span class="span-label">原因</span>
+                               <span id="zzyy" name="zzyy" class="sfz">暂无数据</span>
+                           </div>
+                           <div>
+                               <span class="span-label">机构及科别</span>
+                               <span id="jgjks" name="jgjks" class="sfz">暂无数据</span>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">随访照片</div>
+                       <div class="cons-txt">
+                           <div class="consPic">
+                               <div><img src="../../img/noload.png"></div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">医生签字</div>
+                       <div class="cons-txt">
+                           <div class="consQianm">
+                               <div>医生未上传手写签名</div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">下次随访日期</div>
+                       <div class="cons-txt sfz" id="xcsfrq" name="xcsfrq">暂无数据</div>
+                   </li>
+               </ul>
+           </div>
+        </div>
+        <div class="layui-col-xs4 layui-col-md4">
+            <div class="bg_white bmfw_main pad30 rightBox" style="margin-left: 30px">
+                <div class="bm_title"><div class="hetBox">随访记录</div> <div class="date_r hetBox font_s gray"><input type="text" class="layui-input" id="getDate"><i class="iconfont icon-tubiaozhizuo- iconJ"></i></div></div>
+                <!--<div class="bm_title">随访记录 <div><span><input type="text" class="layui-input" id="year" placeholder="yyyy"></span></div></div>-->
+                <ul class="health_list">
+                    <!--<li class="myFlex tit_mar">-->
+                        <!--<span class="bg_lightgreen font_d health_num">03</span>-->
+                        <!--<div class="data_plan">-->
+                            <!--<div class="green font_e serialNum">糖尿病随访记录表</div>-->
+                            <!--<div class="font_s l_gray">随访日期：2019-10-10</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+<script>
+    $(function(){
+        layui.use(['laydate', 'laypage', 'layer', 'table'], function() {
+            var laydate = layui.laydate;
+            var table = layui.table;
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+                , jump: function (obj) {
+                }
+            };
+            var myDate = new Date();
+            $("#getDate").val(myDate.getFullYear())
+            //年选择器
+            // lay('#getDate').on('click', function(e) { //假设 test1 是一个按钮
+           $("#getDate").click(function () {
+                $(".iconJ").addClass("iconTrans")
+           })
+           laydate.render({
+               elem: '#getDate',
+               type: 'year',
+               btns: ['now','confirm'],
+               max: getNowFormatDate(),
+               done: function (value, dates, edate) {
+                   $(".iconJ").removeClass("iconTrans");
+                   jsonParam.searchTime=value;
+                   getList();
+               }
+           });
+            function getNowFormatDate() {
+                var date = new Date();
+                var seperator1 = "-";
+                var seperator2 = ":";
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
+                return currentdate;
+            }
+            // 记录
+            var jsonParam = {
+                // sfzh: '532223196606050124',
+                // sfzh: localStorage.getItem("sfzh"),
+               jmid:localStorage.getItem('jmid'),
+                pageNo: 1,
+                pageSize :10,
+                searchTime: $("#getDate").val()
+            }
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green")
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray")
+                getDetails($(this).attr("ids"))
+            })
+            getList()
+            function getList() {
+                // getAjax('/follow/tnb/getTnbList', jsonParam, function (resultMsg) {
+                getAjax('/health/follow/getTnbList', jsonParam, function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html = ''
+                   if(resultMsg.data.count == '0'){
+                      html += '<li>暂无数据</li>';
+                      $(".health_list").html(html);
+                      $(".sfBox").hide();
+                      $(".sfNo").show();
+                   }else{
+                      $(".sfBox").show();
+                      $(".sfNo").hide();
+                         $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo * (resultMsg.data.list.length - i)
+                            if (item.num < 10) {
+                               item.num = '0' + item.num
+                            }
+                            html+='<li class="myFlex tit_mar" ids="'+item.id+'">' +
+                               '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                               '<div class="data_plan">' +
+                               '<div class="green font_e serialNum">糖尿病随访记录表</div>' +
+                               '<div class="font_s l_gray">随访日期：'+item.sfrq+'</div>' +
+                               '</div>' +
+                               '</li>'
+                         })
+                         getDetails(resultMsg.data.list[0].id)
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                   }
+                })
+            }
+            hosPage.jump = function (obj) {
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                // getAjax('/follow/tnb/getTnbList', jsonParam, function (resultMsg) {
+                getAjax('/health/follow/getTnbList', jsonParam, function (resultMsg) {
+                    var html =''
+                   if(resultMsg.data.list){
+                      if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                         html += '<li>暂无数据</li>'
+                         $(".health_list").html(html);
+                         $(".sfBox").hide();
+                         $(".sfNo").show();
+                      }else{
+                         $(".sfBox").show();
+                         $(".sfNo").hide();
+                         $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                               item.num = '0'+item.num
+                            }
+                            html+='<li class="myFlex tit_mar" ids="'+item.id+'">' +
+                               '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                               '<div class="data_plan">' +
+                               '<div class="green font_e serialNum">糖尿病随访记录表</div>' +
+                               '<div class="font_s l_gray">随访日期：'+item.sfrq+'</div>' +
+                               '</div>' +
+                               '</li>'
+                         })
+                         getDetails(resultMsg.data.list[0].id)
+                      }
+                   }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            };
+            function getDetails(id) {
+                var jsonParams = {
+                    id : id,
+                }
+                // getAjax('/follow/tnb/getTnbDetail', jsonParams, function (resultMsg) {
+                getAjax('/health/follow/getTnb', jsonParams, function (resultMsg) {
+                    var item = resultMsg.data
+                    var html =''
+                    html+='<div class="top_title">糖尿病随访记录表</div>' +
+                        '<div class="l_gray">随访日期：<span class="mar_r">'+item.sfrq+'</span><span class="green mar_r">随访方式：'+item.sffsName+'</span>随访医生：'+item.sfys+'</div>'
+                    $(".top_box").html(html)
+                    for (var i = 0;i < $('.consUl .sfz').length; i++) {
+                        var ids = $('.consUl .sfz').eq(i).attr('id');
+                        if(resultMsg.data !== undefined){
+                            if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                $('#' + ids).html(resultMsg.data[ids])
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }else{
+                            $('#' + ids).html("暂无数据")
+                        }
+                    }
+                    // var tableobj = {
+                    //     elem: '#grtTable',
+                    //     cellMinWidth: 80,
+                    //     even: true,
+                    //     cols: [[
+                    //         {field:'ywmc', title: '药物名称',minWidth:100}
+                    //         ,{field:'ywjl', title: '单次剂量',minWidth:100}
+                    //         ,{field:'ywpc', title: '用药频次',minWidth:100}
+                    //     ]],
+                    //     data: []
+                    // };
+                    // tableobj.data = resultMsg.data.drugList;
+                    // table.render(tableobj);
+                   var yaowu = ['ywmc1','ywmc2','ywmc3'];
+                   for (var j = 0; j < yaowu.length; j++) {
+                      if (resultMsg.data[yaowu[j]] != '') {
+                         $("#yaowutable tbody").append('<tr>' +
+                            '<td>' + resultMsg.data[yaowu[j]] + '</td>' +
+                            '<td>' + resultMsg.data[yaowu[j] + 'ci'] + '</td>' +
+                            '<td>' + resultMsg.data[yaowu[j] + 'mg'] + '</td></tr>');
+                      }
+                   }
+                   if ($("#yaowutable tbody").html() == '') {
+                      $('.table-nodata').css('display', 'block');
+                   } else {
+                      $('.table-nodata').css('display', 'none');
+                   }
+                })
+            }
+        })
+    })
+</script>
+</body>
+</html>

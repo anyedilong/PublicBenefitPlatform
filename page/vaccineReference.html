@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>疫苗参考</title>
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .tit-detail {
+            display: flex;
+        }
+        .tit-detail div {
+            margin-right: 15px;
+        }
+        .layui-table-view .layui-table td, .layui-table-view .layui-table th {
+            padding: 10px 0;
+            font-size: 16px;
+            border-top: none;
+            border-left: none;
+        }
+        .layui-table thead tr {
+            background: none;
+        }
+        .layui-table-view {
+            border: none;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .layui-tab-brief>.layui-tab-title .layui-this{
+            color: #4B4C4C;
+        }
+        .layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
+            border-bottom: 2px solid #01B887;
+        }
+        .ts{
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> <a href="vaccination.html" id="getList">>疫苗接种 </a><a href="#">>儿童疫苗参考</a></div>
+            <div class="bg_white mar_r pad30">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">免疫规划疫苗</li>
+                        <li>非免疫规划疫苗（收费）</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <table class="layui-table" id="table"></table>
+                        </div>
+                        <div class="layui-tab-item">
+                            <div class="gray ts">
+                                1.自费疫苗属于自愿接种,需在医生指导下进行
+                            </div>
+                            <div class="gray ts">
+                                2.以下疫苗仅供参考,因疫苗种类不同，免疫程序有所差
+                                别，接种时请以疫苗说明书为准。
+                            </div>
+                            <table class="layui-table" id="tableSf"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        $("#getList").click(function () {
+            $(".getDetail").hide()
+            $(".getDetailHref").hide()
+            $(".getVs").show()
+        })
+        $(".health_list").on("click","li",function () {
+            $(this).find(".serialNum").removeClass("a_gray").addClass("green")
+            $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray")
+            $(".getVs").show()
+            $(".getDetail").hide()
+        })
+        $(".leftTab").on("click","li",function () {
+            $(this).addClass("bg_green").siblings().removeClass("bg_green")
+        })
+        layui.use(['form','table','element'], function(){
+            var $ = layui.jquery
+                ,element = layui.element;
+            // 免疫规划疫苗
+            var table = layui.table;
+            var tableobj = {
+                elem: '#table',
+                cellMinWidth: 80,
+                even: true,
+                skin: 'line',
+                limit: 30,
+                cols: [[
+                    {field: 'time', title: '时间', width: 100},
+                    {field: 'name', title: '项目名称', width: 300},
+                    {field: 'msg', title: '描述', minWidth: 400},
+                ]],
+                data: [
+                    {time: '出生', name: '乙肝疫苗(第1剂/共3剂)',msg:'可预防由乙型肝炎病毒引起的肝炎(乙肝)。'},
+                    {time: '出生', name: '卡介苗(第1剂/共1剂)',msg:'可预防结核病(俗称肺痧),特别是结核性脑膜炎和粟粒性肺结核。'},
+                    {time: '1月龄', name: '乙肝疫苗(第2剂/共3剂)',msg:'可预防由乙型肝炎病毒引起的肝炎(乙肝)。'},
+                    {time: '2月龄', name: '脊灰灭活疫苗(第1剂/共4剂)',msg:'可预防脊灰病毒引起的脊髓灰质炎。'},
+                    {time: '3月龄', name: '百白破疫苗(第1剂/共4剂)',msg:'可预防百日咳、白喉、破伤风三种疾病。'},
+                    {time: '3月龄', name: '口服脊灰减毒疫苗(第2剂/共3剂)',msg:'可预防脊灰病毒引起的脊髓灰质炎。'},
+                    {time: '4月龄', name: '口服脊灰减毒疫苗(第3剂/共3剂)',msg:'可预防脊灰病毒引起的脊髓灰质炎'},
+                    {time: '4月龄', name: '百白破疫苗(第2剂/共4剂)',msg:'可预防百日咳、白喉、破伤风三种疾病。'},
+                    {time: '5月龄', name: '百白破疫苗(第3剂/共4剂)',msg:'可预防百日咳、白喉、破伤风三种疾病。'},
+                    {time: '6月龄', name: '乙肝疫苗(第3剂/共3剂)',msg:'可预防由乙型肝炎病毒引起的肝炎(乙肝)。'},
+                    {time: '6月龄', name: 'A群流脑多糖疫苗(第1剂/共2剂)',msg:' 可预防A群脑膜炎球菌引起的流行性脑脊髓膜炎。'},
+                    {time: '8月龄', name: ' 乙脑减毒活疫苗(第1剂/共2剂)',msg:' 可预防流行性乙型脑炎。'},
+                    {time: '8月龄', name: '麻风疫苗(第1剂/共1剂)',msg:'可预防麻疹、风疹这两种儿童常见的急性呼吸道传染病。'},
+                    {time: '9月龄', name: 'A群流脑多糖疫苗(第2剂/共2剂)',msg:'可预防A群脑膜炎球菌引起的流行性脑脊髓膜炎。'},
+                    {time: '18月龄', name: ' 麻腮风疫苗(第1剂/共1剂)',msg:'可预防麻疹、流行性腮腺炎、风疹这三种儿童常见的急性呼吸道传染病。'},
+                    {time: '18月龄', name: '百白破疫苗(第4剂/共4剂)',msg:'可预防百日咳、白喉、破伤风三种疾病。'},
+                    {time: '18月龄', name: '甲肝减毒活疫苗(第1剂/共1剂)',msg:'可预防甲型病毒性肝炎。'},
+                    {time: '2周岁', name: '乙脑减毒活疫苗(第2剂/共2剂)',msg:'可预防流行性乙型脑炎。'},
+                    {time: '3周岁', name: 'A群C群流脑多糖疫苗(第1剂/共2剂)',msg:'可同时预防A群、C群脑膜炎球菌引起的流行性脑脊髓膜炎。'},
+                    {time: '4周岁', name: '口服脊灰减毒疫苗(第4剂/共3剂)',msg:'可预防脊灰病毒引起的脊髓灰质炎。'},
+                    {time: '6周岁', name: 'A群C群流脑多糖疫苗(第2剂/共2剂)',msg:' 可同时预防A群、C群脑膜炎球菌引起的流行性脑脊髓膜炎。'},
+                    {time: '6周岁', name: '白破疫苗(第1剂/共1剂)',msg:' 可预防白喉和破伤风两种疾病。'}
+                ]
+            };
+            table.render(tableobj);
+            // 非免疫规划疫苗（收费）
+            var tablesf = {
+                elem: '#tableSf',
+                cellMinWidth: 80,
+                even: true,
+                skin: 'line',
+                limit: 100,
+                cols: [[
+                    {field: 'time', title: '时间', width: 100},
+                    {field: 'name', title: '项目名称', width: 300},
+                    {field: 'msg', title: '描述', minWidth: 400},
+                ]],
+                data: [
+                    {time: '1月15天', name: '13价肺炎多糖结合疫苗(第1剂/共4剂)',msg:' 可预防由本疫苗含有的13种血清型肺炎链球菌引起的侵袭性疾病(包括菌血症性肺炎、脑膜炎.败血症和菌血症等),不能预防本疫苗所包括血清型以外的其它肺炎球菌和其它微生物引起的疾病。'},
+                    {time: '1月15天', name: '五价轮状病毒疫苗(第1剂/共3剂)',msg:'可预防血清型G1, G2, G3, G4, G9导致的婴幼儿轮状病毒胃肠'},
+                    {time: '2月龄', name: 'Hib疫苗(第1剂/共4剂)',msg:'生物引起的疾病。'},
+                    {time: '2月龄', name: '13价肺炎',msg:'可预防B型血杆菌引起的脑膜炎, 肺炎, 败血症, 蜂窝组织炎、关节炎等。'},
+                    {time: '2月龄', name: '百白破IPV和Hib五联疫苗(第1剂/共4剂)',msg:'杆菌引起的脑膜炎,肺炎,败血症等疾病。。'},
+                    {time: '2月龄', name: '轮状病毒疫苗(第1剂/共1剂)',msg:'可预防A群轮状病毒引起的婴幼儿腹泻。。'},
+                    {time: '2月龄', name: 'AC流脑Hib三联疫苗(第1剂/共3剂)',msg:'可预防A群C群流行性脑膜炎及B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症等。\n。'},
+                    {time: '2月15天', name: '五价轮状病毒疫苗(第2剂/共3剂)',msg:'可预防血清型G1, G2, G3, G4, G9导致的婴幼儿轮状病毒胃肠\n。'},
+                    {time: '2月15天', name: '13价肺炎多糖结合疫苗(第2剂/共4剂)',msg:'可预防由本疫苗含有的13种血清型肺炎链球菌引起的侵袭性疾病(包括菌血症性肺炎、脑膜炎、败血症和菌血症等),不能预防本疫苗所包括血清型以外的其它肺炎球菌和其它微生物引起的疾病。\n。'},
+                    {time: '3月龄', name: 'Hib疫苗(第2剂/共4剂)',msg:'可预防B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症,蜂窝组织炎、关节炎等。\n。'},
+                    {time: '3月龄', name: '脊灰灭活疫苗(第2剂/共4剂)',msg:'可预防脊灰病毒引起的脊髓灰质炎。'},
+                    {time: '3月龄', name: '百白破IPV和Hib五联疫苗(第2剂/共4剂)',msg:'百日咳，白喉，破伤风及B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症等疾病。\n'},
+                    {time: '3月龄', name: '四联疫苗(第1剂/共4剂)',msg:'可同时预防百日咳，白喉，破伤风及B型流感嗜血杆菌引起的脑膜炎，肺炎,败血症等。\n'},
+                    {time: '3月龄', name: 'AC流脑Hib三联疫苗(第2剂/共3剂)',msg:'可预防A群C群流行性脑膜炎及B型流感嗜血杆菌引起的脑膜炎,肺炎，败血症等。\n'},
+                    {time: '3月15天', name: ' 五价轮状病毒疫苗(第3剂/共3剂)',msg:'可预防血滴型G1, G2, G3, G4, G9导致的嬰幼儿轮状病毐苺肠炎。\n'},
+                    {time: '3月15天', name: '13价肺炎多糖结合疫苗刑/共4剂）',msg:'可预防由本疫苗含有的13种血滴翌肺炎链球S引起的侵袭性疾病（包括菌血症性肺炎、脑睽炎、败血症和菌血症等 >，不能预防本疫苗所包括血满型以外的與它肺炎球菌和K它檄生物引起的疾病。\n'},
+                    {time: '4月龄', name: 'Hib疫苗（第3剂/共4剂）',msg:'可预防B型流®喵血杆®引起的脑膜炎，肺炎，败血症，蜂窝组织炎、关节炎等。\n'},
+                    {time: '4月龄', name: '脊灰灭活疫苗（*3剂/共4剂）',msg:'可预防脊灰病毒引起的脊髓灰质炎#'},
+                    {time: '4月龄', name: '四联疫苗（第2剂/共4剂）',msg:'可间时预防百日陔，白皤，破伤风及B型流感唯血杆面引起的脇膜炎，肺炎，敗血症等。\n'},
+                    {time: '4月龄', name: '百白破IPV和Hib五联疫苗(第3剂/共4剂)',msg:'可同时预防脊髓灰质炎，百日咳，白喉，破伤风及B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症等疾病。\n'},
+                    {time: '4月龄', name: 'AC流脑Hib三联疫苗(第3剂/共3剂)',msg:'可预防A群C群流行性脑膜炎及B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症等。\n'},
+                    {time: '5月龄', name: '四联疫苗(第3剂/共4剂)',msg:'可同时预防百日咳，白喉，破伤风及B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症等。\n'},
+                    {time: '6月龄', name: 'EV71疫苗(第1剂/共2剂)',msg:'可预防EV71感染所致的手足口病'},
+                    {time: '6月龄', name: ' 流感裂解疫苗(第2剂/共2剂)',msg:'可预防流行性感冒。适用于任何可能感染流感病毒的健康人，每年在流行季节前接种一-次, 免疫力可持续一年。流感疫苗是预防和控制流感的主要措施之一。可以减少接种者感染流感的机会或者减轻流感症状。\n'},
+                    {time: '6月龄', name: '流感裂解疫苗(第1剂/共2剂)',msg:'可预防流行性感冒。适用于任何可能感染流感病毒的健康人,每生在法行麦节前校种一次色店力可持续一生法成店苗且环防和控制流成的主要措施之_。可以减少接 种者成染流成的机会或者减轻流感症状。\n'},
+                    {time: '6月龄', name: 'A群C群流脑结合疫苗(第1剂/共2剂)',msg:'可同时预防A群、C群脑膜炎球菌引起的流行性脑脊随膜炎\n'},
+                    {time: '7月龄', name: 'EV71疫苗',msg:'可预防EV71感染所致的手足口病'},
+                    {time: '8月龄', name: '乙脑灭活疫苗(第1剂/共4剂)',msg:'可预防流行性乙型脑炎'},
+                    {time: '8月龄', name: '乙脑灭活疫苗(第2剂/共4剂)',msg:'可预防流行性乙型脑炎。'},
+                    {time: '9月龄', name: 'A群C群流脑结合疫苗(第2剂/共2剂)',msg:'可同时预防A群、C群脑膜炎球菌引起的流行性脑脊髓膜炎\n'},
+                    {time: '12月龄', name: '水痘疫苗(第1剂/共2剂)',msg:'可预防由水痘-带状疱疹病毒引起的传染病。'},
+                    {time: '12月龄', name: '13价肺炎多糖结合疫苗(第4剂/共4剂)',msg:'可预防由本疫苗含有的13种血清型肺炎链球菌引起的侵袭性疾病'},
+                    {time: '18月龄', name: '甲肝灭活疫苗(第1剂/共2剂)',msg:'可预防甲型病毒性肝炎。'},
+                    {time: '18月龄', name: '脊灰灭活疫苗(第4剂/共4剂)',msg:'可预防脊灰病毒引起的脊髓灰质炎。'},
+                    {time: '18月龄', name: '四联疫苗(第4剂/共4剂)',msg:'可同时预防百日咳,白喉，破伤风及B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症等。\n'},
+                    {time: '18月龄', name: 'Hib疫苗(第4剂/共4剂)',msg:'可预防B型流感嗜血杆菌引起的脑膜炎,肺炎,败血症,蜂窝组织炎、关节炎等。\n'},
+                    {time: '18月龄', name: '百白破IPV和Hib五联疫苗(第4剂/共4剂)',msg:'杆菌引起的脑膜炎,肺炎，败血症等疾病。\n'},
+                    {time: '2周岁', name: '乙脑灭活疫苗(第3剂/共4剂)',msg:'可预防流行性乙型脑炎。'},
+                    {time: '2周岁', name: '甲肝灭活疫苗(第2剂/共2剂)',msg:'可预防甲型病毒性肝炎。'},
+                    {time: '2周岁', name: '23价肺炎多糖疫苗(第1剂/共1剂)',msg:'可预防23种经常引起肺炎球菌感染的血清型,约85% .90%的肺炎是由这23种血清型引起的。\n'},
+                    {time: '3周岁', name: '甲乙肝疫苗(第1剂/共1剂)',msg:'可同时预防甲型.乙型病毒性肝炎。'},
+                    {time: '3周岁', name: 'ACYW135流脑疫苗(第1剂/共2剂)',msg:'可同时预防A群. C群、Y群和W135群脑膜炎球菌引起的流行性脑脊髓膜炎。\n'},
+                    {time: '3周岁', name: '四价流感疫苗(第2剂/共2剂)',msg:'可预防疫苗相关型别的流感病毒引起的流行性感冒'},
+                    {time: '3周岁', name: '四价流感疫苗(第1剂/共2剂)',msg:'可预防疫苗相关型别的流感病毒引起的流行性感冒'},
+                    {time: '4周岁', name: '水痘疫苗(第2剂/共2剂)',msg:'可预防由水痘-带状疱疹病毒引起的传染病。'},
+                    {time: '6周岁', name: '乙脑灭活疫苗(第4剂/共4剂)',msg:'可预防流行性乙型脑炎。'},
+                    {time: '6周岁', name: 'ACYW135流脑疫苗(第2剂/共2剂)',msg:'可同时预防A群、C群、Y群和W135群脑膜炎球菌引起的流行性脑脊髓膜炎。'},
+                    {time: '9岁', name: '二价HPV疫苗(第1剂/共1剂)',msg:' 可预防因高危型人乳头瘤病毒(HPV) 16、18型所致疾病。'},
+                ]
+            };
+            table.render(tablesf);
+        });
+    })
+</script>
+</html>

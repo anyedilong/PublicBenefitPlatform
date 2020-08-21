@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .newsList img{
+            width: 100%;
+        }
+        .newsList .title{
+            font-size: 20px;
+        }
+        .newsList .layui-row{
+            padding: 20px 0;
+            border-bottom: 1px solid #EBEDED;
+        }
+        .newsList .layui-row .sub{
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .layui-bg-orange{
+            background: #FDB037!important;
+        }
+        .layui-bg-green {
+            background-color: #01B887!important;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="bmfw_main">
+            <div class="title_href">当前位置：政策法规</div>
+            <div class="bg_white mar_r pad30">
+                <div class="newsList">
+                    <div class="layui-row layui-col-space30">
+                        <div class="layui-col-md2">
+                            <img src="../img/img_idcard.png" alt="">
+                        </div>
+                        <div class="layui-col-md10">
+                            <div class="title marginb_10">
+                                <a href="" class="a_gray">中共中央、国务院向社会公布的关于深化医药卫生体制改革的意见</a>
+                                <span class="layui-badge layui-bg-orange">家医</span>
+                            </div>
+                            <div class="gray marginb_10 sub">
+                                按照党的十七大精神，为建立中国特色医药卫生体制，逐步实现人人享有基本医疗卫生服务的目标，提高全民健 康水平，就深化医药卫生体制改革
+                            </div>
+                            <div class="gray">2019-12-21</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="getPage" class="" style="text-align: right"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../js/page/foot.js"></script>
+<script>
+    $(function () {
+        layui.use(['layer','laypage'], function() {
+            var laypage = layui.laypage;
+           layui.layer.load();
+            // 分页
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['count', 'prev', 'page', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+            var jsonParam = {
+                pageSize:'10',
+                pageNo:'1'
+            };
+            getList()
+            function getList() {
+                getAjax('/sys/policy/getPolicyPage',jsonParam,function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    // 公卫1  家医2
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var str = '';
+                    if(resultMsg.data.list.length > 0){
+                        var dataList = resultMsg.data.list;
+                        $.each(dataList,function (i, item) {
+                            if(item.type === '1'){
+                                item.clas = 'layui-bg-green'
+                                item.typeName = '公卫'
+                            }else if(item.type === '2'){
+                                item.clas = 'layui-bg-orange'
+                                item.typeName = '家医'
+                            }else{
+                                item.typeName = '暂无数据'
+                            }
+                           item.content = $(item.policyContent).text().trim()
+                            str += '<div class="layui-row layui-col-space30">'+
+                                '<div class="layui-col-md2">'+
+                                '<img src="'+item.policyUrl+'" alt="暂无图片">'+
+                                '</div>'+
+                                '<div class="layui-col-md10">'+
+                                '<div class="title marginb_10">' +
+                                '<a href="policyInfo.html?id='+item.id+'" class="a_gray">'+item.policyTitle+'</a>' +
+                                '<span class="layui-badge '+item.clas+'">'+item.typeName+'</span>'+
+                                '</div>'+
+                                '<div class="gray marginb_10 sub">'+item.content+'</div>'+
+                                '<div class="gray">'+item.pubTime+'</div>'+
+                                '</div>'+
+                                '</div>';
+                        });
+                        $('.newsList').html(str);
+                    }else{
+                        str += '<div class="noData">暂无数据</div>'
+                        $('.newsList').html(str);
+                        $("#getPage").hide()
+                    }
+                });
+            }
+            //分页跳转
+            hosPage.jump = function (obj) {
+               layui.layer.load();
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/sys/policy/getPolicyPage',jsonParam,function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    var str = '';
+                    if(resultMsg.data.list.length > 0){
+                        var dataList = resultMsg.data.list;
+                        $.each(dataList,function (i, item) {
+                            if(item.type === '1'){
+                                item.clas = 'layui-bg-green'
+                                item.typeName = '公卫'
+                            }else if(item.type === '2'){
+                                item.clas = 'layui-bg-orange'
+                                item.typeName = '家医'
+                            }else{
+                                item.typeName = '暂无数据'
+                            }
+                            str += '<div class="layui-row layui-col-space30">'+
+                                '<div class="layui-col-md2">'+
+                                '<img src="'+item.policyUrl+'" alt="暂无图片">'+
+                                '</div>'+
+                                '<div class="layui-col-md10">'+
+                                '<div class="title marginb_10">' +
+                                '<a href="policyInfo.html?id='+item.id+'" class="a_gray">'+item.policyTitle+'</a>' +
+                                '<span class="layui-badge layui-bg-green">公卫</span>'+
+                                '</div>'+
+                                '<div class="gray marginb_10 sub">'+item.policyContent+'</div>'+
+                                '<div class="gray">'+item.pubTime+'</div>'+
+                                '</div>'+
+                                '</div>';
+                        });
+                        $('.newsList').html(str);
+                    } else{
+                        str += '<div class="noData">暂无数据</div>'
+                        $('.newsList').html(str);
+                        $("#getPage").hide()
+                    }
+                });
+            };
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<title>检验报告</title>-->
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .tit-detail {
+            display: flex;
+        }
+        .tit-detail div {
+            margin-right: 15px;
+        }
+        .layui-table-view .layui-table td, .layui-table-view .layui-table th {
+            padding: 10px 0;
+            font-size: 16px;
+            border-top: none;
+            border-left: none;
+        }
+        .layui-table thead tr {
+            background: none;
+        }
+        .layui-table-view {
+            border: none;
+            border-bottom: 1px solid #e6e6e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-box showLoading">
+        <div class="layui-row">
+            <div class="layui-col-md8 bmfw_main">
+                <div class="title_href">当前位置：<a href="#">便民服务</a> <a href="#" id="getList">>检验报告</a></div>
+                <div class="bg_white mar_r pad30">
+                    <div class="top_box">
+                        <div class="top_title"><span>血生化</span>检验报告</div>
+                        <div class="l_gray tit-detail">
+                            <div>医院：<span class="top_hospital">山东省立医院</span></div>
+                            <div>科室：<span class="top_dept"></span></div>
+                        </div>
+                    </div>
+                    <div class="getVs">
+                        <table class="layui-table" id="table"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md4">
+                <div class="right_height"></div>
+                <div class=" bg_white bmfw_main pad20">
+                    <div class="bm_title">检验记录</div>
+                    <ul class="health_list">
+                        <!--<li class="tit_mar clearfix">-->
+                            <!--<span class="bg_green font_d health_num fl">03</span>-->
+                            <!--<div class="data_plan fl">-->
+                                <!--<div class="green font_e serialNum fontNum">尿常规检验</div>-->
+                                <!--<div class="font_s l_gray fontNum">检验时间：2019-10-10</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                        <!--<li class="tit_mar clearfix">-->
+                            <!--<span class="bg_green font_d health_num fl">02</span>-->
+                            <!--<div class="data_plan fl">-->
+                                <!--<div class="a_gray font_e serialNum fontNum">血生化检验</div>-->
+                                <!--<div class="font_s l_gray fontNum">检验时间：2019-10-10</div>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                    <div id="getPage" class="rightPage"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        $("#getList").click(function () {
+            $(".getDetail").hide()
+            $(".getDetailHref").hide()
+            $(".getVs").show()
+        })
+        layui.use(['form','table', 'laypage'], function(){
+            var table = layui.table;
+            var laypage = layui.laypage;
+           layui.layer.load();
+
+           var jyId = ''
+            var jyType = ''
+            var type = ''
+            var sfzh = localStorage.getItem("sfzh")
+            // 检验报告列表
+            var jsonParam = {
+                // sfzh:'430521196602287085',
+                sfzh: sfzh,
+                pageNo:1,
+                pageSize:10
+            }
+            var hosPage = {
+                elem: 'getPage'
+                , count: ''
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+            var tableobj = {
+                elem: '#table',
+                cellMinWidth: 80,
+                even: true,
+                skin: 'line',
+                cols: [[
+                    {field: 'code', title: '代码', minWidth: 60},
+                    {field: 'name', title: '项目名称', minWidth: 200},
+                    {field: 'value', title: '结果', minWidth: 100},
+                    {field: 'itemUnit', title: '单位', minWidth: 100},
+                    // {field: 'minValue', title: '参考值', minWidth: 100},
+                    {field:'minValue', title:'参考值', width:150, templet: function(res){
+                            return res.minValue+'-'+ res.maxValue
+                        }}
+                ]],
+                data: []
+            };
+            table.render(tableobj)
+
+            getReportList()
+            function getReportList(){
+                getAjax('/region/outpatient/getJyList', jsonParam, function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html =''
+                    if(resultMsg.data == null){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'" itemType="'+item.itemType+'" type="'+item.type+'" hospital="'+item.hospital+'" deptName="'+item.deptName+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum fontNum">'+item.itemType+'</div>' +
+                                '<div class="font_s l_gray fontNum">检验时间：'+item.qzrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        jyId = resultMsg.data.list[0].id;
+                        jyType = resultMsg.data.list[0].itemType;
+                        type = resultMsg.data.list[0].type;
+                        getDetails();
+                        $('.top_title span').html(resultMsg.data.list[0].itemType);
+                        $('.top_hospital').html(resultMsg.data.list[0].hospital);
+                        $('.top_dept').html(resultMsg.data.list[0].deptName);
+                    }
+                    $(".health_list").html(html);
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            }
+            hosPage.jump = function (obj) {
+               layui.layer.load();
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/region/outpatient/getJyList', jsonParam, function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    var html =''
+                    if(resultMsg.data == null){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'" itemType="'+item.itemType+'" type="'+item.type+'" hospital="'+item.hospital+'" deptName="'+item.deptName+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum fontNum">'+item.itemType+'</div>' +
+                                '<div class="font_s l_gray fontNum">检验时间：'+item.qzrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        jyId = resultMsg.data.list[0].id
+                        jyType = resultMsg.data.list[0].itemType
+                        type = resultMsg.data.list[0].type;
+                        getDetails()
+                        $('.top_title span').html(resultMsg.data.list[0].itemType);
+                        $('.top_hospital').html(resultMsg.data.list[0].hospital);
+                        $('.top_dept').html(resultMsg.data.list[0].deptName);
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            };
+
+            // 检验详情
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green")
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray")
+                jyId = $(this).attr("ids")
+                jyType = $(this).attr("itemType")
+                type = $(this).attr("type")
+                getDetails();
+                $('.top_title span').html($(this).attr("itemType"));
+                $('.top_hospital').html($(this).attr("hospital"));
+                $('.top_dept').html($(this).attr("deptName"));
+            });
+            function getDetails(){
+               layui.layer.load();
+                var jsonParams = {
+                    id: jyId,
+                    code: type,
+                    itemType: jyType
+                }
+                getAjax('/region/outpatient/getJyXq', jsonParams, function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    if(resultMsg.data){
+                        tableobj.data = resultMsg.data;
+                        table.render(tableobj);
+                    }else{
+                        tableobj.data = []
+                        table.render(tableobj);
+                    }
+                });
+            }
+        });
+    })
+</script>
+</html>

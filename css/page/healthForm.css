@@ -1,0 +1,208 @@
+.bm_title{
+    font-size: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #EBEDED;
+    margin-bottom: 20px;
+}
+@media screen and (max-width: 1450px) {
+    .bmfw_box>a:not(:last-child){
+        margin-right: 10%;
+    }
+}
+.mar_r{
+    margin-right: 30px;
+}
+.pad30{
+    padding: 30px;
+}
+.pad20{
+    padding:20px
+}
+.top_title{
+    font-size: 22px;
+    padding-bottom: 10px;
+}
+.top_box{
+    padding-bottom: 10px;
+    border-bottom: 1px solid #EBEDED;
+}
+.mar{
+    padding: 0 10px
+}
+.tit_mar{
+    margin-bottom: 20px;
+}
+.health_tit{
+    margin: 60px  0 50px;
+}
+.health_tit li{
+    text-align: center;
+    width: 50%;
+}
+.layui-btn{
+    width: 220px;
+}
+.layui-btn-primary{
+    border: 1px solid #CACCCB;
+}
+.layui-btn-primary:hover{
+    border: 1px solid #CACCCB;
+    color: #01B887;
+}
+.line{
+    border-right: 1px solid #CFCFCF;
+}
+.plan_line{
+    height: 10px; border-radius: 8px;
+}
+.green_line{
+    background: #08D170;
+}
+.orange_line{
+    background: #FDB037;
+}
+.vs{
+    width: 60px; height: 60px; text-align: center; line-height: 53px;
+    border-radius: 50%;border: 1px solid #7C7D7C; margin: 0 30px;
+}
+.tc{
+    text-align: center; margin-top: 10px;
+}
+.tr{
+    text-align: right;
+}
+.contrast li{
+    margin-bottom: 30px;
+}
+/*.health_num {*/
+    /*width: 48px; height: 48px;*/
+    /*color: #fff; margin-right: 10px; border-radius: 50%;*/
+    /*text-align: center; line-height: 48px;*/
+/*}*/
+.fontNum{
+    white-space:nowrap;/* 规定文本是否折行 */
+    overflow: hidden;/* 规定超出内容宽度的元素隐藏 */
+    text-overflow: ellipsis;
+}
+@media screen and (max-width: 1366px) {
+    .data_plan{
+        width: 100px;
+    }
+}
+.flex_a{
+    flex: 1;
+}
+.health_list li{
+    cursor: pointer;
+}
+.getDetailHref{
+    display: none;
+}
+.getDetail{
+    display: none;
+    margin-top: 10px;
+}
+.leftTab{
+    width: 110px;
+    display: inline-block;
+    float: left;
+}
+.rightContent{
+    float: left;
+    width: calc(100% - 120px); height:600px;
+    padding-left: 20px;
+    overflow: auto;
+}
+.rightContent::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+/*<!--修改 滚动条的 下面 的 样式-->*/
+.rightContent::-webkit-scrollbar-track {
+    background-color: #ebeded;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+/*<!--修改 滑块 -->*/
+.rightContent::-webkit-scrollbar-thumb {
+    background-color: #01B887;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+/*.hdBox{*/
+    /*width: calc(100% + 30px);height: 600px; overflow-y: scroll;*/
+/*}*/
+.leftTab li{
+    margin-bottom: 10px;
+    background: #eef0f0;
+    border-radius: 4px 0px 0px 4px;
+}
+.leftTab li a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;padding: 8px;
+}
+.leftTab li.bg_green a{
+    color: #fff;
+}
+.contLi a{
+    display:block;
+}
+.health_zd{
+    padding: 20px 50px;
+}
+.cardTit{
+    text-align: center;
+    color: #7B7C7C !important;
+}
+.infoUl{
+    margin-top: 30px;
+}
+.flag{
+    width: 40px; height: 40px; line-height: 40px; text-align: center;
+    border-radius: 50%; background: #01B887; color: #fff; margin-right: 10px;
+}
+.inHosInfo>li{
+    border-bottom: 1px solid #EBEDED;
+}
+.inHosInfo>li>div{
+    display: flex;align-items:center;
+    padding: 10px;
+}
+.getinfo{
+    flex: 1;
+}
+.dateShow{
+    width: 100px; text-align: right;
+}
+.dateShow .iconfont{
+    margin-left: 10px;
+    display: inline-block;
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+}
+.iconRotate{
+    transform: rotate(90deg);
+}
+.zymxInfo{
+    display: none;
+    padding: 20px 30px;
+}
+.infoUl li:last-child{
+    border-bottom: none !important;
+}
+.my-table tr th{
+    background: #eee !important;
+}
+.my-table tr td{
+    border: 1px solid #eee !important;
+}
+#yzBox{
+    display: none;
+}
+.yzlist li{
+    cursor: pointer;
+}

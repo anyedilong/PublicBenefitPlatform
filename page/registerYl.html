@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <title>注册-银行卡</title>
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/index.css">
+    <link rel="stylesheet" href="../css/page/register.css">
+    <!--<script type="text/javascript" src="../js/luhmCheck.js" ></script>-->
+    <script type="text/javascript" src="../js/checkBank.js" ></script>
+    <style>
+        .bodyBanner-form, .form-btn button, .docCard-box, .docCard-pic {
+            behavior: url(../js/PIE/PIE.htc);
+            position: relative;
+        }
+        .yqlj{
+            display: none;
+        }
+        .layui-form{
+            position: relative;
+        }
+        .pintCanvas{
+            position: absolute;
+            left: 0; bottom: 50px;
+            z-index: 100;
+            display: none;
+            /*opacity: 0;*/
+        }
+        .block {
+            bottom: 50px;
+            z-index: 200;
+            top: inherit;
+            display: none;
+        }
+        .cardTit{
+            margin: 50px 0 20px;
+        }
+        .login_box{
+            margin: 100px 0;
+        }
+        .steps li{
+            width: 20% !important; cursor: pointer;
+        }
+        .layui-input{
+            color: #4B4C4C;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="headBar-inner layui-col-md-offset2 layui-col-md8">
+            <div class="cardTit tc">银联卡实名认证</div>
+            <div class="l_gray font_l tc">该平台需要用户实名注册，以保护居民隐私，平台将严格遵守保密协议</div>
+            <div id="personalRight">
+                <ul class="steps" id="stepbar">
+                    <li class="active">银行卡</li>
+                    <li>身份认证</li>
+                    <li>手机绑定</li>
+                    <li>设置密码</li>
+                    <li>完成</li>
+                </ul>
+                <div class="step_content" id="step1">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <select name="bankName" lay-filter="bankCardName" lay-verify="required" lay-reqtext="请选择银行信息"  autocomplete="off" id="bankList">
+                                <!--<select name="bankName" lay-filter="bankCardName" autocomplete="off" id="bankList">-->
+                                    <option value="">请选择银行信息</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="text" name="bankNum" lay-verify="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" lay-reqtext="请输入银行卡号" placeholder="请输入银行卡号" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block login_box">
+                                <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="stepBtn1">下一步</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="step_content" id="step2">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="tel" name="name" onkeyup="this.value=this.value.replace(/[, ]/g,'')" lay-verify="pass" autocomplete="off" class="layui-input" lay-reqtext="请输入真实姓名！" placeholder="请填写真实姓名">
+                                <!--<input type="tel" name="name" autocomplete="off" class="layui-input" lay-reqtext="请填写真实姓名" placeholder="请输入您的手机号">-->
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="text" name="code" onkeyup="this.value=this.value.replace(/[, ]/g,'')" lay-verify="required" lay-reqtext="请输入身份证号码！" placeholder="请输入正确的身份证号" autocomplete="off" class="layui-input">
+                                <!--<input type="text" name="code" lay-reqtext="请输入正确的身份证号" placeholder="请输入正确的身份证号" autocomplete="off" class="layui-input">-->
+                            </div>
+                        </div>
+                        <div class="layui-form-item pint">
+                            <div class="container">
+                                <div id="captcha" style="position: relative"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block login_box">
+                                <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="stepBtn2">下一步</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="step_content" id="step3">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="tel" name="phone" lay-verify="required|phone" onkeyup="this.value=this.value.replace(/[, ]/g,'')" autocomplete="off" class="layui-input" lay-reqtext="请输入手机号" placeholder="请输入您的手机号">
+                            </div>
+                        </div>
+                        <div class="layui-form-item pint">
+                            <div class="container">
+                                <div id="captcha2" style="position: relative"></div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-inline yz_input fl">
+                                <div class="layui-input-inline">
+                                    <input type="text" name="yzmIn" placeholder="请输入验证码" onkeyup="this.value=this.value.replace(/[, ]/g,'')" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-inline get_btn fl">
+                                <div class="layui-input-inline">
+                                    <button type="submit" class="layui-btn get_yz" lay-submit="" lay-filter="get_yzm">发送验证码</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block login_box login_yz">
+                                <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="stepBtn3">下一步</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="step_content" id="step4">
+                    <form class="layui-form" action="">
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="password" name="password1" lay-verify="required" autocomplete="off" onkeyup="this.value=this.value.replace(/[, ]/g,'')" class="layui-input" lay-reqtext="请输入登录密码" placeholder="请输入登录密码">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <input type="password" name="password2" lay-verify="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" lay-reqtext="请再次输入登录密码"  placeholder="请再次输入登录密码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block login_box">
+                                <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="stepBtn4">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="step_content" id="step5">
+                    <img src="../img/img_wc.png" class="personal_tel">
+                    <div class="font_e q_grey" style="margin-top: 30px;">实名认证成功</div>
+                    <div class="q_grey" style="margin: 20px 0 100px;">可以通过密码或者是手机验证码登录，<span class="green loginBtn">去登录</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+       localStorage.setItem('smrz','index')
+        var slideVerify = false;
+        var slideVerify2 = false;
+        var phone = '';
+        var yzmData= '1234';
+        layui.use(['layer','form'], function(){
+            var layer = layui.layer;
+            var form = layui.form;
+
+            form.verify({
+                pass: function(value){
+                    if(value.trim() == ''){
+                        return '请输入真实姓名！';
+                    }
+                    if(!/^[\u4e00-\u9fa5_a-zA-Z0-9]+$/.test(value)){
+                        return '您输入的真实姓名内有非法字符，请重新输入！';
+                    }
+                    if(!/^([\u4e00-\u9fa5]{2,6}|[a-zA-Z\.\s]{1,20})$/.test(value)){
+                        return '您输入的真实姓名不正确，请重新输入！';
+                    }
+                }
+            });
+
+            var jsonParam = {
+                bankCardType:'',
+                bankCardNumber:'',
+                sfzh: '',// 身份证号
+                name: '',// 姓名
+                // authToken: authToken,
+                phone: '', //手机号
+                password:'', //密码
+                isRealName:'2' //实名制里类型 2银行卡
+            };
+            var bankName = ''
+            var getClick = false
+            //获取银行列表
+            getBankList();
+            function getBankList(){
+                getAjax('/sys/customer/getBankTypeList',{},function (resultMsg) {
+                    if(resultMsg.retCode == 0) {
+                        $.each(resultMsg.data, function (i, item) {
+                            $("#bankList").append('<option value="' + item.code + '">' + item.name + '</option>');
+                        });
+                        layui.form.render("select");
+                    } else {
+                        layer.msg("获取银行列表信息失败")
+                    }
+                })
+            }
+            // 1、银行卡  实名认证未通过，请检查修改真实姓名和身份证号码？
+            form.on('submit(stepBtn1)', function(data){
+                bankName =  $("#bankList").find("option:selected").text();
+                var bankno = data.field.bankNum;
+                if(bankno.length < 16 || bankno.length > 19) {
+                    layer.msg('银行卡号长度必须在16到19之间', {icon: 5, anim: 6});
+                    return false;
+                }
+                var num = /^\d*$/; //全数字
+                if(!num.exec(bankno)) {
+                    layer.msg('银行卡号必须全为数字', {icon: 5, anim: 6});
+                    return false;
+                }
+                //开头6位
+                var strBin = "10,18,30,35,37,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,58,60,62,65,68,69,84,87,88,94,95,98,99";
+                if(strBin.indexOf(bankno.substring(0, 2)) == -1) {
+                    layer.msg('银行卡号开头6位不符合规范', {icon: 5, anim: 6});
+                    return false;
+                }
+                var b_name = bankCardAttribution(bankno);
+                if(bankName === b_name.bankName){
+                    $('#step1').hide();
+                    $('#step2').show();
+                    $(".steps li").eq(0).addClass("getClick")
+                    $('#stepbar li:nth-child(2)').addClass('active').siblings().removeClass('active');
+                    jsonParam.bankCardType = data.field.bankName
+                    jsonParam.bankCardNumber = data.field.bankNum
+                }else{
+                    layer.msg('您选择银行与银行卡号不符，请重新输入卡号！', {icon: 5, anim: 6})
+                }
+                return false;
+            });
+            // 2、身份认证
+            form.on('submit(stepBtn2)', function(data){
+                var reg= /^([\u4e00-\u9fa5]{2,6}|[a-zA-Z\.\s]{1,20})$/;
+                var sfzReg = /(^\d{15}$)|(^\d{17}([0-9]|X)$)/;
+                // if(!reg.test(data.field.name)){
+                //     layer.msg('您输入的真实姓名不正确，请重新输入！', {icon: 5, anim: 6});
+                // }else
+                if(!sfzReg.test(data.field.code)){
+                    layer.msg('您输入的身份证号码不正确，请重新输入！', {icon: 5, anim: 6});
+                }else if(slideVerify){
+                    var jsonParamr = {
+                        type: '3',
+                        accountNo: jsonParam.bankCardNumber,
+                        idCard: data.field.code,
+                        name: data.field.name,
+                    }
+                    $.ajax({
+                        url: roadPath + '/sys/customer/realNameTest',
+                        type: 'POST',
+                        dataType: 'json',
+                        // jsonp: "callback",//服务端用于接收
+                        contentType: 'application/json',
+                        async: false,
+                        data: JSON.stringify(jsonParamr),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("authToken", authorCookie);
+                            // layui.use('layer', function () {
+                            //     index = layer.load(1, {
+                            //         shade: [0.1,'#fff'] //0.1透明度的白色背景
+                            //     });
+                            // });
+                        },
+                        success: function (resultMsg) {
+                            if (resultMsg.retCode == 0) {
+                                $('#step2').hide();
+                                $('#step3').show();
+                                $(".steps li").eq(1).addClass("getClick2")
+                                $('#stepbar li:nth-child(3)').addClass('active').siblings().removeClass('active');
+                                jsonParam.name= data.field.name
+                                jsonParam.sfzh= data.field.code
+                            } else {
+                                layer.msg(resultMsg.retMsg)
+                                setTimeout(function () {
+                                    $('#step1').show();
+                                    $('#step3').hide();
+                                    $(".steps li").eq(0).addClass("getClick")
+                                    $('#stepbar li:nth-child(1)').addClass('active').siblings().removeClass('active');
+                                },1000)
+                            }
+                        },
+                    })
+
+                }else{
+                    layer.msg("请先进行图文验证")
+                }
+
+                return false;
+            });
+            // 3、手机绑定
+            form.on('submit(stepBtn3)', function(data){
+                jsonParam.phone = data.field.phone
+                if(getClick){
+                    var jsonParams={
+                        phone: data.field.phone,
+                        code: data.field.yzmIn,
+                    }
+                    getAjax('/commontools/checkCode', jsonParams,function (resultMsg) {
+                        if(resultMsg.retCode == 0){
+                            $('#step3').hide();
+                            $('#step4').show();
+                            $(".steps li").eq(2).addClass("getClick3")
+                            $('#stepbar li:nth-child(4)').addClass('active').siblings().removeClass('active');
+                        }else{
+                            layer.msg("您的手机号码与验证码不符，请重新获取验证码！")
+                        }
+                    })
+                }else{
+                    layer.msg("请先获取验证码")
+                }
+                return false;
+            });
+            //获取验证码
+            form.on('submit(get_yzm)', function(data){
+                getClick = true
+                if(slideVerify2){
+                    getAjax('/sys/customer/checkAccount', {phone:data.field.phone},function (resultMsg) {
+                        // var jsonParamr = {
+                        //     type: '3',
+                        //     accountNo: jsonParam.bankCardNumber,
+                        //     idCard: jsonParam.sfzh,
+                        //     name: jsonParam.name,
+                        //     mobile: data.field.phone,
+                        // }
+                        // $.ajax({
+                        //     url: roadPath + '/sys/customer/realNameTest',
+                        //     type: 'POST',
+                        //     dataType: 'json',
+                        //     // jsonp: "callback",//服务端用于接收
+                        //     contentType: 'application/json',
+                        //     async: false,
+                        //     data: JSON.stringify(jsonParamr),
+                        //     beforeSend: function (XMLHttpRequest) {
+                        //         XMLHttpRequest.setRequestHeader("authToken", authorCookie);
+                        //         // layui.use('layer', function () {
+                        //         //     index = layer.load(1, {
+                        //         //         shade: [0.1,'#fff'] //0.1透明度的白色背景
+                        //         //     });
+                        //         // });
+                        //     },
+                        //     success: function (resultMsg) {
+                        //         if (resultMsg.retCode == 0) {
+                                    getAjax('/commontools/getIdentCode', {telephone: data.field.phone, login: '1'}, function (resultMsg) {
+                                        if (resultMsg.retCode == 0) {
+                                            // layer.msg("已发送验证码")
+                                            let count = 60;
+                                            var countDown = setInterval(() => {
+                                                if (count === 0) {
+                                                    $('.get_yz').text('重新发送').removeAttr('disabled');
+                                                    $('.get_yz').css({
+                                                        background: '#01B887',
+                                                        color: '#fff',
+                                                    });
+                                                    clearInterval(countDown);
+                                                } else {
+                                                    $('.get_yz').attr('disabled', true);
+                                                    $('.get_yz').css({
+                                                        background: '#d8d8d8',
+                                                        color: '#707070',
+                                                    });
+                                                    $('.get_yz').text(count + '秒后可重新获取');
+                                                }
+                                                count--;
+                                            }, 1000);
+                                        }
+                                    })
+                        //         } else {
+                        //             $('#step1').show();
+                        //             $('#step3').hide();
+                        //             $(".steps li").eq(0).addClass("getClick")
+                        //             $('#stepbar li:nth-child(1)').addClass('active').siblings().removeClass('active');
+                        //             layer.msg(resultMsg.retMsg)
+                        //         }
+                        //     },
+                        //     error: function (error, a, b) { // 请求失败处理
+                        //         console.log(error);
+                        //         console.log(a);
+                        //         console.log(b);
+                        //     }
+                        // });
+                    })
+                }else{
+                    layer.msg("请先进行图文验证")
+                }
+                return false;
+            })
+            // 4、设置密码
+            form.on('submit(stepBtn4)', function(data){
+                var regL = /^[0-9A-Za-z]{6,}$/
+                var regC = /^[0-9A-Za-z]{6,12}$/
+                var reg =/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/
+                var regEn = /[`~!@#$%^&*()_+<>?:"{},.\/;'[\]]/im,
+                    regCn = /[·！#￥（——）：；“”‘、，|《。》？、【】[\]]/im;
+                if(regEn.test(data.field.password1) || regCn.test(data.field.password1)) {
+                    layer.msg('密码只能为字母和数字的组合', {icon: 5, anim: 6});
+                    return false;
+                }else if(!regL.test(data.field.password1)){
+                    layer.msg('密码长度不能低于6位', {icon: 5, anim: 6});
+                }else if(!regC.test(data.field.password1)){
+                    layer.msg('密码长度不能超过12位', {icon: 5, anim: 6});
+                }else if(!reg.test(data.field.password1)){
+                    layer.msg('密码只能为字母和数字的组合', {icon: 5, anim: 6});
+                }else if(data.field.password1 === data.field.password2){
+                    jsonParam.password = data.field.password1
+                    getAjax('/sys/customer/createUser',jsonParam,function (resultMsg) {
+                        if (resultMsg.retCode == 0) {
+                            $('#step4').hide();
+                            $('#step5').show();
+                            $(".steps li").eq(3).addClass("getClick4")
+                            $('#stepbar li:nth-child(5)').addClass('active').siblings().removeClass('active');
+                        } else {
+                            layer.open({
+                                id: 'login',
+                                type: 1,
+                                title: '提示',
+                                closeBtn: 0,
+                                skin: 'my-layui-layer', //样式类名
+                                area: ['360px', '180px'],
+                                shadeClose: true,
+                                shade: 0.2,
+                                content: '<div style="padding: 20px;">' + resultMsg.retMsg + '</div>', //iframe的url
+                                btn: ['关闭'],
+                            });
+
+                        }
+                    })
+                }else{
+                    layer.msg('您输入的密码和确认密码不符！', {icon: 5, anim: 6});
+                }
+                return false;
+            });
+            //5、完成
+            $('#stepBtn5').click(function () {
+                history.go(0);
+            });
+
+            // 上一步
+            $("#stepbar").on("click"," .getClick",function () {
+                $('#step1').show();
+                $('#step2').hide();
+                $('#step3').hide();
+                $('#step4').hide();
+                $('#stepbar li:nth-child(1)').addClass('active').siblings().removeClass('active');
+            })
+            $("#stepbar").on("click"," .getClick2",function (){
+                $('#step2').show();
+                $('#step1').hide();
+                $('#step3').hide();
+                $('#step4').hide();
+                $('#stepbar li:nth-child(2)').addClass('active').siblings().removeClass('active');
+            })
+            $("#stepbar").on("click"," .getClick3",function (){
+                $('#step3').show();
+                $('#step1').hide();
+                $('#step2').hide();
+                $('#step4').hide();
+                $('#stepbar li:nth-child(3)').addClass('active').siblings().removeClass('active');
+            })
+            $("#stepbar").on("click"," .getClick4",function (){
+                $('#step4').show();
+                $('#step1').hide();
+                $('#step2').hide();
+                $('#step3').hide();
+                $('#stepbar li:nth-child(4)').addClass('active').siblings().removeClass('active');
+            })
+
+            // 去登录
+            $(".loginBtn").click(function () {
+                layer.open({
+                    type: 2,
+                    title: ' ',
+                    // closeBtn: 2,
+                    skin: 'layui-layer-login', //样式类名
+                    shadeClose: true,
+                    shade: 0.2,
+                    area: ['560px', '530px'],
+                    content: 'login.html?type=login&renz="renz"', //iframe的url
+                    fixed:false,
+                    top:10
+                    // success:function (layero, index) {
+                    //     var iframe = window['layui-layer-iframe' + index];
+                    //     console.log(iframe);
+                    //     iframe.childFun('我是父布局传到子布局的值')
+                    // }
+                });
+            });
+            //滑块插件代码
+            (function(window) {
+                const l = 42, // 滑块边长
+                    r = 10, // 滑块半径
+                    w = 510, // canvas宽度
+                    h = 155, // canvas高度
+                    PI = Math.PI
+                const L = l + r * 2 // 滑块实际边长
+
+                function getRandomNumberByRange(start, end) {
+                    return Math.round(Math.random() * (end - start) + start)
+                }
+
+                function createCanvas(width, height) {
+                    const canvas = createElement('canvas')
+                    canvas.width = width
+                    canvas.height = height
+                    return canvas
+                }
+
+                function createImg(onload) {
+                    const img = createElement('img')
+                    img.crossOrigin = "Anonymous"
+                    // img.crossOrigin = "undefine"
+                    img.onload = onload
+                    img.onerror = () => {
+                        img.src = getRandomImg()
+                    }
+                    img.src = getRandomImg()
+                    return img
+                }
+
+                function createElement(tagName) {
+                    return document.createElement(tagName)
+                }
+
+                function addClass(tag, className) {
+                    tag.classList.add(className)
+                }
+
+                function removeClass(tag, className) {
+                    tag.classList.remove(className)
+                }
+
+                function getRandomImg() {
+                    // return 'https://picsum.photos/300/150/?image=' + getRandomNumberByRange(0, 100)
+                    // return 'http://192.168.1.206:8171/jigsaw/1.png'
+                    return 'http://220.164.62.189:8093/ftp/jigsaw'+getRandomNumberByRange(1, 20)+'.png'
+                }
+
+                function draw(ctx, operation, x, y) {
+                    ctx.beginPath()
+                    ctx.moveTo(x, y)
+                    ctx.lineTo(x + l / 2, y)
+                    ctx.arc(x + l / 2, y - r + 2, r, 0, 2 * PI)
+                    ctx.lineTo(x + l / 2, y)
+                    ctx.lineTo(x + l, y)
+                    ctx.lineTo(x + l, y + l / 2)
+                    ctx.arc(x + l + r - 2, y + l / 2, r, 0, 2 * PI)
+                    ctx.lineTo(x + l, y + l / 2)
+                    ctx.lineTo(x + l, y + l)
+                    ctx.lineTo(x, y + l)
+                    ctx.lineTo(x, y)
+                    ctx.fillStyle = '#fff'
+                    ctx[operation]()
+                    ctx.beginPath()
+                    ctx.arc(x, y + l / 2, r, 1.5 * PI, 0.5 * PI)
+                    ctx.globalCompositeOperation = "xor"
+                    ctx.fill()
+                }
+
+                function sum(x, y) {
+                    return x + y
+                }
+
+                function square(x) {
+                    return x * x
+                }
+
+                class jigsaw {
+                    constructor(el, success, fail) {
+                        this.el = el
+                        this.success = success
+                        this.fail = fail
+                    }
+
+                    init() {
+                        this.initDOM()
+                        this.initImg()
+                        this.draw()
+                        this.bindEvents()
+                    }
+
+                    initDOM() {
+                        const canvas = createCanvas(w, h) // 画布
+                        const block = canvas.cloneNode(true) // 滑块
+                        const sliderContainer = createElement('div')
+                        const refreshIcon = createElement('div')
+                        const sliderMask = createElement('div')
+                        const slider = createElement('div')
+                        const sliderIcon = createElement('span')
+                        const text = createElement('span')
+
+                        block.className = 'block'
+                        canvas.className = 'pintCanvas'
+                        sliderContainer.className = 'sliderContainer'
+                        refreshIcon.className = 'refreshIcon'
+                        sliderMask.className = 'sliderMask'
+                        slider.className = 'slider'
+                        sliderIcon.className = 'sliderIcon'
+                        text.innerHTML = '向右拖动滑块验证'
+                        text.className = 'sliderText'
+
+                        const el = this.el
+                        el.appendChild(canvas)
+                        el.appendChild(refreshIcon)
+                        el.appendChild(block)
+                        slider.appendChild(sliderIcon)
+                        sliderMask.appendChild(slider)
+                        sliderContainer.appendChild(sliderMask)
+                        sliderContainer.appendChild(text)
+                        el.appendChild(sliderContainer)
+
+                        Object.assign(this, {
+                            canvas,
+                            block,
+                            sliderContainer,
+                            refreshIcon,
+                            slider,
+                            sliderMask,
+                            sliderIcon,
+                            text,
+                            canvasCtx: canvas.getContext('2d'),
+                            blockCtx: block.getContext('2d')
+                        })
+                    }
+
+                    initImg() {
+                        const img = createImg(() => {
+                            this.canvasCtx.drawImage(img, 0, 0, w, h)
+                            this.blockCtx.drawImage(img, 0, 0, w, h)
+                            const y = this.y - r * 2 + 2
+                            const ImageData = this.blockCtx.getImageData(this.x, y, L, L)
+                            this.block.width = L
+                            this.blockCtx.putImageData(ImageData, 0, y)
+                        })
+                        this.img = img
+                    }
+
+                    draw() {
+                        // 随机创建滑块的位置
+                        this.x = getRandomNumberByRange(L + 10, w - (L + 10))
+                        this.y = getRandomNumberByRange(10 + r * 2, h - (L + 10))
+                        draw(this.canvasCtx, 'fill', this.x, this.y)
+                        draw(this.blockCtx, 'clip', this.x, this.y)
+                    }
+
+                    clean() {
+                        this.canvasCtx.clearRect(0, 0, w, h)
+                        this.blockCtx.clearRect(0, 0, w, h)
+                        this.block.width = w
+                    }
+
+                    bindEvents() {
+                        this.el.onselectstart = () => false
+                        this.refreshIcon.onclick = () => {
+                            this.reset()
+                        }
+
+                        let originX, originY, trail = [],
+                            isMouseDown = false
+                        this.slider.addEventListener('mousedown', function(e) {
+                            // console.log("点击开始滑动")
+                            // var pintu = document.getElementsByClassName("pintCanvas")[0]
+                            // // console.log(pintu)
+                            // pintu.style.display = 'block';
+                            $('.pintCanvas').css('display', 'block')
+                            $('.block').css('display', 'block')
+                            originX = e.x, originY = e.y
+                            isMouseDown = true
+                        })
+                        document.addEventListener('mousemove', (e) => {
+                            if(!isMouseDown) return false
+                            const moveX = e.x - originX
+                            const moveY = e.y - originY
+                            if(moveX < 0 || moveX + 38 >= w) return false
+                            this.slider.style.left = moveX + 'px'
+                            var blockLeft = (w - 40 - 20) / (w - 40) * moveX
+                            this.block.style.left = blockLeft + 'px'
+
+                            addClass(this.sliderContainer, 'sliderContainer_active')
+                            this.sliderMask.style.width = moveX + 'px'
+                            trail.push(moveY)
+                        })
+                        document.addEventListener('mouseup', (e) => {
+                            $('.pintCanvas').css('display', 'none')
+                            $('.block').css('display', 'none')
+                            // console.log("验证成功")
+                            if(!isMouseDown) return false
+                            isMouseDown = false
+                            if(e.x == originX) return false
+                            removeClass(this.sliderContainer, 'sliderContainer_active')
+                            this.trail = trail
+                            const {
+                                spliced,
+                                TuringTest
+                            } = this.verify()
+                            if(spliced) {
+                                if(TuringTest) {
+                                    addClass(this.sliderContainer, 'sliderContainer_success')
+                                    this.success && this.success()
+                                } else {
+                                    addClass(this.sliderContainer, 'sliderContainer_fail')
+                                    this.text.innerHTML = '再试一次'
+                                    this.reset()
+                                }
+                            } else {
+                                // alert("验证失败");
+                                layer.msg("验证失败")
+                                addClass(this.sliderContainer, 'sliderContainer_fail')
+                                this.fail && this.fail();
+                                //验证失败后，1秒后重新加载图片
+                                setTimeout(() => {
+                                    this.reset()
+                                }, 1000)
+                            }
+                        })
+                    }
+
+                    verify() {
+                        const arr = this.trail // 拖动时y轴的移动距离
+                        const average = arr.reduce(sum) / arr.length // 平均值
+                        const deviations = arr.map(x => x - average) // 偏差数组
+                        const stddev = Math.sqrt(deviations.map(square).reduce(sum) / arr.length) // 标准差
+                        const left = parseInt(this.block.style.left)
+                        return {
+                            spliced: Math.abs(left - this.x) < 10,
+                            TuringTest: average !== stddev, // 只是简单的验证拖动轨迹，相等时一般为0，表示可能非人为操作
+                        }
+                    }
+
+                    reset() {
+                        this.sliderContainer.className = 'sliderContainer'
+                        this.slider.style.left = 0
+                        this.block.style.left = 0
+                        this.sliderMask.style.width = 0
+                        this.clean()
+                        this.img.src = getRandomImg()
+                        this.draw()
+                    }
+
+                }
+
+                window.jigsaw = {
+                    init: function(element, success, fail) {
+                        new jigsaw(element, success, fail).init()
+                    }
+                }
+            }(window))
+            jigsaw.init(document.getElementById('captcha'), function() {
+                // alert("验证成功");
+                layer.msg("验证成功")
+                slideVerify = true
+            })
+            jigsaw.init(document.getElementById('captcha2'), function() {
+                // alert("验证成功");
+                layer.msg("验证成功")
+                slideVerify2 = true
+            })
+        });
+    })
+
+</script>
+</html>

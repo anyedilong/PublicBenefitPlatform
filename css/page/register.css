@@ -1,0 +1,342 @@
+/*登录*/
+.bd_r24{
+    behavior: url(../js/PIE/PIE.htc);
+    position: relative;
+}
+.loginTab .fl{
+    height: 35px; line-height: 35px;
+    border-bottom: 1px solid #CACCCC; text-align: center;
+    width: 50%;
+}
+.active_login{
+    border-bottom: 1px solid #01B887 !important;
+    color: #01B887;
+}
+.layui-input-block{
+    margin-left: 0;
+}
+.pad_50{
+    padding: 50px;
+}
+.layui-form-checkbox[lay-skin=primary] span{
+    color: #CACCCC;
+}
+.layui-input{
+    color: #7B7C7C;
+}
+.layui-input::-webkit-input-placeholder{
+    color:#CACCCC;
+}
+.layui-input::-moz-placeholder{   /* Mozilla Firefox 19+ */
+    color:#CACCCC;
+}
+.layui-input:-moz-placeholder{    /* Mozilla Firefox 4 to 18 */
+    color:#CACCCC;
+}
+.layui-input:-ms-input-placeholder{  /* Internet Explorer 10-11 */
+    color:#CACCCC;
+}
+.text_fr{
+    text-align: right;
+    padding:30px 50px;
+}
+.login_box{
+    text-align: center;
+}
+.login_yz{
+    margin-top: 58px;
+}
+.login_box .layui-btn{
+    width: 250px;
+    background:linear-gradient(-4deg,rgba(253,160,40,1),rgba(248,143,7,1));
+}
+.bd_r24{
+    border-radius: 24px;
+}
+.get_yz{
+    background: #01B887;
+}
+.layui-form-item .yz_input{
+    width: 70%;
+}
+.layui-form-item .get_btn{
+    width: 30%;
+}
+.layui-form-item .layui-inline ,.layui-form-item .layui-input-inline{
+    margin-right: 0!important;
+}
+.layui-form-item .layui-input-inline ,.get_yz{
+    width: 100%;
+}
+/*步骤条*/
+.steps{
+    margin-top: 20px;
+}
+.steps:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+/*步骤描述*/
+.steps li {
+    list-style-type: none;
+    font-size: 12px;
+    text-align: center;
+    width: 25%;
+    position: relative;
+    float: left;
+}
+/*步骤数字*/
+.steps li:before{
+    content: url("../../img/bluecircle.png");
+    position: relative;
+    top: 40px;
+    left: 38px;
+    z-index: 1;
+}
+.steps li{
+    color: #01B887;
+}
+/*连接线*/
+.steps li ~ li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background-color: #01B887;
+    position: absolute;
+    left: -45%;
+    top: 55px;
+}
+/*将当前/完成步骤之前的数字及连接线变绿*/
+.steps li.active:before{
+    content: url("../../img/bluecircle.png");
+}
+.steps li.active:after {
+    background-color: #01B887;
+}
+/*将当前/完成步骤之后的数字及连接线变灰*/
+.steps li.active ~ li{
+    color: #757575;
+}
+.steps li.active ~ li:before{
+    content: url("../../img/greatcircle.png");
+}
+.steps li.active ~ li:after {
+    background-color: #F5F5F5;
+}
+.steps li:last-child:before{
+    left: 30px;
+}
+.layui-input-block{
+    margin-left: 0;
+}
+.login_box .layui-btn{
+    width: 250px;
+    background:linear-gradient(-4deg,rgba(253,160,40,1),rgba(248,143,7,1));
+}
+.bd_r24{
+    border-radius: 24px;
+}
+.step_content{
+    width: 510px;
+    margin: 120px auto 0;
+    text-align: center;
+}
+.step_content .layui-form{
+    display: inline-block;
+    width: 100%;
+}
+.telephone{
+    margin-top: 120px;
+    color: #757575;
+}
+#count{
+    display: none;
+}
+.send_code{
+    margin-top: 30px;
+}
+.send_code .layui-input-inline{
+    float: left;
+}
+.send_code .layui-input{
+    width: 300px;
+    height: 44px;
+    border-radius: 0;
+}
+.send_code .layui-btn{
+    width: 120px;
+    border-radius: 0;
+    background: #3A86F3;
+    font-size: 14px;
+    float: left;
+    margin-left: 0;
+    padding: 0;
+}
+.send_code .layui-btn-primary{
+    background: #ebebeb;
+    border: none;
+    opacity: 1;
+}
+.send_code .layui-btn-primary:hover{
+    background: #ebebeb;
+}
+#step2 , #step3, #step4 ,#step5{
+    display: none;
+}
+.newPhone_input{
+    width:434px;
+    height:44px;
+    margin-top: 120px;
+}
+.password_input{
+    width:434px;
+    height:44px;
+}
+.layui-form{
+    position: relative;
+}
+/*滑块验证*/
+.container {
+    width: 510px;
+    margin: 0 auto;
+}
+
+#msg {
+    width: 100%;
+    line-height: 40px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.block {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.sliderContainer {
+    position: relative;
+    text-align: center;
+    width: 510px;
+    height: 40px;
+    line-height: 40px;
+    margin-top: 15px;
+    background: #f7f9fa;
+    color: #45494c;
+    border: 1px solid #e4e7eb;
+}
+
+.sliderContainer_active .slider {
+    height: 38px;
+    top: -1px;
+    border: 1px solid #1991FA;
+}
+
+.sliderContainer_active .sliderMask {
+    height: 38px;
+    border-width: 1px;
+}
+
+.sliderContainer_success .slider {
+    height: 38px;
+    top: -1px;
+    border: 1px solid #52CCBA;
+    background-color: #52CCBA !important;
+}
+
+.sliderContainer_success .sliderMask {
+    height: 38px;
+    border: 1px solid #52CCBA;
+    background-color: #D2F4EF;
+}
+
+.sliderContainer_success .sliderIcon {
+    background-position: 0 0 !important;
+}
+
+.sliderContainer_fail .slider {
+    height: 38px;
+    top: -1px;
+    border: 1px solid #f57a7a;
+    background-color: #f57a7a !important;
+}
+
+.sliderContainer_fail .sliderMask {
+    height: 38px;
+    border: 1px solid #f57a7a;
+    background-color: #fce1e1;
+}
+
+.sliderContainer_fail .sliderIcon {
+    background-position: 0 0 !important;
+}
+
+.sliderContainer_active .sliderText,
+.sliderContainer_success .sliderText,
+.sliderContainer_fail .sliderText {
+    display: none;
+}
+
+.sliderMask {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 40px;
+    border: 0 solid #1991FA;
+    background: #D1E9FE;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    background: #fff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: background .2s linear;
+}
+
+.slider:hover {
+    background: #1991FA;
+}
+
+.slider:hover .sliderIcon {
+    background-position: 0 0;
+}
+
+.sliderIcon {
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    width: 20px;
+    height: 20px;
+    background: url(../../img/youjiantou.png) 0 0 no-repeat;
+    background-size: 20px;
+}
+
+.refreshIcon {
+    position: absolute;
+    right: 2px;
+    bottom: 185px;
+    z-index: 300;
+    /*top: 0;*/
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background: url(../../img/shuaxin.png) 0 0 no-repeat;
+    background-size: 20px;
+}
+.yan_input{
+    width: 340px !important;
+    display: inline-block;
+}
+.yan_box{
+    width: 100px !important;
+    float: right;
+}
+.loginBtn{
+    cursor: pointer;
+}

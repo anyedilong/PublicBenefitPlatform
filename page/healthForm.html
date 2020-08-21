@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>体检表</title>
+</head>
+<body>
+<!--<div class="body-box showLoading">-->
+<div class="body-box">
+    <div class="layui-row">
+        <div class="layui-col-md8 bmfw_main">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> <a href="#" id="getList">>健康体检信息</a><a href="#" class="getDetail"> > 健康体检详情</a></div>
+            <div class="bg_white mar_r pad30">
+                <div class="top_box">
+                    <div class="top_title">健康体检表（<span class="orgName"></span>）</div>
+                    <div class="l_gray tj_title font_s">
+                        评估日期：无数据<span class="green mar">体检编号：无数据</span>责任医生：无数据
+                    </div>
+                </div>
+                <div class="getVs">
+                    <ul class="clearfix health_tit">
+                        <li class="fl">
+                            <div class="green font_d tit_mar">本次体检数据</div>
+                            <div class="line">
+                                <div class="title_href">根据您所属的人群类型提取相关检测项目进行对比</div>
+                                <!--<button type="submit" class="layui-btn bd_r24 detail_btn" lay-submit="" lay-filter="stepBtn3">查看完整的体检信息</button>-->
+                                <button type="button" class="layui-btn bd_r24 detail_btn" id="thisTime">查看完整的体检信息</button>
+                            </div>
+                        </li>
+                        <li class="fl">
+                            <div class="gray font_d tit_mar">上次体检数据</div>
+                            <div class="title_href">根据您所属的人群类型提取相关检测项目进行对比</div>
+                            <!--<button type="submit" class="layui-btn bd_r24 green layui-btn-primary" lay-submit="" lay-filter="stepBtn3">查看完整的体检信息</button>-->
+                            <button type="button" class="layui-btn bd_r24 green layui-btn-primary" id="lastTime">查看完整的体检信息</button>
+                        </li>
+                    </ul>
+                    <ul class="contrast gray">
+                        <li>
+                            <div class="myFlex">
+                                <div class="flex_a">
+                                    <span class="font_d zcxyb">无数据</span>mmHg
+                                    <div class="plan_line green_line zcxyb_line"></div>
+                                </div>
+                                <div class="vs font_b">
+                                    vs
+                                </div>
+                                <div class="flex_a tr">
+                                    <span class="font_d zcxys">无数据</span>
+                                   <span class="old">mmHg</span>
+                                    <div class="plan_line green_line zcxys_line"></div>
+                                </div>
+                            </div>
+                            <div class="tc">左侧血压</div>
+                        </li>
+                        <li>
+                            <div class="myFlex">
+                                <div class="flex_a">
+                                    <span class="font_d ycxyb">无数据</span>mmHg
+                                    <div class="plan_line green_line ycxyb_line"></div>
+                                </div>
+                                <div class="vs font_b">
+                                    vs
+                                </div>
+                                <div class="flex_a tr">
+                                    <span class="font_d ycxys">无数据</span>
+                                   <span class="old">mmHg</span>
+                                    <div class="plan_line green_line ycxys_line"></div>
+                                </div>
+                            </div>
+                            <div class="tc">右侧血压</div>
+                        </li>
+                        <li>
+                            <div class="myFlex">
+                                <div class="flex_a">
+                                    <span class="font_d xtzb">无数据</span>mmol/L
+                                    <div class="plan_line green_line xtb_line"></div>
+                                </div>
+                                <div class="vs font_b">
+                                    vs
+                                </div>
+                                <div class="flex_a tr">
+                                    <span class="font_d xtzs">无数据</span>
+                                   <span class="old">mmol/L</span>
+                                    <div class="plan_line green_line xts_line"></div>
+                                </div>
+                            </div>
+                            <div class="tc">血糖</div>
+                        </li>
+                        <li>
+                            <div class="myFlex">
+                                <div class="flex_a">
+                                    <span class="font_d xlb">无数据</span>次/分钟
+                                    <div class="plan_line green_line xlb_line"></div>
+                                </div>
+                                <div class="vs font_b">
+                                    vs
+                                </div>
+                                <div class="flex_a tr">
+                                    <span class="font_d xls">无数据</span>
+                                   <span class="old">次/分钟</span>
+                                    <div class="plan_line green_line xls_line"></div>
+                                </div>
+                            </div>
+                            <div class="tc">心率</div>
+                        </li>
+                        <li>
+                            <div class="myFlex">
+                                <div class="flex_a">
+                                    <span class="font_d bmib">无数据</span>Kg/m2
+                                    <div class="plan_line green_line bmib_line"></div>
+                                </div>
+                                <div class="vs font_b">
+                                    vs
+                                </div>
+                                <div class="flex_a tr">
+                                    <span class="font_d bmis">无数据</span>
+                                   <span class="old">Kg/m2</span>
+                                    <div class="plan_line green_line bmis_line"></div>
+                                </div>
+                            </div>
+                            <div class="tc">体质指数</div>
+                        </li>
+                        <li>
+                            <div class="myFlex">
+                                <div class="flex_a">
+                                    <span class="font_d jkpjb">无数据</span>
+                                    <div class="plan_line green_line jkpjb_line"></div>
+                                </div>
+                                <div class="vs font_b">
+                                    vs
+                                </div>
+                                <div class="flex_a tr">
+                                    <span class="font_d jkpjs">无数据</span>
+                                    <div class="plan_line green_line jkpjs_line"></div>
+                                </div>
+                            </div>
+                            <div class="tc">健康评估</div>
+                        </li>
+                    </ul>
+                    <div class="health_zd gray">
+                        <div class="cardTit .gray">健康指导</div>
+                        <div class="zd_content">无数据</div>
+                    </div>
+                </div>
+                <div class="getDetail clearfix">
+                    <ul class="leftTab">
+                        <li class="litab bg_green"><a href="#info_jbxx">基本信息</a></li>
+                        <li class="litab"><a href="#info_shfs">生活方式</a></li>
+                        <li class="litab"><a href="#info_zqgn">脏器功能</a></li>
+                        <li class="litab"><a href="#info_ct">查体</a></li>
+                        <li class="litab"><a href="#info_fzjc">辅助检查</a></li>
+                        <li class="litab"><a href="#info_zywt">主要问题</a></li>
+                        <li class="litab"><a href="#info_zyzl">住院治疗情况</a></li>
+                        <li class="litab"><a href="#info_yyqk">用药情况</a></li>
+                        <li class="litab"><a href="#info_yfjz">预防接种史</a></li>
+                        <li class="litab"><a href="#info_yfjz">健康评价</a></li>
+                        <!--<li class="litab"><a href="#info_jkpj">健康评价</a></li>-->
+                        <!--<li class="litab"><a href="#info_jkzd">健康指导</a></li>-->
+                    </ul>
+                    <ul class="rightContent">
+                        <li class="contLi">
+                            <!--基本信息-->
+                            <a name="info_jbxx">
+                                <ul class="infoUl info_ybzz">
+                                   <!--<li>-->
+                                      <!--<div class="liLabel">编号</div>-->
+                                      <!--<div id="tjbh" name="tjbh">tjbh</div>-->
+                                   <!--</li>-->
+                                   <!--<li>-->
+                                   <!--<div class="liLabel">体检日期</div>-->
+                                   <!--<div id="jcrq" name="jcrq">jcrq</div>-->
+                                   <!--</li>-->
+                                   <!--<li>-->
+                                      <!--<div class="liLabel">责任医生</div>-->
+                                      <!--<div id="ysxm" name="ysxm">ysxm</div>-->
+                                   <!--</li>-->
+                                   <li>
+                                      <div class="liLabel">症状</div>
+                                      <div id="zzText" name="zzText">zzText</div>
+                                   </li>
+                                   <li>
+                                      <div class="liLabel">其他</div>
+                                      <div id="qtzz" name="qtzz">qtzz</div>
+                                   </li>
+                                </ul>
+                                 <ul class="infoUl info_jbxx">
+                                    <li>
+                                        <div class="liLabel">体温(℃)</div>
+                                        <div id="tw" name="tw">tw</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">脉率(次/分钟)</div>
+                                        <div id="ml" name="ml">ml</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">呼吸频率(次/分钟)</div>
+                                        <div id="hxpl" name="hxpl">hxpl</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">左侧血压(mmHg)</div>
+                                        <div>
+                                            <span id="zcxy" name="zcxy"></span>/
+                                            <span id="zgd" name="zgd"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">右侧血压(mmHg)</div>
+                                        <div>
+                                            <span id="ycxy" name="ycxy"></span>/
+                                            <span id="ygd" name="ygd"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">身高(cm)</div>
+                                        <div id="sg" name="sg">sg</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">体重(kg)</div>
+                                        <div id="tz" name="tz">tz</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">腰围(cm)</div>
+                                        <div id="yw" name="yw">yw</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">体质指数(kg/m<sup>2</sup>)</div>
+                                        <div id="bmi" name="bmi">bmi</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">老年人健康评估</div>
+                                        <div id="lnrjkzkText" name="lnrjkzkText">lnrjkzkText</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">老年人自理能力评估</div>
+                                        <div id="lnrzlnlpgText" name="lnrzlnlpgText">lnrzlnlpg</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">老年人认知功能</div>
+                                        <div id="lnrzwpg" name="lnrzwpg">lnrzwpg</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">老年人情感状态</div>
+                                        <div id="lnrqgztText" name="lnrqgztText">lnrqgzt</div>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--生活方式-->
+                            <a name="info_shfs">
+                                <ul class="infoUl info_shfs">
+                                    <li>
+                                        <div class="liLabel">体育锻炼</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="sffs_id">
+                                                <span class="span-label">锻炼频率</span>
+                                                <span id="dlplText" name="dlplText" class="sffs_s">dlplText</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">每次锻炼时间(分钟/次)</span>
+                                                <span id="mcdlsj" name="mcdlsj" class="sffs_s">{{doctorDetail.mcdlsj}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">坚持锻炼时间(年)</span>
+                                                <span id="jcdlsj" name="jcdlsj" class="sffs_s">{{doctorDetail.jcdlsj}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">锻炼方式</span>
+                                                <span id="qtdlfs" name="qtdlfs" class="sffs_s">{{doctorDetail.qtdlfs}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="sffs_id">
+                                        <div class="liLabel">饮食习惯</div>
+                                        <div id="ysxgText" name="ysxgText" class="sffs_s">ysxgText</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">吸烟情况</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="sffs_id">
+                                                <span class="span-label">吸烟状况</span>
+                                                <span id="xyqkText" name="xyqkText" class="sffs_s">xyqk</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">日吸烟量(支/天)</span>
+                                                <span id="rxyl" name="rxyl" class="sffs_s">{{doctorDetail.rxyl}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">开始吸烟年龄</span>
+                                                <span id="ksxynl" name="ksxynl" class="sffs_s">{{doctorDetail.ksxynl}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">戒烟年龄</span>
+                                                <span id="jynl" name="jynl" class="sffs_s">{{doctorDetail.jynl}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">饮酒情况</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="sffs_id">
+                                                <span class="span-label">饮酒频率</span>
+                                                <span id="yjplText" name="yjplText" class="sffs_s">yjplText</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">日饮酒量(两/天)</span>
+                                                <span id="ryjl" name="ryjl" class="sffs_s">{{doctorDetail.ryjl}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">是否戒酒</span>
+                                                <span id="sfjjText" name="sfjjText" class="sffs_s">{{doctorDetail.sfjjText}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">戒酒年龄</span>
+                                                <span id="jjnl" name="jjnl" class="sffs_s">{{doctorDetail.jjnl}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">开始饮酒年龄</span>
+                                                <span id="ksyjnl" name="ksyjnl" class="sffs_s">{{doctorDetail.ksyjnl}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">近一年是否曾醉酒</span>
+                                                <span id="jynsfzjText" name="jynsfzjText" class="sffs_s">{{doctorDetail.jynsfzj}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">饮酒种类</span>
+                                                <span id="yjzlText" name="yjzlText" class="sffs_s">{{doctorDetail.yjzlText}}</span>
+                                            </div>
+                                            <div class="sffs_id">
+                                                <span class="span-label">其他饮酒种类</span>
+                                                <span id="qtyjzl" name="qtyjzl" class="sffs_s">{{doctorDetail.qtyjzl}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="sffs_id">
+                                        <div class="liLabel">职业病危害因素接触史</div>
+                                        <div id="zybwhysjcsText" name="zybwhysjcsText" class="sffs_s">zybwhysjcsText</div>
+                                    </li>
+                                    <li class="sffs_id">
+                                        <div class="liLabel">工种</div>
+                                        <div id="gzlx" name="gzlx" class="sffs_s">gzlx</div>
+                                    </li>
+                                    <li class="sffs_id">
+                                        <div class="liLabel">从业时间(年)</div>
+                                        <div id="gzsj" name="gzsj" class="sffs_s">gzsj</div>
+                                    </li>
+                                    <li class="fanghucuoshi">
+                                        <div class="liLabel">粉尘</div>
+                                        <div class="sffs_id"><div class="liLabel sffs_s sffs_id" id="fc" name="fc">{{shenghuo.fc}}</div></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">防护措施</div>
+                                        <div class="sffs_id">
+                                            <span id="fcfhcsText" name="fcfhcsText"  class="sffs_s">{{shenghuo.fcfhcsText}}</span>
+                                            <span id="fcfhcsms" name="fcfhcsms" class="sffs_s"></span>
+                                        </div>
+                                    </li>
+                                    <li class="fanghucuoshi">
+                                        <div class="liLabel">放射物质</div>
+                                        <div class="sffs_id"><div class="liLabel sffs_s" id="fsxwz" name="fsxwz">{{shenghuo.fsxwz}}</div></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">防护措施</div>
+                                        <div class="sffs_id">
+                                            <!--<span id="fsxbhcsText" name="fsxbhcsText">{{fsxbhcsText}}</span>-->
+                                            <span id="fsxbhcsText" name="fsxbhcsText" class="sffs_s"></span>
+                                           <span id="fsxwzfhcsms" name="fsxwzfhcsms" class="sffs_s"></span>
+                                        </div>
+                                    </li>
+                                    <li class="fanghucuoshi">
+                                        <div class="liLabel">物理因素</div>
+                                        <div class="sffs_id">
+                                           <div class="liLabel sffs_s" id="wlys" name="wlys">{{shenghuo.wlys}}</div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">防护措施</div>
+                                        <div>
+                                            <div class="sffs_id" style="display: inline-block">
+                                               <span id="wlysdfhcsText" name="wlysdfhcsText" class="sffs_s">{{wlysdfhcs}}</span>
+                                               <span id="wlysfhcs" name="wlysfhcs" class="sffs_s"></span>
+                                            </div>
+                                            <!--<div class="sffs_id" style="display: inline-block"><span id="wlysfhcs" name="wlysfhcs" class="sffs_s">&nbsp;&nbsp;描述：{{shenghuo.wlysfhcs}}</span></div>-->
+                                        </div>
+                                    </li>
+                                    <li class="fanghucuoshi">
+                                        <div class="liLabel">化学物质</div>
+                                        <div class="sffs_id"><div class="liLabel sffs_s" id="hxwz" name="hxwz">{{shenghuo.hxwz}}</div></div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">防护措施</div>
+                                        <div>
+                                            <div class="sffs_id" style="display: inline-block">
+                                               <span id="hxwzdfhcsText" name="hxwzdfhcsText" class="sffs_s">{{hxwzdfhcsText}}</span>
+                                               <span id="hxwzfhcsms" name="hxwzfhcsms" class="sffs_s"></span>
+                                            </div>
+                                            <!--<div class="sffs_id" style="display: inline-block"><span id="hxwzfhcsms" name="hxwzfhcsms" class="sffs_s">&nbsp;&nbsp;描述：{{shenghuo.hxwzfhcsms}}</span></div>-->
+                                        </div>
+                                    </li>
+                                    <li class="fanghucuoshi">
+                                        <div class="liLabel">毒物种类其他</div>
+                                        <div class="sffs_id"><div class="liLabel sffs_s" id="other" name="other">{{shenghuo.other}}</div></div>
+                                    </li>
+                                    <!--<li>-->
+                                        <!--<div class="liLabel">防护措施</div>-->
+                                        <!--<div>-->
+                                            <!--<div class="sffs_id" style="display: inline-block"><span id="qtfhcs" name="qtfhcs" class="sffs_s">{{shenghuo.qtfhcs}}</span></div>-->
+                                            <!--<div class="sffs_id" style="display: inline-block"><span id="qtfhcsms" name="qtfhcsms" class="sffs_s">&nbsp;&nbsp;描述：{{shenghuo.qtfhcsms}}</span></div>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                </ul>
+                            </a>
+                        </li>
+                        <li class="contLi" >
+                            <!--脏器功能-->
+                            <a name="info_zqgn">
+                                <ul class="infoUl info_zqgn">
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">口唇</div>
+                                        <div id="kcText" name="kcText" class="zqgn_s">kcText</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">咽部</div>
+                                        <div id="ybText" name="ybText" class="zqgn_s">ybText</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                       <div class="liLabel">齿列状态</div>
+                                       <div id="clText" name="clText" class="zqgn_s">ybText</div>
+
+                                       <!--<div class="cons-txt tizheng">-->
+                                            <!--<div class="zqgn_id">-->
+                                                <!--<span class="span-label">状态</span>-->
+                                                <!--<span id="clText" name="clText" class="zqgn_s">clText</span>-->
+                                            <!--</div>-->
+
+                                        <!--</div>-->
+                                    </li>
+                                   <li>
+                                      <div id="zuoshang" style="width: 100%">
+                                         <span class="span-label">左上</span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">龋齿: <i id="qucZs" name="qucZs" class="zqgn_s">{{doctorDetail.qucZs}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">缺齿: <i id="qcShang" name="qcShang" class="zqgn_s">{{doctorDetail.qcShang}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">义齿: <i id="ycZs" name="ycZs" class="zqgn_s">{{doctorDetail.ycZs}}</i></span>
+                                      </div>
+                                      <div id="zuoxia" style="width: 100%">
+                                         <span class="span-label">左下</span>
+                                         <span class="zqgn_id"  style="margin-right: 30px;">龋齿: <i id="qucZx" name="qucZx" class="zqgn_s">{{doctorDetail.qucYx}}</i></span>
+                                         <span class="zqgn_id"  style="margin-right: 30px;">缺齿: <i id="qcZuo" name="qcZuo" class="zqgn_s">{{doctorDetail.qcZuo}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">义齿: <i id="ycZx" name="ycZx" class="zqgn_s">{{doctorDetail.ycZx}}</i></span>
+                                      </div>
+                                      <div id="youshang" style="width: 100%">
+                                         <span class="span-label">右上</span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">龋齿: <i id="qucYs" name="qucYs" class="zqgn_s">{{doctorDetail.qucYs}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">缺齿: <i id="qcXia" name="qcXia" class="zqgn_s">{{doctorDetail.qcXia}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">义齿: <i id="ycYs" name="ycYs" class="zqgn_s">{{doctorDetail.ycYs}}</i></span>
+                                      </div>
+                                      <div id="youxia" style="width: 100%">
+                                         <span class="span-label">右下</span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">龋齿: <i id="qucYx" name="qucYx" class="zqgn_s">{{doctorDetail.qucZx}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">缺齿: <i id="qcYou" name="qcYou" class="zqgn_s">{{doctorDetail.qcYou}}</i></span>
+                                         <span class="zqgn_id" style="margin-right: 30px;">义齿: <i id="ycYx" name="ycYx" class="zqgn_s">{{doctorDetail.ycYx}}</i></span>
+                                      </div>
+                                   </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">左眼</div>
+                                        <div id="zysl" name="zysl" class="zqgn_s">zysl</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">左眼矫正视力</div>
+                                        <div id="zyjzsl" name="zyjzsl" class="zqgn_s">zyjzsl</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">右眼</div>
+                                        <div id="yysl" name="yysl" class="zqgn_s">yysl</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">右眼矫正视力</div>
+                                        <div id="yyjzsl" name="yyjzsl" class="zqgn_s">yyjzsl</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">听力</div>
+                                        <div id="tlText" name="tlText" class="zqgn_s">tlText</div>
+                                    </li>
+                                    <li class="zqgn_id">
+                                        <div class="liLabel">运动功能</div>
+                                        <div id="ydgnText" name="ydgnText" class="zqgn_s">ydgnText</div>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--查体-->
+                            <a name="info_ct">
+                                <ul class="infoUl info_ct">
+                                    <li>
+                                        <div class="liLabel">眼底</div>
+                                        <div>
+                                            <div class="ct_id"><div id="yandiText" name="yandiText" class="ct_s">{{familyHis.yandiText}}</div></div>
+                                            <div class="ct_id yandycms">异常：<span id="yandycms" name="yandycms" class="ct_s">{{familyHis.yandycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">皮肤</div>
+                                        <div>
+                                            <div class="ct_id"> <div id="pfText" name="pfText" class="ct_s">{{familyHis.pfText}}</div></div>
+                                            <div class="ct_id qtpfycms">其他：<span id="qtpfycms" name="qtpfycms" class="ct_s">{{familyHis.qtpfycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">巩膜</div>
+                                        <div>
+                                            <div class="ct_id"> <div id="gmText" name="gmText" class="ct_s">{{familyHis.gmText}}</div></div>
+                                            <div class="ct_id qtgmycms">其他：<span id="qtgmycms" name="qtgmycms" class="ct_s">{{familyHis.qtgmycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">淋巴结</div>
+                                        <div>
+                                            <div class="ct_id"><div id="lbjText" name="lbjText" class="ct_s">{{familyHis.lbjText}}</div></div>
+                                            <div class="ct_id qtlbjycms">其他：<span id="qtlbjycms" name="qtlbjycms" class="ct_s">{{familyHis.qtlbjycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li class="ct_id">
+                                        <div class="liLabel">桶状胸</div>
+                                        <div id="tzxText" name="tzxText" class="ct_s">tzxText</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">呼吸音</div>
+                                        <div>
+                                            <div class="ct_id"> <div id="hxyText" name="hxyText" class="ct_s">{{familyHis.hxyText}}</div></div>
+                                            <div class="ct_id hxyms">其他：<span id="hxyms" name="hxyms" class="ct_s">{{familyHis.hxyms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">罗音</div>
+                                        <div>
+                                            <div class="ct_id"><div id="lyText" name="lyText" class="ct_s">{{familyHis.lyText}}</div></div>
+                                            <div class="ct_id lyns">其他：<span id="lyns" name="lyns" class="ct_s">{{familyHis.lyns}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li class="ct_id">
+                                        <div class="liLabel">心率(次/分钟)</div>
+                                        <div id="xlz" name="xlz" class="ct_s">xl</div>
+                                    </li>
+                                    <li class="ct_id">
+                                        <div class="liLabel">心律</div>
+                                        <div id="xlvText" name="xlvText" class="ct_s">xlvText</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">杂音</div>
+                                        <div>
+                                            <div class="ct_id"><div id="zyText" name="zyText" class="ct_s">{{familyHis.zyText}}</div></div>
+                                            <div class="ct_id">杂音：<span id="zyms" name="zyms" class="ct_s">{{familyHis.zyms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">压痛</div>
+                                        <div>
+                                            <div class="ct_id"><div id="ytText" name="ytText" class="ct_s">{{familyHis.ytText}}</div></div>
+                                            <div class="ct_id">压痛：<span id="ytycms" name="ytycms" class="ct_s">{{familyHis.ytycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">包块</div>
+                                        <div>
+                                            <div class="ct_id"> <div id="bkText" name="bkText" class="ct_s">{{familyHis.bkText}}</div></div>
+                                            <div class="ct_id">包块：<span id="bkycms" name="bkycms" class="ct_s">{{familyHis.bkycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">肝大</div>
+                                        <div>
+                                            <div class="ct_id"> <div id="gdText" name="gdText" class="ct_s">{{familyHis.gdText}}</div></div>
+                                            <div class="ct_id">肝大：<span id="gdycms" name="gdycms" class="ct_s">{{familyHis.gdycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">脾大</div>
+                                        <div>
+                                            <div class="ct_id"><div id="pdText" name="pdText" class="ct_s">{{familyHis.pdText}}</div></div>
+                                            <div class="ct_id">脾大：<span id="pdms" name="pdms" class="ct_s">{{familyHis.pdms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">移动性浊音</div>
+                                        <div>
+                                            <div class="ct_id"><div id="ydxzyText" name="ydxzyText" class="ct_s">{{familyHis.ydxzyText}}</div></div>
+                                            <div class="ct_id">移动性浊音：<span id="ydxzyms" name="ydxzyms" class="ct_s">{{familyHis.ydxzyms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li class="ct_id">
+                                        <div class="liLabel">下肢水肿</div>
+                                        <div id="xzszText" name="xzszText" class="ct_s">xzszText</div>
+                                    </li>
+                                    <li class="ct_id">
+                                        <div class="liLabel">足背动脉搏动</div>
+                                        <div id="zbdmbdText" name="zbdmbdText" class="ct_s">zbdmbdText</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">肛门指诊</div>
+                                        <div>
+                                            <div class="ct_id"><div id="gmzzText" name="gmzzText" class="ct_s">{{familyHis.gmzzText}}</div></div>
+                                            <div class="ct_id gmycms">其他：<span id="gmycms" name="gmycms" class="ct_s">{{familyHis.gmycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">乳腺</div>
+                                        <div>
+                                            <div class="ct_id"><div id="rxText" name="rxText" class="ct_s">{{familyHis.rxText}}</div></div>
+                                            <div class="ct_id rxycms">其他：<span id="rxycms" name="rxycms" class="ct_s">{{familyHis.rxycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">外阴</div>
+                                        <div>
+                                            <div class="ct_id"><div id="wyText" name="wyText" class="ct_s">{{familyHis.wyText}}</div></div>
+                                            <div class="ct_id wyycms">异常：<span id="wyycms" name="wyycms" class="ct_s">{{familyHis.wyycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">阴道</div>
+                                        <div>
+                                            <div class="ct_id"><div id="ydText" name="ydText" class="ct_s">{{familyHis.ydText}}</div></div>
+                                            <div class="ct_id ydycms">异常：<span id="ydycms" name="ydycms" class="ct_s">{{familyHis.ydycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">宫颈</div>
+                                        <div>
+                                            <div class="ct_id"><div id="gjText" name="gjText" class="ct_s">{{familyHis.gjText}}</div></div>
+                                            <div class="ct_id zgjycms">异常：<span id="zgjycms" name="zgjycms" class="ct_s">{{familyHis.zgjycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">宫体</div>
+                                        <div>
+                                            <div class="ct_id"><div id="gtText" name="gtText" class="ct_s">{{familyHis.gtText}}</div></div>
+                                            <div class="ct_id gtycms">异常：<span id="gtycms" name="gtycms" class="ct_s">{{familyHis.gtycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">附件</div>
+                                        <div>
+                                            <div class="ct_id">
+                                                <div id="fjText" name="fjText" class="ct_s">{{familyHis.fjText}}</div>
+                                            </div>
+                                            <div class="ct_id fjycms">异常：<span id="fjycms" name="fjycms" class="ct_s">{{familyHis.fjycms}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li class="ct_id">
+                                        <div class="liLabel">查体其他</div>
+                                        <div id="qt" name="qt" class="ct_s">qt</div>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--辅助检查-->
+                            <a name="info_fzjc">
+                                <ul class="infoUl fuzhu info_fzjc">
+                                    <li>
+                                        <div class="liLabel">血常规</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血红蛋白(g/L)</span>
+                                                <span id="xhdb" name="xhdb" class="fzjc_s">xhdb</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">白细胞(×10<sup>9</sup>/L)</span>
+                                                <span id="xbxb" name="xbxb" class="fzjc_s">{{doctorDetail.xbxb}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血小板(×10<sup>9</sup>/L)</span>
+                                                <span id="xxb" name="xxb" class="fzjc_s">{{doctorDetail.xxb}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">其他</span>
+                                                <span id="qtxx" name="qtxx" class="fzjc_s">{{doctorDetail.qtxx}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">尿常规</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="fzjc_id">
+                                                <span class="span-label">尿蛋白</span>
+                                                <span id="kfxt" name="kfxt" class="fzjc_s">kfxt</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">尿糖</span>
+                                                <span id="ptt" name="ptt" class="fzjc_s">{{doctorDetail.ptt}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">尿酮体</span>
+                                                <span id="ntt" name="ntt" class="fzjc_s">{{doctorDetail.ntt}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">尿潜血</span>
+                                                <span id="nhxb" name="nhxb" class="fzjc_s">{{doctorDetail.nhxb}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">其他</span>
+                                                <span id="qtny" name="qtny" class="fzjc_s">{{doctorDetail.qtny}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="fzjc_id">
+                                        <div class="liLabel">空腹血糖(mmol/L)</div>
+                                        <div id="kfxtz" name="kfxtz" class="fzjc_s">kfxtz</div>
+                                    </li>
+                                    <li class="fzjc_id">
+                                        <div class="liLabel">尿微量白蛋白(mg/dL)</div>
+                                        <div id="bdb" name="bdb" class="fzjc_s">xy</div>
+                                    </li>
+                                    <li class="fzjc_id">
+                                        <div class="liLabel">大便潜血</div>
+                                        <div id="tyhxjText" name="tyhxjText" class="fzjc_s">tyhxjText</div>
+                                    </li>
+                                    <li class="fzjc_id">
+                                        <div class="liLabel">糖化血红蛋白(%)</div>
+                                        <div id="txhdb" name="txhdb" class="fzjc_s">txhdb</div>
+                                    </li>
+                                    <li class="fzjc_id">
+                                        <div class="liLabel">乙型肝炎表面抗原</div>
+                                        <div id="yxgybmkyText" name="yxgybmkyText" class="fzjc_s">yxgybmkyText</div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">肝功能</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血清谷丙转氨酶(U/L)</span>
+                                                <span id="xqgasbtszam" name="xqgasbtszam" class="fzjc_s">xqgasbtszam</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血清谷草转氨酶(U/L)</span>
+                                                <span id="ggnjc" name="ggnjc" class="fzjc_s">{{doctorDetail.ggnjc}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">白蛋白(g/L)</span>
+                                                <span id="xy" name="xy" class="fzjc_s">{{doctorDetail.bdb}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">总胆红素(μmol/L)</span>
+                                                <span id="xqzdhs" name="xqzdhs" class="fzjc_s">{{doctorDetail.xqzdhs}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">结合胆红素(μmol/L)</span>
+                                                <span id="jhdhs" name="jhdhs" class="fzjc_s">{{doctorDetail.jhdhs}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">肾功能</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血清肌酐(μmol/L)</span>
+                                                <span id="xqjg" name="xqjg" class="fzjc_s">xqjg</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血尿素(mmol/L)</span>
+                                                <span id="xnsd" name="xnsd" class="fzjc_s">{{doctorDetail.xnsd}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血钾浓度(mmol/L)</span>
+                                                <span id="qmsgms" name="qmsgms" class="fzjc_s">{{doctorDetail.qmsgms}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血钠浓度(mmol/L)</span>
+                                                <span id="hype" name="hype" class="fzjc_s">{{doctorDetail.hype}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">血脂</div>
+                                        <div class="cons-txt tizheng">
+                                            <div class="fzjc_id">
+                                                <span class="span-label">总胆固醇(mmol/L)</span>
+                                                <span id="tc" name="tc" class="fzjc_s">tc</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">甘油三酯(mmol/L)</span>
+                                                <span id="jzxqdb" name="jzxqdb" class="fzjc_s">{{doctorDetail.jzxqdb}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血清低密度脂蛋白胆固醇(mmol/L)</span>
+                                                <span id="ddgc" name="ddgc" class="fzjc_s">{{doctorDetail.ddgc}}</span>
+                                            </div>
+                                            <div class="fzjc_id">
+                                                <span class="span-label">血清高密度脂蛋白胆固醇(mmol/L)</span>
+                                                <span id="gdgc" name="gdgc" class="fzjc_s">{{doctorDetail.gdgc}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">心电图</div>
+                                        <div>
+                                            <div class="fzjc_id"><div id="xdt" name="xdt" class="fzjc_s">{{familyHis.xdtText}}</div></div>
+                                            <div class="fzjc_id xdtms"><div>异常：<span id="xdtms" name="xdtms" class="fzjc_s">{{familyHis.xdtms}}</span></div></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">胸部X线片</div>
+                                        <div>
+                                            <div class="fzjc_id"><div id="xbxg" name="xbxg" class="fzjc_s">{{familyHis.xbxgText}}</div></div>
+                                            <div class="fzjc_id xbxgms"><div>异常：<span id="xbxgms" name="xbxgms" class="fzjc_s">{{familyHis.xbxgms}}</span></div></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">腹部B超</div>
+                                        <div>
+                                            <div class="fzjc_id"><div id="bchaoText" name="bchaoText" class="fzjc_s">{{familyHis.bchaoText}}</div></div>
+                                            <div class="fzjc_id fbbcms"><div>异常：<span id="fbbcms" name="fbbcms" class="fzjc_s">{{familyHis.bchaoms}}</span></div></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">B超其他</div>
+                                        <div>
+                                            <div class="fzjc_id"><div id="qtbc" name="qtbc" class="fzjc_s">{{familyHis.qtbcText}}</div></div>
+                                            <div class="fzjc_id qtbcms"><div>异常：<span id="qtbcms" name="qtbcms" class="fzjc_s">{{familyHis.qtbcms}}</span></div></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">宫颈涂片</div>
+                                        <div>
+                                            <div class="fzjc_id"><div id="zgjText" name="zgjText" class="fzjc_s" class="fzjc_s">{{familyHis.zgjText}}</div></div>
+                                            <div class="fzjc_id zgjycmsz"><div>异常：<span id="zgjycmsz" name="zgjycmsz" class="fzjc_s">{{familyHis.zgjycms}}</span></div></div>
+                                        </div>
+                                    </li>
+                                    <li class="fzjc_id">
+                                        <div class="liLabel">其他</div>
+                                        <div id="qt1" name="qt" class="fzjc_s">qt</div>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--主要问题-->
+                            <a name="info_zywt">
+                                <ul class="infoUl info_zywt">
+                                    <li>
+                                        <div class="liLabel">脑血管疾病</div>
+                                        <div>
+                                            <div id="nxgjbText" name="nxgjbText" class="zywt_s">{{familyHis.nxgjbText}}</div>
+                                            <div class="qtnxgjb">其他：<span id="qtnxgjb" name="qtnxgjb" class="zywt_s">{{familyHis.qtnxgjb}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">肾脏疾病</div>
+                                        <div>
+                                            <div id="szjbText" name="szjbText" class="zywt_s">{{familyHis.szjbText}}</div>
+                                            <div class="qtszjb">其他：<span id="qtszjb" name="qtszjb" class="zywt_s">{{familyHis.qtszjb}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">心脏疾病</div>
+                                        <div>
+                                            <div id="xzjbText" name="xzjbText" class="zywt_s">{{familyHis.xzjbText}}</div>
+                                            <div class="qtxzjb">其他：<span id="qtxzjb" name="qtxzjb" class="zywt_s">{{familyHis.qtxzjb}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">血管疾病</div>
+                                        <div>
+                                            <div id="xgjbText" name="xgjbText" class="zywt_s">{{familyHis.xgjbText}}</div>
+                                            <div class="qtxgjb">其他：<span id="qtxgjb" name="qtxgjb" class="zywt_s">{{familyHis.qtxgjb}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">眼部疾病</div>
+                                        <div>
+                                            <div id="ybjbText" name="ybjbText" class="zywt_s">{{familyHis.ybjbText}}</div>
+                                            <div class="qtybjb">其他：<span id="qtybjb" name="qtybjb" class="zywt_s">{{familyHis.qtybjb}}</span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">神经系统疾病</div>
+                                        <div>
+                                            <div id="sjxtjbText" name="sjxtjbText" class="zywt_s">{{familyHis.sjxtjbText}}</div>
+                                            <div class=qtsjxtjb>其他：<span id="qtsjxtjb" name="qtsjxtjb" class="zywt_s"></span></div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="liLabel">其他系统疾病</div>
+                                        <div>
+                                            <div id="qtxtjbText" name="qtxtjbText" class="zywt_s">{{familyHis.qtxtjbText}}</div>
+                                            <!--<div>其他：<span class="zywt_s" id="qtxtjbText" name="qtxtjbText">{{familyHis.qt}}</span></div>-->
+                                        </div>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                        <li class="contLi zhuyuan">
+                            <!--住院治疗情况-->
+                            <a name="info_zyzl">
+                                <ul class="zhuyuanTab info_zyzl">
+                                    <li class="liact">住院史</li>
+                                    <!--<li>家庭病床史</li>-->
+                                </ul>
+                                <table id="zysTable"></table>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--用药情况-->
+                            <a name="info_yyqk" id="info_yyqk">
+                                <ul class="zhuyuanTab info_zyzl">
+                                    <li class="liact">用药情况</li>
+                                </ul>
+                                <table id="yyqkTable"></table>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--预防接种史-->
+                            <a name="info_yfjz" id="info_yfjz">
+                                <ul class="zhuyuanTab info_zyzl">
+                                    <li class="liact">预防接种史</li>
+                                </ul>
+                                <table id="yfjzsTable"></table>
+                            </a>
+                        </li>
+                        <li class="contLi">
+                            <!--健康评价-->
+                            <a name="info_jkpj" id="info_jkpj">
+                                <ul class="infoUl">
+                                    <li>
+                                        <div class="liLabel">健康评价</div>
+                                        <div id="sfzcText" name="sfzcText"></div>
+                                    </li>
+                                    <li class="pingjiatable">
+                                        <!--<table id="jkpjTable"></table>-->
+                                       <table class="my-table hov-table" id="jiankangpingjia">
+                                          <thead>
+                                          <tr>
+                                             <th  style="width:200px;">异常</th>
+                                             <th>内容</th>
+                                          </tr>
+                                          </thead>
+                                          <tbody></tbody>
+                                       </table>
+                                    </li>
+                                </ul>
+                            </a>
+                        </li>
+                        <!--<li class="contLi">-->
+                            <!--&lt;!&ndash;健康指导&ndash;&gt;-->
+                            <!--<a name="info_jkzd" id="info_jkzd">-->
+                                <!--<ul class="infoUl">-->
+                                    <!--<li>-->
+                                        <!--<div class="liLabel">健康指导</div>-->
+                                        <!--<div id="jkzdText" name="jkzdText">{{jiankang.jkzdText}}</div>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<div class="liLabel">危险因素控制</div>-->
+                                        <!--<div class="cons-txt tizheng">-->
+                                            <!--<div>-->
+                                                <!--<span class="span-label">危险因素</span>-->
+                                                <!--<span id="wxkzText" name="wxkzText">wxkzText</span>-->
+                                            <!--</div>-->
+                                            <!--<div>-->
+                                                <!--<span class="span-label">目标体重:</span>-->
+                                                <!--<span id="gb" name="gb">{{doctorDetail.gb}}</span>-->
+                                            <!--</div>-->
+                                            <!--<div>-->
+                                                <!--<span class="span-label">建议接种疫苗:</span>-->
+                                                <!--<span id="zdjy" name="zdjy">{{doctorDetail.zdjy}}</span>-->
+                                            <!--</div>-->
+                                            <!--<div>-->
+                                                <!--<span class="span-label">其他:</span>-->
+                                                <!--<span id="qt3" name="qt">{{doctorDetail.qt}}</span>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class=" bg_white bmfw_main pad20">
+                <div class="bm_title">体检记录</div>
+                <ul class="health_list">
+                    <!--<li class="myFlex tit_mar">-->
+                        <!--<span class="bg_lightgreen font_d health_num">03</span>-->
+                        <!--<div class="data_plan">-->
+                            <!--<div class="green font_e serialNum">102032019034</div>-->
+                            <!--<div class="font_s l_gray">体检日期：2019-10-10</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="myFlex tit_mar">-->
+                        <!--<span class="bg_lightgreen font_d health_num">02</span>-->
+                        <!--<div class="data_plan">-->
+                            <!--<div class="a_gray font_e serialNum">102032019034</div>-->
+                            <!--<div class="font_s l_gray ">体检日期：2019-10-10</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script src="../js/page/healthForm.js"></script>
+</html>

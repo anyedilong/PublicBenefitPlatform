@@ -1,0 +1,150 @@
+<!--双向转诊-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .qy_title{
+            font-size: 24px;
+            text-align: center;
+        }
+        .qy_sub{
+            font-size: 18px;
+            padding-left: 10px;
+            border-left: 4px solid #01B887;
+            margin: 40px 0 20px 0;
+        }
+        .qy_ms{
+            line-height: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-box showLoading">
+        <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> > <a
+                href="contractProtocal.html">家庭医生签约协议</a> > 家庭医生签约协议详情</div>
+        <div class="bg_white pad30">
+            <div class="qy_title">家庭医生签约协议</div>
+            <div class="qy_sub">签约人信息</div>
+            <ul class="infoUl">
+                <li>
+                    <div class="liLabel">签约人</div>
+                    <div id="signCustomer" name="hzmc"></div>
+                </li>
+                <li>
+                    <div class="liLabel">手机号</div>
+                    <div id="familyPhone" name="hzmc"></div>
+                </li>
+                <li>
+                    <div class="liLabel">签约期限</div>
+                    <div id="qyqx" name="hzmc"></div>
+                </li>
+            </ul>
+            <div class="qy_sub">签约团队</div>
+            <ul class="infoUl">
+                <li>
+                    <div class="liLabel">团队名称</div>
+                    <div id="teamName" name="hzmc"></div>
+                </li>
+                <li>
+                    <div class="liLabel">团队长</div>
+                    <div id="tdz" name="hzmc"></div>
+                </li>
+                <li>
+                    <div class="liLabel">团队电话</div>
+                    <div id="teamTelephone" name="hzmc"></div>
+                </li>
+                <li>
+                    <div class="liLabel">团队成员</div>
+                    <div id="tdcy" name="xb">
+    <!--                            <div id="hzmc" name="hzmc">李大虾 <span class="layui-badge layui-bg-green bg_green">医生</span></div>-->
+    <!--                            <div id="hzmc" name="hzmc">李大虾 <span class="layui-badge layui-bg-green bg_green">护士</span></div>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="liLabel">所属机构</div>
+                    <div id="orgName" name="lxr"></div>
+                </li>
+                <li>
+                    <div class="liLabel">机构地址</div>
+                    <div id="orgAddress" name="csrq"></div>
+                </li>
+            </ul>
+            <div class="qy_sub">签约服务包</div>
+            <ul class="infoUl" id="qyfwb">
+    <!--                    <li>-->
+    <!--                        <div class="liLabel">服务包名称</div>-->
+    <!--                        <div id="hzmc" name="hzmc" class="qy_fwb">-->
+    <!--                            <div class="">服务项目名称</div>-->
+    <!--                            <div class="qy_ms">服务项目描述服务项目描述服务项目描述服务项目描述服务项目描述服务项目描述服务项目描述-->
+    <!--                                服务项目描述服务项目描述务项目描服务项-->
+    <!--                            </div>-->
+    <!--                            <div>服务项目名称</div>-->
+    <!--                            <div class="qy_ms">服务项目描述服务项目描述服务项目描述服务项目描述服务项目描述服务项目描述服务项目描述-->
+    <!--                                服务项目描述服务项目描述务项目描述服务-->
+    <!--                            </div>-->
+    <!--                        </div>-->
+    <!--                    </li>-->
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        layui.use(['layer'], function(){
+            var layer = layui.layer;
+           // var loads = layer.load();
+            var id=GetQueryString('id');
+            var jsonParam={
+                // sfzh: localStorage.getItem("sfzh"),
+                jmId: localStorage.getItem('jmid'),
+                signType:'1'
+            };
+            getSignXq();
+            function getSignXq(){
+                getAjax('/health/sign/getSignInfo', jsonParam, function (resultMsg) {
+                    $('#signCustomer').html(resultMsg.data.signUserName + '，' + resultMsg.data.nl + '岁，' + localStorage.getItem('sfzh'));
+                    $('#familyPhone').html(resultMsg.data.phone);
+                    $('#qyqx').html(resultMsg.data.signTime + '至' + resultMsg.data.renewEndTime);
+                    $('#teamTelephone').html(resultMsg.data.teamTelephone?resultMsg.data.teamTelephone:'暂无数据');
+                    $('#teamName').html(resultMsg.data.sysTeam.teamName?resultMsg.data.sysTeam.teamName:'暂无数据');
+                    $('#tdz').html(resultMsg.data.sysTeam.teamLeaderId?resultMsg.data.sysTeam.teamLeaderId:'暂无数据');
+                    $('#orgName').html(resultMsg.data.orgName?resultMsg.data.orgName:'暂无数据');
+                    $('#orgAddress').html(resultMsg.data.adderss?resultMsg.data.adderss:'暂无数据');
+                    var html = '';
+                    var html2 = '';
+                    if(resultMsg.data.sysTeam.teamUserList.length == 0){
+                        html='暂无数据'
+                    }else{
+                        $.each(resultMsg.data.sysTeam.teamUserList, function (i, item) {
+                            html += ' <div>' + item.userId + ' <span class="layui-badge layui-bg-green bg_green">' + item.teamRoleName + '</span></div>';
+                        });
+                    }
+                    $('#tdcy').html(html);
+                    $.each(resultMsg.data.servicePackageList, function (i, item) {
+                        html2 = '<li>';
+                        html2 += '<div class="liLabel">'+item.packageName+'</div>\n';
+                        html2 += '<div id="hzmc" name="hzmc" class="qy_fwb">\n' ;
+                        $.each(item.serviceProjctList, function (i, item2) {
+                            html2 += '<div class="">'+item2.projectName+'</div>'+
+                                ' <div class="qy_ms">'+item2.projectDesc+'</div>'
+                        });
+                        html2 +='</div>';
+                        html2 +='</li>';
+
+                    });
+                    $('#qyfwb').html(html2)
+                })
+               // layer.close(loads);
+               $('.showLoading').css('opacity','1');
+            }
+        })
+    })
+</script>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head3.js"></script>
+    <script src="../js/cryptojs.js"></script>
+    <style>
+        .head-tit{
+            box-shadow:0px 8px 10px 0px rgba(0, 0, 0, 0.08);
+            margin-bottom: 8px;
+        }
+        .layui-tab{
+            margin-bottom: 0;
+        }
+        .layui-tab-title{
+            border-bottom: none;
+        }
+        .newsList img{
+            width: 100%;
+            height: 100px;
+        }
+        .newsList .title{
+            font-size: 20px;
+        }
+        .newsList .layui-row{
+            padding: 20px 0;
+            border-bottom: 1px solid #EBEDED;
+        }
+        .newsList .layui-row .sub{
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+<body>
+    <div class='layui-row bg_white'>
+        <div class='body-container yqlj'>
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title" id="searchTab">
+                    <li class="layui-this">全部</li>
+                    <li>便民服务</li>
+                    <li>政策法规</li>
+                    <li>健康资讯</li>
+                    <li>办事指南</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="body-box showLoading">
+        <div class="title_href ">当前位置：<a href="index.html">首页</a> >搜索</div>
+        <div class="layui-tab-content pad30 bg_white newsList" id="searchContent">
+            <div class="layui-row layui-col-space30">
+                <div class="layui-col-md2">
+                    <img src="../img/img_idcard.png" alt="">
+                </div>
+                <div class="layui-col-md10">
+                    <div class="title marginb_10"><a href="" class="a_gray">中共中央、国务院向社会公布的关于深化医药卫生体制改革的意见</a></div>
+                    <div class="gray marginb_10 sub">
+                        按照党的十七大精神，为建立中国特色医药卫生体制，逐步实现人人享有基本医疗卫生服务的目标，提高全民健 康水平，就深化医药卫生体制改革提
+                        出提高全民健 康水平，就深化医药卫生体制改革提出按照党的十七大精神，为建立中国特色医药卫生体制，逐步实现人人享有基本医疗卫生服务的目标，提高全民健 康水平，就深化医药卫生体制改革提
+                        出提高全民健 康水平，就深化医药卫生体制改革提出...
+                    </div>
+                    <div class="gray">2019-12-21</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/page/foot.js"></script>
+    <script>
+        $(function () {
+            layui.use(['element','layer','form'], function() {
+                var form = layui.form;
+                var searchType = GetQueryString('searchType');
+                var searchInputVal = localStorage.getItem('searchInputVal');
+                $('#searchInp').val(searchInputVal);
+                $('#searchSel').val(searchType);
+                $('#searchTab li').eq(searchType).addClass('layui-this').siblings().removeClass('layui-this');
+                form.render();
+                var jsonParam1={
+                    searchClass:searchType,
+                    searchContent:searchInputVal
+                };
+                getSearch(jsonParam1);
+                $('#searchTab').on('click','li',function () {
+                    var i = $(this).index();
+                    var jsonParam2={
+                        searchClass:i,
+                        searchContent:searchInputVal
+                    };
+                    getSearch(jsonParam2);
+                });
+                function getSearch(jsonParam){
+                    getAjax('/other/search',jsonParam,function (resultMsg) {
+                        $(".showLoading").css("opacity", '1')
+                        var html = '';
+                        if(resultMsg.data.applicationList){
+                            $.each(resultMsg.data.applicationList, function (i, item) {
+                                html += '<div class="layui-row layui-col-space30">\n' +
+                                    '                        <div class="layui-col-md2">\n' +
+                                    '                            <img src="../img/img_ss.png" alt="暂无图片">\n' +
+                                    '                        </div>\n' +
+                                    '                        <div class="layui-col-md10">\n' +
+                                    '                            <div class="title marginb_10"><span class="cursorP a_gray ssyy">'+item.applicationName+'</span></div>\n' +
+                                    '                            <div class="gray">'+item.createTime+'</div>\n' +
+                                    '                        </div>\n' +
+                                    '                    </div>'
+                            });
+                        }
+                        if(resultMsg.data.policyList){
+                            $.each(resultMsg.data.policyList, function (i, item) {
+                                item.policyContent=$(item.policyContent).text().trim();
+                                html += '<div class="layui-row layui-col-space30">\n' +
+                                    '                        <div class="layui-col-md2">\n' +
+                                    '                            <img src="'+item.policyUrl+'" alt="暂无图片">\n' +
+                                    '                        </div>\n' +
+                                    '                        <div class="layui-col-md10">\n' +
+                                    '                            <div class="title marginb_10"><a href="policyInfo.html?id='+item.id+'" class="a_gray">'+item.policyTitle+'</a></div>\n' +
+                                    '                            <div class="gray marginb_10 sub">'+item.policyContent+'</div>\n' +
+                                    '                            <div class="gray">'+item.pubTime+'</div>\n' +
+                                    '                        </div>\n' +
+                                    '                    </div>'
+                            });
+                        }
+                        if(resultMsg.data.newsHealthList){
+                            $.each(resultMsg.data.newsHealthList, function (i, item) {
+                                item.newsContent=$(item.newsContent).text().trim();
+                                html += '<div class="layui-row layui-col-space30">\n' +
+                                    '                        <div class="layui-col-md2">\n' +
+                                    '                            <img src="'+item.newsUrl+'" alt="暂无图片">\n' +
+                                    '                        </div>\n' +
+                                    '                        <div class="layui-col-md10">\n' +
+                                    '                            <div class="title marginb_10"><a href="healthNewsDetails.html?id='+item.id+'" class="a_gray">'+item.newsTitle+'</a></div>\n' +
+                                    '                            <div class="gray marginb_10 sub">'+item.newsContent+'</div>\n' +
+                                    '                            <div class="gray">'+item.pubTime+'</div>\n' +
+                                    '                        </div>\n' +
+                                    '                    </div>'
+                            });
+                        }
+                       if(resultMsg.data.guideList){
+                           $.each(resultMsg.data.guideList, function (i, item) {
+                               item.content=$(item.content).text().trim();
+                               html += '<div class="layui-row layui-col-space30">\n' +
+                                   '                        <div class="layui-col-md2">\n' +
+                                   '                            <img src="'+item.guideUrl+'" alt="暂无图片">\n' +
+                                   '                        </div>\n' +
+                                   '                        <div class="layui-col-md10">\n' +
+                                   '                            <div class="title marginb_10"><a href="guideDetails.html?id='+item.id+'" class="a_gray">'+item.title+'</a></div>\n' +
+                                   '                            <div class="gray marginb_10 sub">'+item.content+'</div>\n' +
+                                   '                            <div class="gray">'+item.createTime+'</div>\n' +
+                                   '                        </div>\n' +
+                                   '                    </div>'
+                           });
+                       }
+                       if(html == ''){
+                           $('#searchContent').html('暂无数据')
+                       }else{
+                           $('#searchContent').html(html)
+                       }
+                    });
+                }
+                $('#searchContent').on('click','.ssyy',function () {
+                    var _this = $(this);
+                    var jsonParam = {
+                        sfzh: localStorage.getItem("sfzh"),
+                        pageNo: 1,
+                        pageSize: '10',
+                    };
+                    if (_this.html() == '健康体检表') {
+                        verifyLogin(function () {
+                            jsonParam.jmId=localStorage.getItem("jmid");
+                            getAjax('/jktj/jktjList', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.count == 0){
+                                    layer.msg('您暂时没有健康体检数据！')
+                                }else{
+                                    window.location.href = 'healthForm.html';
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '居民基本信息') {
+                        verifyLogin(function () {
+                            getAjax('/health/archive/getArchiveDetailBySfzh', jsonParam, function (resultMsg) {
+                                if(resultMsg.data){
+                                    window.location.href = 'residentBasicInfo.html';
+                                }else{
+                                    layer.msg('您暂时没有档案数据！')
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '中医药健康管理') {
+                        verifyLogin(function () {
+                            jsonParam.jmid = localStorage.getItem("jmid")
+                            getAjax('/health/follow/getLnrZyyList', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list){
+                                    if(resultMsg.data.list.length == 0){
+                                        layer.msg('您暂时没有中医药健康管理数据！')
+                                    }else{
+                                        window.location.href = 'TCMHealthManage.html';
+                                    }
+                                }else{
+                                    layer.msg('您暂时没有中医药健康管理数据！')
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '自理能力评估') {
+                        verifyLogin(function () {
+                            jsonParam.jmid = localStorage.getItem("jmid")
+                            getAjax('/health/follow/getJkpgList', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list !== null){
+                                    if(resultMsg.data.list.length == 0){
+                                        layer.msg('您暂时没有自理能力评估数据！')
+                                    }else{
+                                        window.location.href = 'oldPeopleSelf.html';
+                                    }
+                                }else{
+                                    layer.msg('您暂时没有自理能力评估数据！')
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '我的签约') {
+                        var param={
+                            jmId: localStorage.getItem("jmid"),
+                            // signType:'1'
+                        };
+                        verifyLogin(function () {
+                            getAjax('/health/sign/getSignInfo',param,function (resultMsg) {
+                                if(resultMsg.data){
+                                    window.location.href = 'contractProtocal.html';
+                                }else{
+                                    layer.msg('您暂时没有签约数据！')
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '我的履约') {
+                        verifyLogin(function () {
+                            var param={
+                                jmId: localStorage.getItem("jmid"),
+                            };
+                            getAjax('/record/getCustomerRecordList', param, function (resultMsg) {
+                                if(resultMsg.data.length == 0){
+                                    layer.msg('您暂时没有履约数据！')
+                                }else{
+                                    window.location.href = 'contractSigning.html';
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '预约挂号') {
+                        goAppointmentDoctor();
+                    }
+                    if (_this.html() == '随访服务') {
+                        verifyLogin(function () {
+                            getAjax('/health/archive/queryRqlxBySfzh', jsonParam, function (resultMsg) {
+                                if(resultMsg.data){
+                                    window.location.href = 'followUpService.html';
+                                }else{
+                                    layer.msg('您暂时没有随访信息数据！')
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '门诊信息') {
+                        verifyLogin(function () {
+                            getAjax('/region/outpatient/getOutpatientPage', jsonParam, function (resultMsg) {
+                                if (resultMsg.data.list.length == 0) {
+                                    layer.msg('您暂时没有门诊信息数据！')
+                                } else {
+                                    window.location.href = 'outpatientInformation.html';
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '住院信息') {
+                        verifyLogin(function () {
+                            getAjax('/region/hospital/getHospitalPage', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list.length == 0){
+                                    layer.msg('您暂时没有住院信息数据！')
+                                }else{
+                                    window.location.href = 'inHospitalInfo.html';
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '检查报告') {
+                        verifyLogin(function () {
+                            getAjax('/region/outpatient/getJcList', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list.length == 0){
+                                    layer.msg('您暂时没有检查报告数据！')
+                                }else{
+                                    window.location.href = 'checkReport.html';
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '检验报告') {
+                        verifyLogin(function () {
+                            getAjax('/region/outpatient/getJyList', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list.length == 0){
+                                    layer.msg('您暂时没有检验报告数据！')
+                                }else{
+                                    window.location.href = 'inspectionReport.html';
+                                }
+                            })
+                        })
+                    }
+                    if (_this.html() == '双向转诊') {
+                        verifyLogin(function () {
+                            getAjax('/treat/turn/getTurnPage', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list.length == 0){
+                                    layer.msg('您暂时没有双向转诊数据！')
+                                }else{
+                                    window.location.href = 'doubleReferral.html';
+                                }
+                            })
+                        })
+                    }
+
+                    if (_this.html() == '已接种信息') {
+                        verifyLogin(function () {
+                            getAjax('/jzs/getJzsList', jsonParam, function (resultMsg) {
+                                if(resultMsg.data.list.length == 0){
+                                    layer.msg('您暂时没有已接种信息数据！')
+                                }else{
+                                    window.location.href = 'vaccination.html';
+                                }
+                            })
+                        })
+                    }
+                });
+                function encrypt (word){
+                    var key = CryptoJS.enc.Utf8.parse("BhZ+FDMne1+xfU7kIihiLHd-EtXwYiKE");
+                    var srcs = CryptoJS.enc.Utf8.parse(word);
+                    var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+                    return encrypted.toString();
+                }
+            })
+        })
+    </script>
+</body>
+</html>

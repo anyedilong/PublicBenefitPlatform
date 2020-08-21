@@ -1,0 +1,212 @@
+<!--检查报告-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .jc_img img{
+            width:219px;
+            height:148px;
+            margin: 20px 20px 20px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="layui-col-md8 bmfw_main">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> >检查报告</div>
+            <div class="bg_white mar_r pad30">
+                <div class="top_box">
+                    <div class="top_title" id="jcTitle">彩超检查报告单</div>
+                    <div class="l_gray">检查日期：<span class="mar_r" id="jcrq"></span>医院：<span class="mar_r" id="jcHospital"></span></div>
+                </div>
+                <ul class="infoUl">
+                    <li style="border-bottom: 1px solid #EBEDED !important;">
+                        <div class="liLabel">患者信息</div>
+                        <div id="hzxx" name="hzmc"><span id="hzxm"></span><span id="hzxb"></span><span id="hznl"></span></div>
+                    </li>
+                </ul>
+                <ul class="infoUl jcUl"></ul>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class=" bg_white bmfw_main pad20">
+                <div class="bm_title">检查记录</div>
+                <ul class="health_list"></ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        layui.use(['laydate', 'table', 'laypage', 'layer'], function() {
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+           layer.load();
+            var jcId='';
+            var jcCode = '';
+            var jcImg = '';
+            // 体检记录分页
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+            // 检查记录
+            var jsonParam = {
+                sfzh: localStorage.getItem("sfzh"),
+                pageNo: 1,
+                pageSize:'10'
+            };
+            getCheckList();
+            function getCheckList() {
+                getAjax('/region/outpatient/getJcList', jsonParam, function (resultMsg) {
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html ='';
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'" codes="'+item.type+'" imgs="'+item.imageType+'" qzrq="'+item.qzrq+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum fontNum">'+item.imageType+'('+item.hospital+')</div>' +
+                                '<div class="font_s l_gray fontNum">检查日期：'+item.qzrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                        jcId = resultMsg.data.list[0].id;
+                        jcCode =resultMsg.data.list[0].type;
+                        jcImg = resultMsg.data.list[0].imageType;
+                        getJcDetail(jcId,jcCode,jcImg)
+                    }
+                    $(".health_list").html(html);
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            }
+            //分页跳转
+            hosPage.jump = function (obj) {
+               layer.load();
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/region/outpatient/getJcList', jsonParam, function (resultMsg) {
+                    var html ='';
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'" codes="'+item.type+'" imgs="'+item.imageType+'" qzrq="'+item.qzrq+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum fontNum">'+item.imageType+'('+item.hospital+')</div>' +
+                                '<div class="font_s l_gray fontNum">检查日期：'+item.qzrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                        jcId = resultMsg.data.list[0].id;
+                        jcCode =resultMsg.data.list[0].type;
+                        jcImg = resultMsg.data.list[0].imageType;
+                        getJcDetail(jcId,jcCode,jcImg)
+                    }
+                    $(".health_list").html(html);
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            };
+            //获取检查报告详情
+            function getJcDetail(id,code,imageType){
+               layer.load();
+                var jsonParam2 = {
+                    id:id,
+                    code:code,
+                    imageType:imageType
+                };
+                getAjax('/region/outpatient/getJcXq',jsonParam2,function (resultMsg) {
+                    $('#jcTitle').html(resultMsg.data.jcList[0].imageType);
+                    $('#jcrq').html(resultMsg.data.jcList[0].qzrq);
+                    $('#jcHospital').html(resultMsg.data.orgName);
+                    $('#hzxm').html(resultMsg.data.name);
+                    if(resultMsg.data.sex){
+                        $('#hzxb').html(',' + resultMsg.data.sex);
+                    }
+                    if(resultMsg.data.age){
+                        $('#hznl').html(',' + resultMsg.data.age);
+                    }
+                    var str='';
+                    $('.jcUl').empty();
+                    $.each(resultMsg.data.jcList,function (i,item) {
+                        if(!item.imageJpgUrl){
+                            if(item.type == '1'){//门诊图片转化
+                                let params = {
+                                    imageId:item.imageId,
+                                    imagePath:item.imageUrl,
+                                };
+                                getAjax('/region/outpatient/getCoverImageFormat',params,function (resultMsg) {
+                                    item.imageJpgUrl=resultMsg.data;
+                                })
+                            }else if(item.type == '2'){//住院图片转化
+                                let params = {
+                                    imageId:item.imageId,
+                                    imagePath:item.imageUrl,
+                                };
+                                getAjax('/region/hospital/getCoverImageFormat',params,function (resultMsg) {
+                                    item.imageJpgUrl=resultMsg.data;
+                                })
+                            }
+                        }
+                        str+='<li>' +
+                            '    <div class="liLabel">检查图片</div>' +
+                            '    <div id="xb" name="xb" class="jc_img">' +
+                            '       <img src="'+item.imageJpgUrl+'" alt="暂无图片" id="jcImg">' +
+                            '     </div>' +
+                            '</li>' +
+                            '<li>' +
+                            '     <div class="liLabel">描述</div>' +
+                            '     <div id="ms" name="lxr">'+item.imageRemake+'</div>' +
+                            '</li>' +
+                            '<li>' +
+                            '     <div class="liLabel">结果</div>' +
+                            '     <div id="jl" name="lxdh">'+item.imageJl+'</div>' +
+                            '</li>'
+
+                    });
+                    $('.jcUl').append(str);
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            }
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+                jcId = $(this).attr('ids');
+                jcCode = $(this).attr('codes');
+                jcImg = $(this).attr('imgs');
+                getJcDetail(jcId,jcCode,jcImg)
+            });
+        });
+    })
+</script>
+</html>

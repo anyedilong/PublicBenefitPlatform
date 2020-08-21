@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='../js/jquery-1.8.0.js'></script>
+    <link rel='stylesheet' href='../js/layui/css/layui.css'>
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src='../js/html5shiv.min.js'></script>
+    <script src='../js/respond.min.js'></script>
+    <script src='../js/PIE/PIE.js'></script>
+    <![endif]-->
+    <link rel='stylesheet' href='../css/base.css'>
+    <link rel='stylesheet' href='../css/reset.css'>
+    <link rel='stylesheet' href='../css/page/head.css'>
+    <link rel='stylesheet' href='../css/page/register.css'>
+    <script src='../js/layui/layui.js'></script>
+    <!--<script src='../js/page/public_head.js'></script>-->
+    <link rel='stylesheet' href='../icon/iconfont.css'>
+    <script src='../icon/iconfont.js'></script>
+    <script src="../js/cryptojs.js"></script>
+    <script src='../js/login.js'></script>
+    <style>
+        .winning{
+            background: rgba(165, 235, 246, 0.16) !important;
+            height: 60px; line-height: 60px;
+            border: none; color: #4B4C4C !important;
+        }
+        .toReg{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="loginTab font_e gray">
+            <li class="fl active_login">密码登录</li>
+            <li class="fl">验证码登录</li>
+            <li class="clear"></li>
+        </ul>
+        <div class="tabCotent">
+            <div class="pad_50">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input type="tel" name="phone" id="userPhone" lay-verify="required|phone" autocomplete="off" onkeyup="this.value=this.value.replace(/[, ]/g,'')" class="layui-input" lay-reqtext="请输入手机号" placeholder="请输入您的手机号">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <!--<label class="layui-form-label">验证必填项</label>-->
+                        <div class="layui-input-block">
+                            <input type="password" name="password_p" id="userPass" lay-verify="required" autocomplete="off" onkeyup="this.value=this.value.replace(/[, ]/g,'')" class="layui-input" lay-reqtext="请输入密码" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="canvasIe">
+                        <div class="layui-input-block">
+                            <input type="text" name="yanz" id="code_input" required lay-verify="required" onkeyup="this.value=this.value.replace(/[, ]/g,'')" placeholder="验证码" lay-reqtext="请输入验证码！" autocomplete="off" class="layui-input yan_input">
+                            <div class="yan_box" id="v_container"></div>
+                        </div>
+                        <!--<div class="layui-form-mid layui-word-aux">辅助文字</div>-->
+                    </div>
+                    <div class="layui-form-item" style="margin-top: 58px">
+                        <div class="layui-input-block login_box">
+                            <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="pw_login">登录</button>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" pane="">
+                        <!--<label class="layui-form-label">原始复选框</label>-->
+                        <div class="layui-inline">
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="remember" lay-skin="primary" class="remMe" title="记住我">
+                            </div>
+                        </div>
+                        <div class="fr gray toReg" style="margin-top: 10px">没有账号?   <span class="green">立即注册</span></div>
+                    </div>
+                </form>
+            </div>
+            <div class="pad_50" style="display: none">
+                <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <!--<label class="layui-form-label">验证手机</label>-->
+                            <input type="tel" name="phone" lay-verify="required|phone" lay-reqtext="请输入手机号" autocomplete="off" onkeyup="this.value=this.value.replace(/[, ]/g,'')" class="layui-input" placeholder="请输入您的手机号">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <!--<label class="layui-form-label">验证必填项</label>-->
+                        <div class="layui-inline yz_input fl">
+                            <div class="layui-input-inline">
+                                <input type="text" name="yzm" lay-reqtext="请输入验证码！" onkeyup="this.value=this.value.replace(/[, ]/g,'')" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-inline get_btn fl">
+                            <div class="layui-input-inline">
+                                 <!--<input type="button" class="layui-btn get_yz" id="btn" value="免费获取验证码" onclick="settime(this)" />-->
+                                <button type="submit" class="layui-btn get_yz" lay-submit="" lay-filter="get_yzm">发送验证码</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block login_box login_yz">
+                            <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="yam_login">登录</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="gray text_fr toReg">
+                    没有账号?   <span class="green">立即注册</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/page/login_rand.js" ></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script type="text/javascript">
+   $(function () {
+        $(".loginTab").on("click",".fl",function () {
+            $(this).addClass("active_login").siblings().removeClass("active_login")
+            $(".tabCotent .pad_50").eq($(this).index()).show().siblings().hide();
+        })
+        layui.use(['form','layer'], function(){
+            var form = layui.form
+                ,layer = layui.layer
+            var yzm = ''
+            var verifyCode = new GVerify({
+                id: "v_container",
+                type: 'number',
+                width: '100',
+                height: '36'
+            });
+            var getClick = false
+            var jsonParam = {
+                phone: '',
+                password: '',
+               clientIp: returnCitySN["cip"]
+            }
+            $(".toReg").click(function () {
+                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                parent.layer.close(index); //再执行关闭
+                // parent.location.reload();
+                parent.location.href = "register.html"
+            })
+
+           var checkPassword = localStorage.getItem("checkPassword")
+            if(checkPassword == "true"){
+                var phone = localStorage.getItem("phone")
+                var oldPass = localStorage.getItem("oldPass")
+                $('#userPhone').val(phone)
+                $('#userPass').val(oldPass)
+                $('input[name=remember]').attr("checked", "checked");
+                layui.form.render();
+            }else{
+                $('#userPhone').val("")
+                $('#userPass').val("")
+                layui.form.render();
+            }
+            //密码登录
+            form.on('submit(pw_login)', function(data){
+                checkPassword = $('[name="remember"]').is(':checked')
+                var reg =/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/
+                if(!reg.test(data.field.password_p)){
+                    layer.msg('您输入的密码不正确，请重新输入！', {icon: 5, anim: 6});
+                }else {
+                    jsonParam.phone = data.field.phone
+                    jsonParam.password = data.field.password_p
+                    var res = verifyCode.validate(document.getElementById("code_input").value);
+                    if(res){
+                        getAjax('/main/login',jsonParam,function (resultMsg) {
+                            if (resultMsg.retCode == 0) {
+                                layer.msg('登录中', {
+                                    skin: 'winning',//自定义样式winning-class
+                                    icon: 16
+                                    // , shade: 0.3
+                                });
+                                var authToken = encrypt('benefit' + ',' + data.field.phone + ',' + resultMsg.data.token + ',2');
+                                set('authTokenTreat',authToken)
+
+                                localStorage.setItem('phone', data.field.phone);
+                                localStorage.setItem('sfzh', resultMsg.data.sfzh);
+                                localStorage.setItem("name",resultMsg.data.name);
+                                localStorage.setItem("custormerUrl",resultMsg.data.custormerUrl);
+                                // localStorage.setItem('authTokenTreat', authToken);
+                                if(checkPassword){
+                                    localStorage.setItem("checkPassword",true)
+                                    localStorage.setItem('oldPass', data.field.password_p);
+                                }else{
+                                    localStorage.setItem("checkPassword",false)
+                                    localStorage.setItem('oldPass', '');
+                                }
+                                // setTimeout(function () {
+                               function getQueryString(name){
+                                  var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                                  var r = window.location.search.substr(1).match(reg);
+                                  if(r!=null)return  unescape(r[2]); return null;
+                               }
+                               // alert(getQueryString("renz"));
+                                // setTimeout(function () {
+                               var smrz= localStorage.getItem('smrz')
+                               if(smrz === 'index'){
+                                  // window.parent.location.reload();
+                                  var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                  parent.layer.close(index); //再执行关闭
+                                  parent.location.href = 'index.html';
+                               }else{
+                                  var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                  parent.layer.close(index); //再执行关闭
+                                  parent.location.reload();
+                               }
+                               localStorage.removeItem('smrz')
+                                //     console.log(parent.location.pathname)
+                                // if(location.pathname.indexOf('registerGa.html')){
+                                //     // alert(11)
+                                //     console.log(111)
+                                // }
+                            }
+                        })
+                    }else{
+                        layer.msg('请输入正确的验证码', {icon: 5,time:1000,anim: 6});
+                    }
+                }
+                return false;
+            });
+            function encrypt(word){
+                var key = CryptoJS.enc.Utf8.parse("BhZ+FDMne1+xfU7kIihiLHd-EtXwYiKE");
+                var srcs = CryptoJS.enc.Utf8.parse(word);
+                var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+                return encrypted.toString();
+            }
+            //获取验证码
+            form.on('submit(get_yzm)', function(data){
+                getClick = true
+                getAjax('/commontools/getIdentCode', {telephone: data.field.phone,login:'2',clientIp: returnCitySN["cip"]},function (resultMsg) {
+                    if(resultMsg.retCode == 0){
+                        let count = 60;
+                        var countDown = setInterval(() => {
+                            if (count === 0) {
+                                $('.get_yz').text('重新发送').removeAttr('disabled');
+                                $('.get_yz').css({
+                                    background: '#01B887',
+                                    color: '#fff',
+                                });
+                                clearInterval(countDown);
+                            } else {
+                                $('.get_yz').attr('disabled', true);
+                                $('.get_yz').css({
+                                    background: '#d8d8d8',
+                                    color: '#707070',
+                                });
+                                $('.get_yz').text(count + '秒后可重新获取');
+                            }
+                            count--;
+                        }, 1000);
+                    }else{
+                        layer.msg("验证码发送频繁")
+                    }
+                })
+                return false;
+            })
+            //验证码登录
+            form.on('submit(yam_login)', function(data){
+                if(getClick){
+                    var jsonParamr={
+                        phone: data.field.phone,
+                        code: data.field.yzm,
+                    }
+                    getAjax('/identCodelogin/index', jsonParamr,function (resultMsg) {
+                        if(resultMsg.retCode == 0){
+                            // var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                            // parent.layer.close(index); //再执行关闭
+                            // parent.location.reload();
+                            layer.msg('登录中', {
+                                skin: 'winning',//自定义样式winning-class
+                                icon: 16
+                                // , shade: 0.3
+                            });
+                            var authToken = encrypt('benefit' + ',' + data.field.phone + ',' + resultMsg.data.token + ',2');
+                            set('authTokenTreat',authToken)
+
+                            // setTimeout(function () {
+                                var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+                                parent.layer.close(index); //再执行关闭
+                                parent.location.reload();
+                            // }, 500);
+                            localStorage.setItem('phone', data.field.phone);
+                            // localStorage.setItem('rememberPass', checkPass);
+                            localStorage.setItem("sfzh",resultMsg.data.sfzh)
+                            localStorage.setItem("name",resultMsg.data.name);
+                            localStorage.setItem("custormerUrl",resultMsg.data.custormerUrl);
+                            // getUserInfo(authToken)
+                        }else{
+                            layer.msg("您输入的验证码不正确，请重新输入！")
+                        }
+                    })
+                }else{
+                    layer.msg("请先获取验证码")
+                }
+                return false;
+            });
+        });
+    })
+</script>
+</html>

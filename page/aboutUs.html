@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>关于我们</title>
+    <style>
+        /*.myFlex{*/
+            /*justify-content:space-between;*/
+        /*}*/
+        .contactUs{
+            border-bottom: 1px solid #EDEDED; padding: 20px 0; width: 80%;
+        }
+        .contactUs li{
+            width: 300px;
+            display: flex;
+        }
+        .contactUs li .icon_t{
+            width: 60px; height: 60px;text-align: center; line-height: 60px;
+            border-radius: 50%; color: #fff; margin-right: 10px; font-size: 30px;
+        }
+        .contactUs li:first-child{
+            margin-right: 100px;
+        }
+        .layui-form-label{
+            width: 120px;
+        }
+        .layui-input-block{
+            margin-left: 130px;
+        }
+        .btx:after{
+            content: "*";
+            color: red;
+            position: absolute;
+            top:10px;right: -10px;
+        }
+         .layui-btn {
+            width: 250px;
+            background: linear-gradient(-4deg,rgba(253,160,40,1),rgba(248,143,7,1));
+        }
+        .mar_t{
+            margin-top: 40px;
+        }
+        .layui-tab-content{
+            min-height: 500px;
+        }
+        .layui-textarea{
+            resize:none !important;
+        }
+        .contact_c{
+            padding: 30px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="">
+            <div class="title_href">当前位置：<a href="#" id="place"></a></div>
+            <div class="bg_white mar_r pad30">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="">关于我们</li>
+                        <li>联系我们</li>
+                        <li>咨询投诉</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <!--关于我们-->
+                        <div class="layui-tab-item">
+                            <div class="mar_t"></div>
+                            <div class="about">
+
+                            </div>
+                        </div>
+                        <!--联系我们-->
+                        <div class="layui-tab-item">
+                            <ul class="myFlex contactUs" style="margin-top: 20px">
+                                <li>
+                                    <div class="bg_blue icon_t">
+                                        <i class="iconfont icon-76"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font_l green">售后服务热线</div>
+                                        <div class="font_b servicePhone">0531-88769960</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="bg_green icon_t">
+                                        <i class="iconfont icon-kefu"></i>
+                                    </div>
+                                    <div>
+                                        <div class="font_l green">医院入驻</div>
+                                        <div class="font_b serviceQq">0531-88769960</div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="contact_c"></div>
+                            <!--<div class="contactUs">-->
+                                <!--<div class="marginb_10">企业服务</div>-->
+                                <!--<div class="gray">E-mail：boletong@sdboletong.com</div>-->
+                            <!--</div>-->
+                            <!--<div class="contactUs">-->
+                                <!--<div class="marginb_10">企业地址</div>-->
+                                <!--<div class="gray">山东省济南市高新去舜华路2000号舜泰广场6号楼401A</div>-->
+                            <!--</div>-->
+                            <!--<div class="contactUs">-->
+                                <!--<div class="marginb_10">企业名称</div>-->
+                                <!--<div class="gray">山东博乐通信息科技有限公司</div>-->
+                            <!--</div>-->
+                        </div>
+                        <!--咨询投诉-->
+                        <div class="layui-tab-item">
+                            <form class="layui-form mar_t" action="" style="width: 500px">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">您的联系方式</label>
+                                    <div class="layui-input-block btx">
+                                        <input type="text" name="phone" lay-verify="required" autocomplete="off" placeholder="请输入您的联系方式" lay-reqtext="请输入您的联系方式" class="layui-input">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item layui-form-text">
+                                    <label class="layui-form-label">您的建议</label>
+                                    <div class="layui-input-block">
+                                        <textarea placeholder="请输入您的建议" lay-reqtext="请输入您的建议"lay-verify="required" class="layui-textarea" name="content"></textarea>
+                                        <!--<p><span id="text-count">500</span></p>-->
+                                    </div>
+                                </div>
+                                <div class="layui-form-item mar_t">
+                                    <div class="layui-input-block">
+                                        <button type="submit" class="layui-btn bd_r24" lay-submit="" lay-filter="consult">提交</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script type="text/javascript">
+    layui.use('form', function(){
+        var form = layui.form
+            ,layer = layui.layer
+
+        var show = GetQueryString("tabs")
+        if(show === "1"){
+            $(".layui-tab-title li").eq(0).addClass("layui-this").siblings().removeClass("layui-this")
+            $(".layui-tab-content .layui-tab-item").eq(0).addClass("layui-show").siblings().removeClass("layui-show")
+            $("#place").text("关于我们")
+        }else if(show === "2"){
+            $(".layui-tab-title li").eq(1).addClass("layui-this").siblings().removeClass("layui-this")
+            $(".layui-tab-content .layui-tab-item").eq(1).addClass("layui-show").siblings().removeClass("layui-show")
+            $("#place").text("联系我们")
+        }else if(show === "3"){
+            $(".layui-tab-title li").eq(2).addClass("layui-this").siblings().removeClass("layui-this")
+            $(".layui-tab-content .layui-tab-item").eq(2).addClass("layui-show").siblings().removeClass("layui-show")
+            $("#place").text("咨询投诉")
+        }else{
+            $(".layui-tab-title li").eq(0).addClass("layui-this").siblings().removeClass("layui-this")
+            $(".layui-tab-content .layui-tab-item").eq(0).addClass("layui-show").siblings().removeClass("layui-show")
+        }
+        $(".layui-tab-title li").click(function () {
+            $("#place").text($(this).text())
+        })
+        // 关于我们
+        getAbout()
+        function getAbout() {
+            getAjax('/sys/aboutus/queryInfo', {}, function (resultMsg) {
+               layui.layer.closeAll()
+               $(".showLoading").css("opacity",'1')
+                $(".about").html(resultMsg.data.content)
+            })
+        }
+        // 联系我们
+        getContact()
+        function getContact() {
+            getAjax('/sys/callus/queryInfo', {}, function (resultMsg) {
+               layui.layer.closeAll()
+               $(".showLoading").css("opacity",'1')
+               $(".servicePhone").text(resultMsg.data.servicePhone)
+               $(".serviceQq").text(resultMsg.data.serviceQq)
+                $(".contact_c").html(resultMsg.data.content)
+            })
+        }
+
+        //咨询投诉
+        form.on('submit(consult)', function(data){
+            var _val= data.field.content.length
+            var reg = /^1[3456789]\d{9}$/
+            if(!reg.test(data.field.phone)){
+                layer.msg('您输入的手机号码有误，请重新输入！', {icon: 5,time:1000,anim: 6});
+            }else if(_val > 20){
+                layer.msg("建议内容不能多于500个字符！")
+            }else if(_val <10) {
+                layer.msg("建议内容不能少于10个字符！")
+            }else{
+                var jsonParam = {
+                    phone: data.field.phone,
+                    content: data.field.content
+                }
+                getAjax('/sys/opinion/save', jsonParam, function (resultMsg) {
+                   layui.layer.closeAll()
+                   $(".showLoading").css("opacity",'1')
+                    if(resultMsg.retCode == 0){
+                        layer.msg("提交成功")
+                        setTimeout(function () {
+                            parent.location.href = 'index.html';
+                        },1000)
+                    }else{
+                        layer.msg("保存失败")
+                    }
+                })
+            }
+            return false;
+        });
+    });
+</script>
+</html>

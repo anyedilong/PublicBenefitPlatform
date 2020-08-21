@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>政策法规详情</title>
+    <style>
+        .pad_r{
+            padding: 10px 30px; min-height: 500px;
+        }
+        .content{
+            padding: 40px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="">
+            <div class="title_href">当前位置：<a href="policy.html">政策法规</a><a href="#" class="getDetail"> >政策法规详情</a></div>
+            <div class="bg_white mar_r pad_r">
+                <div class="top_box">
+                    <div class="top_title">中共中央、国务院向社会公布的关于深化医药卫生体制改革的意见</div>
+                    <div class="l_gray tj_title">
+                        发布时间：2020-02-29 <span class="mar">发布人：王牧牛</span><span class="green">来源：转载中国健康网</span>
+                    </div>
+                </div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script type="text/javascript">
+    $(function () {
+       layui.use(['layer'], function () {
+          var layer = layui.layer;
+          layer.load();
+          var ids = GetQueryString('id');
+          var jsonParam = {
+             id: ids
+          }
+          getAjax('/sys/policy/show', jsonParam, function (resultMsg) {
+             var item = resultMsg.data
+             var html = ''
+             if (item.type === '1') {
+                item.typeName = '公卫'
+             } else if (item.type === '2') {
+                item.typeName = '家医'
+             } else {
+                item.typeName = '暂无数据'
+             }
+             html += '<div class="top_title">' + item.policyTitle + '</div>' +
+                '<div class="l_gray tj_title">' +
+                '发布时间：' + item.pubTime + '<span class="mar">发布人：' + item.createUser + '</span><span class="green">发布机构：' + item.typeName + '</span>' +
+                '</div>'
+             $(".top_box").html(html)
+             $(".content").html(item.policyContent)
+          })
+          layer.closeAll();
+          $('.showLoading').css('opacity', '1');
+       })
+    })
+</script>
+</html>

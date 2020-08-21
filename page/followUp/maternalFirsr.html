@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第1次产前检查服务记录表</title>
+    <script src="../../js/page/commen.js"></script>
+    <style>
+        .childDetail > .litab {display:none;}
+        .sfz_label{
+            display: inline-block;
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-row sfContainer showLoading">
+    <div class="layui-col-xs8 layui-col-md8 bmfw_main bg_white pad30">
+        <div class="sfNo">暂无数据</div>
+        <div class="sfBox">
+            <div class="top_box">
+                <!--<div class="top_title">第1次产前检查服务记录表</div>-->
+                <!--<div class="l_gray">随访日期：<span class="mar_r">2020-02-29</span>随访医生：李大夫</div>-->
+            </div>
+            <ul class="childDetail">
+                <li class="litab" id="ycfcqfir">
+                    <!--                <div class="rightCard">-->
+                    <!--                    <div class="cardTit">第1次产前检查服务记录表</div>-->
+                    <ul class="consUl info_ycfsc">
+                        <li class="consLi">
+                            <div class="cons-label">填表日期</div>
+                            <div class="cons-txt sfz" id="jlrq" name="jlrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">孕周</div>
+                            <div class="cons-txt sfz" id="yz" name="yz"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">孕妇年龄</div>
+                            <div class="cons-txt sfz" id="yfnl" name="yfnl"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">丈夫姓名</div>
+                            <div class="cons-txt sfz" id="zfxm" name="zfxm"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">丈夫年龄</div>
+                            <div class="cons-txt sfz" id="zfnl" name="zfnl"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">丈夫电话</div>
+                            <div class="cons-txt sfz" id="zfdh" name="zfdh"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">孕次</div>
+                            <div class="cons-txt sfz" id="yc" name="yc"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">产次</div>
+                            <div class="cons-txt">
+                                <div>
+                                    <span>阴道分娩(次)</span>&emsp;
+                                    <span class="sfz" id="cc" name="cc"></span>
+                                </div>
+                                <div>
+                                    <span>剖宫产(次)</span>&emsp;
+                                    <span class="sfz" id="pgcc" name="pgcc"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">末次月经</div>
+                            <div class="cons-txt sfz" id="mcyjName" name=mcyjName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">预产期</div>
+                            <div class="cons-txt sfz" id="ycq" name="ycq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">既往史</div>
+                            <div class="cons-txt sfz" id="jwsName" name="jwsName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">家族史</div>
+                            <div class="cons-txt sfz" id="jzsName" name="jzsName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">个人史</div>
+                            <div class="cons-txt sfz" id="grsName" name="grsName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">妇产科手术史</div>
+                            <div class="cons-txt">
+                                <span class="sfz" id="fksssName" name="fksssName"></span>
+                                <span class="sfz" id="fkbsms" name="fkbsms"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">孕产史</div>
+                            <div class="cons-txt">
+                                <div style="">
+                                    <span>自然流产(次)</span>&emsp;
+                                    <span class="sfz" id="zrabortion" name="zrabortion"></span>
+                                </div>
+                                <div>
+                                    <span>人工流产(次)</span>&emsp;
+                                    <span class="sfz" id="rgabortion" name="rgabortion"></span>
+                                </div>
+                                <div>
+                                    <span>死胎(次)</span>&emsp;
+                                    <span class="sfz" id="st" name="st"></span>
+                                </div>
+                                <div>
+                                    <span>死产(次)</span>&emsp;
+                                    <span class="sfz" id="sc" name="sc"></span>
+                                </div>
+                                <div>
+                                    <span>新生儿死亡(次)</span>&emsp;
+                                    <span class="sfz" id="xsesw" name="xsesw"></span>
+                                </div>
+                                <div>
+                                    <span>新生儿缺陷(次)</span>&emsp;
+                                    <span class="sfz" id="xsrqx" name="xsrqx"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">身高(cm)</div>
+                            <div class="cons-txt sfz" id="sg" name="sg"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">体重(kg)</div>
+                            <div class="cons-txt sfz" id="tz" name="tz"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">体质指数BMI(kg/m<sup>2</sup>)</div>
+                            <div class="cons-txt sfz" id="tzzs" name="tzzs"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血压(mmHg)</div>
+                            <div class="cons-txt"><span class="sfz" id="gxy" name="gxy"></span>/<span class="sfz" id="dxy" name="dxy"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">心脏</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="xzName" name="xzName"></span>
+                                描述：<span class="sfz" id="xzycms" name="xzycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">肺部</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="fbName" name="fbName"></span>
+                                描述：<span class="sfz" id="fbycms" name="fbycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">外阴</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="wyName" name="wyName"></span>
+                                描述：<span class="sfz" id="wyycms" name="wyycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">阴道</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="ydName" name="ydName"></span>
+                                描述：<span class="sfz" id="ydycms" name="ydycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">宫颈</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="gjName" name="gjName"></span>
+                                描述：<span class="sfz" id="gjycms" name="gjycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">子宫</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="zgName" name="zgName"></span>
+                                描述：<span class="sfz" id="zgycms" name="zgycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">附件</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="fjName" name="fjName"></span>
+                                描述：<span class="sfz" id="fjycms" name="fjycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血常规</div>
+                            <div class="cons-txt tizheng">
+                                <div>
+                                    <span>血红蛋白值(g/L)</span>&emsp;
+                                    <span class="sfz" id="xhdb" name="xhdb"></span>
+                                </div>
+                                <div>
+                                    <span>白细胞计数值(10^9/L)</span>&emsp;
+                                    <span class="sfz" id="bxb" name="bxb"></span>
+                                </div>
+                                <div>
+                                    <span>血小板计数值(10^9/L)</span>&emsp;
+                                    <span class="sfz" id="xxb" name="xxb"></span>
+                                </div>
+                                <div>
+                                    <span>血常规其他</span>&emsp;
+                                    <span class="sfz" id="xcgqt" name="xcgqt"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">尿常规</div>
+                            <div class="cons-txt tizheng">
+                                <div>
+                                    <span>尿蛋白</span>&emsp;
+                                    <span class="sfz" id="kfxt" name="kfxt"></span>
+                                </div>
+                                <div>
+                                    <span>尿糖</span>&emsp;
+                                    <span class="sfz" id="ptt" name="ptt"></span>
+                                </div>
+                                <div>
+                                    <span>尿酮体</span>&emsp;
+                                    <span class="sfz" id="tt" name="tt"></span>
+                                </div>
+                                <div>
+                                    <span>尿潜血</span>&emsp;
+                                    <span class="sfz" id="qx" name="qx"></span>
+                                </div>
+                                <div>
+                                    <span>尿常规其他</span>&emsp;
+                                    <span class="sfz" id="ncgqt" name="ncgqt"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血型</div>
+                            <div class="cons-txt tizheng">
+                                <div>
+                                    <span>ABO</span>&emsp;
+                                    <span class="sfz" id="xxName" name="xxName"></span>
+                                </div>
+                                <div>
+                                    <span>Rh</span>&emsp;
+                                    <span class="sfz" id="rhName" name="rhName"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血糖(mmol/L)</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="fpgl" name="fpgl"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">肝功能</div>
+                            <div class="cons-txt tizheng">
+                                <div>
+                                    <span>血清谷丙转氨酶(U/L)</span>&emsp;
+                                    <span class="sfz" id="xqgbzam" name="xqgbzam"></span>
+                                </div>
+                                <div>
+                                    <span>血清谷草转氨酶(U/L)</span>&emsp;
+                                    <span class="sfz" id="xqgczam" name="xqgczam"></span>
+                                </div>
+                                <div>
+                                    <span>白蛋白(g/L)</span>&emsp;
+                                    <span class="sfz" id="bdb" name="bdb"></span>
+                                </div>
+                                <div>
+                                    <span>总胆红素(μmol/L)</span>&emsp;
+                                    <span class="sfz" id="zdhs" name="zdhs"></span>
+                                </div>
+                                <div>
+                                    <span>结合胆红素(μmol/L)</span>&emsp;
+                                    <span class="sfz" id="jhdhs" name="jhdhs"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">肾功能</div>
+                            <div class="cons-txt tizheng">
+                                <div>
+                                    <span>血清肌酐(μmol/L)</span>&emsp;
+                                    <span class="sfz" id="xqjg" name="xqjg"></span>
+                                </div>
+                                <div>
+                                    <span>血尿素(mmol/L)</span>&emsp;
+                                    <span class="sfz" id="xnsd" name="xnsd"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">阴道分泌物</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="ydfmwName" name="ydfmwName"></span>&emsp;其他：<span class="sfz" id="qtydfmw" name="qtydfmw"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">阴道清洁度</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="ydqjdName" name="ydqjdName"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">乙型肝炎</div>
+                            <div class="cons-txt tizheng">
+                                <div>
+                                    <span>乙型肝炎表面抗原</span>&emsp;
+                                    <span class="sfz" id="yxgybmky" name="yxgybmky"></span>
+                                </div>
+                                <div>
+                                    <span>乙型肝炎表面抗体</span>&emsp;
+                                    <span class="sfz" id="yxgybmkt" name="yxgybmkt"></span>
+                                </div>
+                                <div>
+                                    <span>乙型肝炎e抗原</span>&emsp;
+                                    <span class="sfz" id="yxgyyky" name="yxgyyky"></span>
+                                </div>
+                                <div>
+                                    <span>乙型肝炎e抗体</span>&emsp;
+                                    <span class="sfz" id="yxgyekt" name="yxgyekt"></span>
+                                </div>
+                                <div>
+                                    <span>乙型肝炎核心抗体</span>&emsp;
+                                    <span class="sfz" id="yxgyhxkt" name="yxgyhxkt"></span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">梅毒血清学试验</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="mdxqxsyName" name="mdxqxsyName"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">HIV抗体检测</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="hivName" name="hivName"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">B超</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="bchao" name="bchao"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">其他</div>
+                            <div class="cons-txt tizheng">
+                                <span class="sfz" id="qt" name="qt"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">总体评估</div>
+                            <div class="cons-txt">
+                                <span class="sfz" id="ztpgName" name="ztpgName"></span>&emsp;描述：<span class="sfz" id="ztpgms" name="ztpgms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">保健指导</div>
+                            <div class="cons-txt">
+                                <span class="sfz" id="jkzdName" name="jkzdName"></span>&emsp;其他：<span class="sfz" id="qtjkzd" name="jkzdName"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">转诊</div>
+                            <div class="cons-txt sfz" id="zzName" name="zzName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">转诊原因</div>
+                            <div class="cons-txt sfz" id="zzyy" name="zzyy"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">机构及科室</div>
+                            <div class="cons-txt sfz" id="jgjks" name="jgjks"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">随访照片</div>
+                            <div class="cons-txt">
+                                <div class="consPic">
+                                    <div><img src="../../img/noload.png"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">医生签字</div>
+                            <div class="cons-txt">
+                                <div class="consQianm">
+                                    <div>医生未上传手写签名</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">下次随访日期</div>
+                            <div class="cons-txt sfz" id="xcsfrq" name="xcsfrq"></div>
+                        </li>
+                    </ul>
+                    <!--                </div>-->
+                </li>
+                <li class="litab" id="ycfcqmuch">
+                    <!--                <div class="rightCard">-->
+                    <!--                    <div class="cardTit" id="cqTit"></div>-->
+                    <ul class="consUl info_ycf2_5">
+                        <li class="consLi">
+                            <div class="cons-label">日期</div>
+                            <div class="cons-txt sfz" id="sfrq1" name="sfrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">孕周</div>
+                            <div class="cons-txt sfz" id="yz1" name="yz"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">主诉</div>
+                            <div class="cons-txt sfz" id="zs1" name="zs"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">体重(kg)</div>
+                            <div class="cons-txt sfz" id="tz1" name="tz"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">宫底高度(cm)</div>
+                            <div class="cons-txt sfz" id="gdgd1" name="gdgd"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">腹围(cm)</div>
+                            <div class="cons-txt sfz" id="fw1" name="fw"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">胎位</div>
+                            <div class="cons-txt sfz" id="tw1" name="tw"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">胎心率(次/分钟)</div>
+                            <div class="cons-txt sfz" id="txl1" name="txl"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血压(mmHg)</div>
+                            <div class="cons-txt"><span class="sfz" id="gxy1" name="dxy"></span>/<span class="sfz" id="dxy1" name="gxy"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血红蛋白(g/L)</div>
+                            <div class="cons-txt sfz" id="xhdb1" name="xhdb"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">尿蛋白</div>
+                            <div class="cons-txt sfz" id="ndb1" name="ndb"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">其他辅助检查</div>
+                            <div class="cons-txt sfz" id="qtfzjc1" name="qtfzjc"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">分类</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="flName1" name="xzName"></span>
+                                描述：<span class="sfz" id="qtycfl1" name="xzycms"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">指导</div>
+                            <div class="cons-txt">
+                                <span class="sfz" id="zdName1" name="zdName"></span>&emsp;其他：<span class="sfz" id="qtzd1" name="zdName"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">转诊</div>
+                            <div class="cons-txt sfz" id="ywzzName1" name="ywzzName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">转诊原因</div>
+                            <div class="cons-txt sfz" id="zzyy1" name="zzyy"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">机构及科室</div>
+                            <div class="cons-txt sfz" id="jgjks1" name="jgjks"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">随访照片</div>
+                            <div class="cons-txt">
+                                <div class="consPic">
+                                    <div><img src="../../img/noload.png"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">医生签字</div>
+                            <div class="cons-txt">
+                                <div class="consQianm">
+                                    <div>医生未上传手写签名</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">下次随访日期</div>
+                            <div class="cons-txt sfz" id="xcsfrq1" name="xcsfrq"></div>
+                        </li>
+                    </ul>
+                    <!--                </div>-->
+                </li>
+                <li class="litab" id="ycfchfir">
+                    <!--                <div class="rightCard">-->
+                    <ul class="consUl info_ch">
+                        <li class="consLi">
+                            <div class="cons-label">随访日期</div>
+                            <div class="cons-txt sfz" id="sfrq2" name="sfrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">分娩日期</div>
+                            <div class="cons-txt sfz" id="fmrq2" name="fmrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">出院日期</div>
+                            <div class="cons-txt sfz" id="cyrq2" name="cyrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">体温(℃)</div>
+                            <div class="cons-txt sfz" id="tw2" name="tw"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">一般健康情况</div>
+                            <div class="cons-txt sfz" id="ybjkzk2" name="ybjkzk"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">一般心理状况</div>
+                            <div class="cons-txt sfz" id="ybxlzk2" name="ybxlzk"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血压(mmHg)</div>
+                            <div class="cons-txt"><span class="sfz" id="gxy2" name="gxy"></span>/<span class="sfz" id="dxy2" name="dxy"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">乳房</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="rfName2" name="xzName"></span>
+                                描述：<span class="sfz" id="rfycms2" name="xzycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">恶露</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="elName2" name="xzName"></span>
+                                描述：<span class="sfz" id="elms2" name="xzycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">子宫</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="zgName2" name="xzName"></span>
+                                描述：<span class="sfz" id="zgycms2" name="xzycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">伤口</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="skName2" name="xzName"></span>
+                                描述：<span class="sfz" id="skycms2" name="xzycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">其他</div>
+                            <div class="cons-txt sfz" id="qt2" name="qt"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">分类</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="flName2" name="xzName"></span>
+                                描述：<span class="sfz" id="qtflms2" name="xzycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">指导</div>
+                            <div class="cons-txt">
+                                <span class="sfz" id="zdName2" name="xzName"></span>&emsp;其他：<span class="sfz" id="qtzd2" name="xzycms"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">转诊</div>
+                            <div class="cons-txt sfz" id="zzName2" name="zz"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">转诊原因</div>
+                            <div class="cons-txt sfz" id="zzyy2" name="zzyy"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">机构及科室</div>
+                            <div class="cons-txt sfz" id="jgjks2" name="jgjks"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">随访照片</div>
+                            <div class="cons-txt">
+                                <div class="consPic">
+                                    <div><img src="../../img/noload.png"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">医生签字</div>
+                            <div class="cons-txt">
+                                <div class="consQianm">
+                                    <div>医生未上传手写签名</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">下次随访日期</div>
+                            <div class="cons-txt sfz" id="xcsfrq2" name="xcsfrq"></div>
+                        </li>
+                    </ul>
+                    <!--                </div>-->
+                </li>
+                <li class="litab" id="ycfchmuch">
+                    <!--                <div class="rightCard">-->
+                    <ul class="consUl info_ch42">
+                        <li class="consLi">
+                            <div class="cons-label">随访日期</div>
+                            <div class="cons-txt sfz" id="sfrq3" name="sfrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">分娩日期</div>
+                            <div class="cons-txt sfz" id="fmrq3" name="fmrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">出院日期</div>
+                            <div class="cons-txt sfz" id="cyrq3" name="cyrq"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">一般健康情况</div>
+                            <div class="cons-txt sfz" id="ybjkzk3" name="ybjkzk"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">一般心理状况</div>
+                            <div class="cons-txt sfz" id="ybxlzk3" name="ybxlzk"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">血压(mmHg)</div>
+                            <div class="cons-txt"><span class="sfz" id="dxy3" name="gxy"></span>/<span class="sfz" id="gxy3" name="dxy"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">乳房</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="rfName3" name="ydName"></span>
+                                描述：<span class="sfz" id="rfycms3" name="ydycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">恶露</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="elName3" name="ydName"></span>
+                                描述：<span class="sfz" id="elycms3" name="ydycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">子宫</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="zgName3" name="ydName"></span>
+                                描述：<span class="sfz" id="zgycms3" name="ydycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">伤口</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="skName3" name="ydName"></span>
+                                描述：<span class="sfz" id="skycms3" name="ydycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">其他</div>
+                            <div class="cons-txt sfz" id="qt3" name="qt"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">分类</div>
+                            <div class="cons-txt">
+                                <span class="sfz sfz_label" id="flName3" name="ydName"></span>
+                                描述：<span class="sfz" id="flms3" name="ydycms"></span></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">指导</div>
+                            <div class="cons-txt">
+                                <span class="sfz" id="zdName3" name="zdName"></span>&emsp;其他：<span class="sfz" id="qtzd3" name="xzycms"></span>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">处理</div>
+                            <div class="cons-txt sfz" id="clName3" name="clName"></div>
+                        </li>
+                        <li class="consLi result">
+                            <div class="cons-label">转诊原因</div>
+                            <div class="cons-txt sfz" id="zzyy3" name="clName"></div>
+                        </li>
+                        <li class="consLi result">
+                            <div class="cons-label">机构及科室</div>
+                            <div class="cons-txt sfz" id="jgjks3" name="clName"></div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">随访照片</div>
+                            <div class="cons-txt">
+                                <div class="consPic">
+                                    <div><img src="../../img/noload.png"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="consLi">
+                            <div class="cons-label">医生签字</div>
+                            <div class="cons-txt">
+                                <div class="consQianm">
+                                    <div>医生未上传手写签名</div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!--                </div>-->
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-col-xs4 layui-col-md4">
+        <div class="bg_white bmfw_main pad30" style="margin-left: 30px">
+            <div class="bm_title"><div class="hetBox">随访记录</div> <div class="date_r hetBox font_s gray"><input type="text" class="layui-input" id="getDate"><i class="iconfont icon-tubiaozhizuo- iconJ"></i></div></div>
+            <ul class="health_list">
+
+            </ul>
+<!--<div id="getPage" class="rightPage"></div>-->
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        layui.use(['laydate', 'laypage', 'layer','table'], function() {
+            layer.load(0, {shade: false});
+            var laydate = layui.laydate;
+            var laypage = layui.laypage
+                ,table = layui.table;
+            var ycfId = '';
+            var ycfStatus = '';
+            // var hosPage = {
+            //     elem: 'getPage'
+            //     , count: 100
+            //     , layout: ['prev', 'next']
+            //     , limit: 10  //得到每页显示的条数
+            //     , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            //     , jump: function (obj) {
+            //     }
+            // };
+            var myDate = new Date();
+            $("#getDate").val(myDate.getFullYear());
+            //年选择器
+            $("#getDate").click(function () {
+                $(".iconJ").addClass("iconTrans")
+            });
+            laydate.render({
+                elem: '#getDate',
+                type: 'year',
+                btns: ['now','confirm'],
+                max: getNowFormatDate(),
+                done: function (value, dates, edate) {
+                    $(".iconJ").removeClass("iconTrans");
+                    jsonParam.searchTime=value;
+                    getList();
+                }
+            });
+            function getNowFormatDate() {
+                var date = new Date();
+                var seperator1 = "-";
+                var seperator2 = ":";
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
+                return currentdate;
+            }
+            var jsonParam={
+                jmid:localStorage.getItem("jmid"),
+                searchTime: $("#getDate").val()
+            };
+            getList();
+            function getList() {
+                getAjax('/health/follow/getYcfList', jsonParam, function (resultMsg) {
+                    layer.closeAll();
+                    $('.showLoading').css('opacity','1');
+                    // hosPage.count = resultMsg.data.length;
+                    // laypage.render(hosPage);
+                    var html ='';
+                    if(resultMsg.data.length == 0 || resultMsg.data == undefined){
+                        html += '<li>暂无数据</li>';
+                        $(".health_list").html(html);
+                        $(".sfBox").hide();
+                        $(".sfNo").show();
+                    }else{
+                        $(".sfBox").show();
+                        $(".sfNo").hide();
+                        $.each(resultMsg.data, function (i, item) {
+                            // item.num = jsonParam.pageNo*(resultMsg.data.length - i);
+                            item.num = resultMsg.data.length - i;
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+='<li class="tit_mar clearfix" ids="'+item.stage+','+item.id+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">';
+                                    if(item.stage == 1){
+                                        html += '<div class="a_gray font_e serialNum fontNum">第1次产前检查服务...</div>' ;
+                                    }else if(item.stage == 6){
+                                        html += '<div class="a_gray font_e serialNum fontNum">产后访视记录表</div>' ;
+                                    }else if(item.stage == 7){
+                                        html += '<div class="a_gray font_e serialNum fontNum">产后42天健康检查...</div>' ;
+                                    }else{
+                                        html += '<div class="a_gray font_e serialNum fontNum">第'+item.stage+'次产前随访服务...</div>';
+                                    }
+
+                            html +='<div class="font_s l_gray fontNum">随访日期：'+item.sfrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                        $(".health_list").html(html);
+                        $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                        var ids = $(".health_list li:first-child").attr("ids").split(",");
+                        ycfStatus = ids[0];
+                        ycfId = ids[1];
+                        getDetails(ycfId,ycfStatus)
+                    }
+                })
+            }
+            //分页跳转
+            // hosPage.jump = function (obj) {
+            //     jsonParam.pageSize = obj.limit;
+            //     jsonParam.pageNo = obj.curr;
+            //     getAjax('/health/follow/getYcfList', jsonParam, function (resultMsg) {
+            //         var html ='';
+            //         if(resultMsg.data.length == 0 || resultMsg.data == undefined){
+            //             html += '<li>暂无数据</li>';
+            //             $(".health_list").html(html);
+            //         }else{
+            //             $.each(resultMsg.data, function (i, item) {
+            //                 item.num = jsonParam.pageNo*(resultMsg.data.length - i);
+            //                 if(item.num < 10){
+            //                     item.num = '0'+item.num
+            //                 }
+            //                 html+='<li class="tit_mar clearfix" ids="'+item.stage+','+item.id+'">' +
+            //                     '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+            //                     '<div class="data_plan fl">';
+            //                 if(item.stage == 1){
+            //                     html += '<div class="a_gray font_e serialNum fontNum">第1次产前检查服务记录表</div>' ;
+            //                 }else if(item.stage == 6){
+            //                     html += '<div class="a_gray font_e serialNum fontNum">产后访视记录表</div>' ;
+            //                 }else if(item.stage == 7){
+            //                     html += '<div class="a_gray font_e serialNum fontNum">产后42天健康检查记录表</div>' ;
+            //                 }else{
+            //                     html += '<div class="a_gray font_e serialNum fontNum">第'+item.stage+'次产前随访服务记录表</div>';
+            //                 }
+            //
+            //                 html +='<div class="font_s l_gray fontNum">随访日期：'+item.sfrq+'</div>' +
+            //                     '</div>' +
+            //                     '</li>'
+            //             });
+            //             $(".health_list").html(html);
+            //             $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+            //             var ids = $(".health_list li:first-child").attr("ids").split(",");
+            //             ycfStatus = ids[0];
+            //             ycfId = ids[1];
+            //             getDetails(ycfId,ycfStatus)
+            //         }
+            //     })
+            // };
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+                var ids = $(this).attr("ids").split(",");
+                ycfStatus = ids[0];
+                ycfId = ids[1];
+                getDetails(ycfId,ycfStatus)
+
+            });
+            //孕产妇随访
+            function getDetails(id, stage) {
+                var jsonParam = {
+                    id:id,
+                };
+                if(stage == 1){
+                    $('#ycfcqfir').show().siblings().hide();
+                    // jsonParam.stage = 2;
+                    getAjax('/health/follow/getYcfSc',jsonParam,function (resultMsg) {
+                        var item = resultMsg.data;
+                        var html ='';
+                        html+='<div class="top_title">第1次产前检查服务记录表</div>' +
+                            '<div class="l_gray">随访日期：<span class="mar_r">'+item.jlrq+'</span>随访医生：'+item.sfys+'</div>';
+                        $(".top_box").html(html);
+                        for (var i = 0;i < $('.info_ycfsc .sfz').length; i++) {
+                            var ids = $('.info_ycfsc .sfz').eq(i).attr('id');
+                            if(resultMsg.data !== undefined){
+                                if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                    $('#' + ids).html(resultMsg.data[ids])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                        var fzjc=resultMsg.data.followYcfScFzjc;
+                        for (var j = 0;j < $('.tizheng .sfz').length; j++) {
+                            var ids = $('.tizheng .sfz').eq(j).attr('id');
+                            if(fzjc !== undefined){
+                                if(fzjc[ids] != "" && fzjc[ids]){
+                                    $('#' + ids).html(fzjc[ids])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                    });
+                }else if(stage == 6){
+                    $('#ycfchfir').show().siblings().hide();
+                    // jsonParam.stage = 4;
+                    getAjax('/health/follow/getYcfCh',jsonParam,function (resultMsg) {
+                        var item = resultMsg.data;
+                        var html ='';
+                        html+='<div class="top_title">产后访视记录表</div>' +
+                            '<div class="l_gray">随访日期：<span class="mar_r">'+item.sfrq+'</span>随访医生：'+item.sfys+'</div>';
+                        $(".top_box").html(html);
+                        for (var i = 0;i < $('.info_ch .sfz').length; i++) {
+                            var ids = $('.info_ch .sfz').eq(i).attr('id');
+                            var ide = ids.substring(0, ids.length - 1)
+                            if(resultMsg.data !== undefined){
+                                if(resultMsg.data[ide] != "" && resultMsg.data[ide]){
+                                    $('#' + ids).html(resultMsg.data[ide])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                    });
+                }else if(stage == 7){
+                    $('#ycfchmuch').show().siblings().hide();
+                    // jsonParam.stage = 5;
+                    getAjax('/health/follow/getYcfCh42',jsonParam,function (resultMsg) {
+                        var item = resultMsg.data;
+                        var html ='';
+                        html+='<div class="top_title">产后42天健康检查记录表</div>' +
+                            '<div class="l_gray">随访日期：<span class="mar_r">'+item.sfrq+'</span>随访医生：'+item.sfys+'</div>';
+                        $(".top_box").html(html);
+                        for (var i = 0;i < $('.info_ch42 .sfz').length; i++) {
+                            var ids = $('.info_ch42 .sfz').eq(i).attr('id');
+                            var ide = ids.substring(0, ids.length - 1)
+                            if(resultMsg.data !== undefined){
+                                if(resultMsg.data[ide] != "" && resultMsg.data[ide]){
+                                    $('#' + ids).html(resultMsg.data[ide])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                                if(resultMsg.data.clName==='转诊'){
+                                    $('.result').show();
+                                }else{
+                                    $('.result').hide();
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                    });
+                }else{
+                    $('#ycfcqmuch').show().siblings().hide();
+                    // jsonParam.stage = 3;
+                    getAjax('/health/follow/getYcfCq',jsonParam,function (resultMsg) {
+                        var item = resultMsg.data;
+                        var html ='';
+                        html+='<div class="top_title">第'+stage+'次产前检查服务记录表</div>' +
+                            '<div class="l_gray">随访日期：<span class="mar_r">'+item.sfrq+'</span>随访医生：'+item.sfys+'</div>';
+                        $(".top_box").html(html);
+                        for (var i = 0;i < $('.info_ycf2_5 .sfz').length; i++) {
+                            var ids = $('.info_ycf2_5 .sfz').eq(i).attr('id');
+                            var ide = ids.substring(0, ids.length - 1)
+                            if(resultMsg.data !== undefined){
+                                if(resultMsg.data[ide] != "" && resultMsg.data[ide]){
+                                    $('#' + ids).html(resultMsg.data[ide])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                    });
+                }
+
+            }
+        })
+    })
+</script>
+</body>
+</html>

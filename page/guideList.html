@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/page/head.js"></script>
+    <style>
+        .layui-timeline{
+            margin-top: 40px;
+        }
+        .layui-timeline-axis{
+            background: #CACCCC;
+            width: 8px;
+            height: 8px;
+            line-height: 8px;
+            font-size: 8px;
+            color: transparent;
+            left: 1px;
+        }
+        .layui-timeline-item{
+            height: 80px;
+        }
+        .layui-timeline-title{
+            font-size: 16px;
+            top: -5px;
+            cursor: pointer;
+        }
+        .zn{
+            font-size: 32px;
+            color: #01B887;
+            margin-bottom: 40px;
+        }
+        .znList{
+            font-size: 16px;
+        }
+        .znList span{
+            float: left;
+        }
+        .znList .znTit{
+            margin-left: 40px;
+            overflow : hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 100px;
+        }
+        .znList>li{
+            margin-bottom: 20px;
+        }
+        .znList>li:not(:last-child){
+            border-bottom: 1px dashed #CACCCC;
+        }
+        .znList>li>div{
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-box showLoading">
+        <div class="layui-row">
+        <div class="layui-col-md8">
+            <div class="title_href">当前位置：办事指南</div>
+            <div class="pad30 mar_r bg_white">
+                <div class="zn">常见问题</div>
+                    <ul class="znList">
+<!--                        <li>-->
+<!--                            <div>-->
+<!--                                <span>Q : </span>-->
+<!--                                <div class="znTit">如何查看已预约的预约记录？</div>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <span>A : </span>-->
+<!--                                <div class="znTit">点击便民服务中的预约挂号按钮，进入预约挂号网站，找的我的个人信息界面，选择预约列表查看预约记录。</div>-->
+<!--                            </div>-->
+<!--                        </li>-->
+                    </ul>
+                <div id="getPage" style="text-align: right"></div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class="bg_white mar_r pad20">
+                <div class="bm_title">办事指南</div>
+                <ul class="layui-timeline" id="timeline">
+<!--                    <li class="layui-timeline-item">-->
+<!--                        <i class="layui-icon layui-timeline-axis"></i>-->
+<!--                        <div class="layui-timeline-content layui-text">-->
+<!--                            <div class="layui-timeline-title green">预约挂号常见问题Q&A</div>-->
+<!--                        </div>-->
+<!--                    </li>-->
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <script src="../js/page/foot.js"></script>
+    <script>
+        $(function () {
+            layui.use(['layer','laypage'], function() {
+                var laypage = layui.laypage;
+                var guideId = '';
+                // 分页
+                var hosPage = {
+                    elem: 'getPage'
+                    , count: 100
+                    , layout: ['count', 'prev', 'page', 'next']
+                    , limit: 10  //得到每页显示的条数
+                    , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+                };
+                var jsonParam={
+                    pageSize:10,
+                    pageNo:1
+                };
+                //获取办事指南类别
+                getGuideType();
+                function getGuideType(){
+                    getAjax('/guidecat/getGuideCategoryList',{},function (resultMsg) {
+                        $('.showLoading').css('opacity','1');
+                        var html = '';
+                        $.each(resultMsg.data, function (i, item) {
+                            html += '<li class="layui-timeline-item" ids="'+item.id+'">' +
+                                '                        <i class="layui-icon layui-timeline-axis"></i>' +
+                                '                        <div class="layui-timeline-content layui-text">' +
+                                '                            <div class="layui-timeline-title">'+item.name+'常见问题Q&A</div>' +
+                                '                        </div>\n' +
+                                '                    </li>'
+                        });
+                        $('#timeline').html(html)
+                        $('#timeline li:first-child .layui-timeline-title').addClass('green')
+                        guideId = $('#timeline li:first-child').attr('ids');
+                        getGuideList(guideId)
+                    });
+                }
+                function getGuideList(id) {
+                    jsonParam.guideType = id;
+                    getAjax('/guide/getGuidePage',jsonParam,function (resultMsg) {
+                        hosPage.count = resultMsg.data.count;
+                        laypage.render(hosPage);
+                        if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                            $('.znList').html('暂无数据');
+                        }else{
+                            var html = '';
+                            $.each(resultMsg.data.list, function (i, item) {
+                                item.content=$(item.content).text().trim();
+                                html+=' <li>' +
+                                    '<div>' +
+                                    '<span>Q : </span>' +
+                                    '<div class="znTit"><a href="guideDetails.html?id='+item.id+'" class="a_gray" name="'+item.id+'">'+item.title+'</a></div>' +
+                                    '</div>' +
+                                    '<div>' +
+                                    '<span>A : </span>' +
+                                    '<div class="znTit">'+item.content+'</div>' +
+                                    '</div>' +
+                                    '</li>'
+                            });
+                            $('.znList').html(html);
+                        }
+                    });
+                }
+                //分页跳转
+                hosPage.jump = function (obj) {
+                    jsonParam.pageSize = obj.limit;
+                    jsonParam.pageNo = obj.curr;
+                    getAjax('/guide/getGuidePage',jsonParam,function (resultMsg) {
+                        if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                            $('.znList').html('暂无数据');
+                        }else{
+                            var html = '';
+                            $.each(resultMsg.data.list, function (i, item) {
+                                item.content=$(item.content).text().trim();
+                                html+=' <li>' +
+                                    '<div>' +
+                                    '<span>Q : </span>' +
+                                    '<div class="znTit"><a href="guideDetails.html?id='+item.id+'" class="a_gray">'+item.title+'</a></div>' +
+                                    '</div>' +
+                                    '<div>' +
+                                    '<span>A : </span>' +
+                                    '<div class="znTit">'+item.content+'</div>' +
+                                    '</div>' +
+                                    '</li>'
+                            });
+                            $('.znList').html(html);
+                        }
+                    });
+                };
+                $('#timeline').on('click','li',function () {
+                    $(this).find('.layui-timeline-title').addClass('green');
+                    $(this).siblings().find('.layui-timeline-title').removeClass('green');
+                    guideId = $(this).attr('ids');
+                    getGuideList(guideId);
+                })
+                var orderNum = GetQueryString('orders');
+                if(orderNum){
+                    $('#timeline li[ids= '+orderNum+']').find('.layui-timeline-title').addClass('green');
+                    $('#timeline li[ids= '+orderNum+']').siblings().find('.layui-timeline-title').removeClass('green');
+                    guideId = $('#timeline li[ids= '+orderNum+']').attr('ids');
+                    getGuideList(guideId);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>肺结核患者首次入户随访记录表</title>
+    <script src="../../js/page/commen.js"></script>
+</head>
+<body>
+    <div class="layui-row sfContainer showLoading">
+        <div class="layui-col-xs8 layui-col-md8 bmfw_main bg_white pad30">
+           <div class="sfNo">暂无数据</div>
+           <div class="sfBox">
+               <div class="top_box">
+                   <div class="top_title">肺结核患者首次入户随访记录表</div>
+                   <div class="l_gray">随访日期：<span class="mar_r">2020-02-29</span><span class="green mar_r">随访方式：门诊</span>随访医生：李大夫</div>
+               </div>
+               <ul class="consUl">
+                   <li class="consLi">
+                       <div class="cons-label">随访日期</div>
+                       <div class="cons-txt sfz" id="sfsj" name="sfsj"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">随访方式</div>
+                       <div class="cons-txt sfz" id="sffsName" name="sffsName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">患者类型</div>
+                       <div class="cons-txt sfz" id="hzlxName" name="hzlxName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">痰菌情况</div>
+                       <div class="cons-txt sfz" id="tjqkName" name="tjqkName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">耐药情况</div>
+                       <div class="cons-txt sfz" id="nyqkName" name="nyqkName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">症状及体征</div>
+                       <div class="cons-txt sfz" id="zzjtzName" name="zzjtzName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">其他</div>
+                       <div class="cons-txt sfz" id="qt" name="qt"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">化疗方案</div>
+                       <div class="cons-txt sfz" id="hlfa" name="hlfa"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">用药用法</div>
+                       <div class="cons-txt sfz" id="yfName" name="yfName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">药品剂型</div>
+                       <div class="cons-txt sfz" id="ypjxName" name="ypjxName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">督导人员</div>
+                       <div class="cons-txt sfz" id="ddryName" name="ddryName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">单独的居室</div>
+                       <div class="cons-txt sfz" id="ddjsName" name="ddjsName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">通风情况</div>
+                       <div class="cons-txt sfz" id="tfqkName" name="tfqkName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">吸烟(支/天)</div>
+                       <div class="cons-txt sfz">
+                           <span class="sfz" id="xyl" name="xyl"></span>/<span class="sfz" id="xypl" name="xypl"></span>
+                           支/天
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">饮酒(两/天)</div>
+                       <div class="cons-txt">
+                           <span class="sfz" id="yjl" name="yjl"></span>/<span class="sfz" id="yjpl" name="yjpl"></span>
+                           两/天
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">取药地点、时间</div>
+                       <div class="cons-txt">
+                           <span class="sfz" id="qydd" name="qydd"></span>、
+                           <span class="sfz" id="qysj" name="qysj"></span>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">服药记录卡的填写</div>
+                       <div class="cons-txt sfz" id="fyjlkName" name="fyjlkName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">服药方法及药品存放</div>
+                       <div class="cons-txt sfz" id="fyyfjcfName" name="fyyfjcfName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">肺结核治疗疗程</div>
+                       <div class="cons-txt sfz" id="zllcName" name="zllcName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">不规律服药危害</div>
+                       <div class="cons-txt sfz" id="fywhName" name="fywhName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">服药后不良反应及处理</div>
+                       <div class="cons-txt sfz" id="blfyjclName" name="blfyjclName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">治疗期间复诊查痰</div>
+                       <div class="cons-txt sfz" id="fzctName" name="fzctName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">外出期间如何坚持服药</div>
+                       <div class="cons-txt sfz" id="jcfyName" name="jcfyName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">生活习惯及注意事项</div>
+                       <div class="cons-txt sfz" id="sfxgName" name="sfxgName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">密切接触者检查</div>
+                       <div class="cons-txt sfz" id="jczjcName" name="jczjcName"></div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">随访照片</div>
+                       <div class="cons-txt">
+                           <div class="consPic">
+                               <div><img src="../../img/noload.png"></div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">医生签字</div>
+                       <div class="cons-txt">
+                           <div class="consQianm">
+                               <div id="ys" name="ys">医生未上传手写签名</div>
+                           </div>
+                       </div>
+                   </li>
+                   <li class="consLi">
+                       <div class="cons-label">下次随访日期</div>
+                       <div class="cons-txt sfz" id="xcsfsj" name="xcsfsj"></div>
+                   </li>
+               </ul>
+           </div>
+        </div>
+        <div class="layui-col-xs4 layui-col-md4">
+            <div class="bg_white bmfw_main pad30 rightBox" style="margin-left: 30px">
+                <div class="bm_title"><div class="hetBox">随访记录</div> <div class="date_r hetBox font_s gray"><input type="text" class="layui-input" id="getDate"><i class="iconfont icon-tubiaozhizuo- iconJ"></i></div></div>
+                <ul class="health_list">
+
+                </ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            layui.use(['laydate', 'laypage', 'layer','table'], function() {
+                var laydate = layui.laydate;
+                var laypage = layui.laypage
+                    ,table = layui.table;
+                var sfId = '';
+                var hosPage = {
+                    elem: 'getPage'
+                    , count: 100
+                    , layout: ['prev', 'next']
+                    , limit: 10  //得到每页显示的条数
+                    , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+                    , jump: function (obj) {
+                    }
+                };
+                var myDate = new Date();
+                $("#getDate").val(myDate.getFullYear());
+                //年选择器
+                $("#getDate").click(function () {
+                    $(".iconJ").addClass("iconTrans")
+                });
+                laydate.render({
+                    elem: '#getDate',
+                    type: 'year',
+                    btns: ['now','confirm'],
+                    max: getNowFormatDate(),
+                    done: function (value, dates, edate) {
+                        $(".iconJ").removeClass("iconTrans");
+                        jsonParam.searchTime=value;
+                        getList();
+                    }
+                });
+                function getNowFormatDate() {
+                    var date = new Date();
+                    var seperator1 = "-";
+                    var seperator2 = ":";
+                    var month = date.getMonth() + 1;
+                    var strDate = date.getDate();
+                    if (month >= 1 && month <= 9) {
+                        month = "0" + month;
+                    }
+                    if (strDate >= 0 && strDate <= 9) {
+                        strDate = "0" + strDate;
+                    }
+                    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                        + " " + date.getHours() + seperator2 + date.getMinutes()
+                        + seperator2 + date.getSeconds();
+                    return currentdate;
+                }
+                var jsonParam={
+                    sfzh:localStorage.getItem("sfzh"),
+                   jmid:localStorage.getItem('jmid'),
+                    pageNo: 1,
+                    pageSize :10,
+                    searchTime:$("#getDate").val()
+                };
+                getList();
+                function getList() {
+                    getAjax('/health/follow/getFjhRhList', jsonParam, function (resultMsg) {
+                       layui.layer.closeAll()
+                       $(".showLoading").css("opacity",'1')
+                    // getAjax('/follow/fjh/getFjhrhList', jsonParam, function (resultMsg) {
+                        hosPage.count = resultMsg.data.count;
+                        laypage.render(hosPage);
+                        var html ='';
+                        if(resultMsg.data.count == 0){
+                            html += '<li>暂无数据</li>';
+                            $(".health_list").html(html);
+                           $(".health_list").html(html);
+                           $(".sfBox").hide();
+                           $(".sfNo").show();
+                        }else{
+                           $(".sfBox").show();
+                           $(".sfNo").hide();
+                            $.each(resultMsg.data.list, function (i, item) {
+                                item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                                if(item.num < 10){
+                                    item.num = '0'+item.num
+                                }
+                                html+='<li class="tit_mar clearfix" ids="'+item.id+'">' +
+                                    '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                    '<div class="data_plan fl">' +
+                                    '<div class="a_gray font_e serialNum fontNum">肺结核首次随访记录表</div>' +
+                                    '<div class="font_s l_gray fontNum">随访日期：'+item.sfrq+'</div>' +
+                                    '</div>' +
+                                    '</li>'
+                            });
+                            sfId = resultMsg.data.list[0].id;
+                            $(".health_list").html(html);
+                            $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                            getDetails(sfId)
+                        }
+                    })
+                }
+                //分页跳转
+                hosPage.jump = function (obj) {
+                    jsonParam.pageSize = obj.limit;
+                    jsonParam.pageNo = obj.curr;
+                    getAjax('/health/follow/getFjhRhList', jsonParam, function (resultMsg) {
+                    // getAjax('/follow/fjh/getFjhrhList', jsonParam, function (resultMsg) {
+                        var html ='';
+                        if(resultMsg.data.count == 0){
+                            html += '<li>暂无数据</li>'
+                           $(".sfBox").hide();
+                           $(".sfNo").show();
+                        }else{
+                           $(".sfBox").show();
+                           $(".sfNo").hide();
+                            $.each(resultMsg.data.list, function (i, item) {
+                                item.num = jsonParam.pageNo*(resultMsg.data.list.length - i);
+                                if(item.num < 10){
+                                    item.num = '0'+item.num
+                                }
+                                html+='<li class="tit_mar clearfix" ids="'+item.id+'">' +
+                                    '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                    '<div class="data_plan fl">' +
+                                    '<div class="a_gray font_e serialNum fontNum">肺结核首次随访记录表</div>' +
+                                    '<div class="font_s l_gray fontNum">随访日期：'+item.sfrq+'</div>' +
+                                    '</div>' +
+                                    '</li>'
+                            });
+                            sfId = resultMsg.data.list[0].id;
+                            getDetails(sfId)
+                        }
+                       $(".health_list").html(html);
+                       $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                    })
+                };
+                //获取详情
+                function getDetails(id){
+                    var jsonParam2 = {
+                        id:id,
+                    };
+                    // getAjax('/follow/fjh/getFjhrhDetail',jsonParam2,function (resultMsg) {
+                    getAjax('/health/follow/getFjhRh',jsonParam2,function (resultMsg) {
+                        var item = resultMsg.data;
+                        var html ='';
+                        html+='<div class="top_title">肺结核患者首次入户随访记录表</div>' +
+                            '<div class="l_gray">随访日期：<span class="mar_r">'+item.sfsj+'</span><span class="green mar_r">随访方式：'+item.sffsName+'</span>随访医生：'+item.ys+'</div>';
+                        $(".top_box").html(html);
+                        for (var i = 0;i < $('.consUl .sfz').length; i++) {
+                            var ids = $('.consUl .sfz').eq(i).attr('id');
+                            if(resultMsg.data !== undefined){
+                                if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                    $('#' + ids).html(resultMsg.data[ids])
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }
+                        var tableobj = {
+                            elem: '#mqyyTable',
+                            cellMinWidth: 80,
+                            even: true,
+                            cols: [[
+                                {field:'ywmc', title: '药物名称',minWidth:100}
+                                ,{field:'ywjl', title: '单次剂量',minWidth:100}
+                                ,{field:'ywpc', title: '用药频次',minWidth:100}
+                                ,{field:'ywyf', title: '用法',minWidth:100}
+                            ]],
+                            data: []
+                        };
+                        tableobj.data = resultMsg.data.drugList;
+                        table.render(tableobj);
+                    })
+                }
+                $(".health_list").on("click","li",function () {
+                    $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+                    $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+                    sfId = $(this).attr('ids');
+                    getDetails(sfId)
+                });
+            })
+        })
+    </script>
+</body>
+</html>

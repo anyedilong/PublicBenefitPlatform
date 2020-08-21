@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>精神障碍患者随访记录表</title>
+    <script src="../../js/page/commen.js"></script>
+</head>
+<body>
+<div class="layui-row sfContainer">
+    <div class="layui-col-md8 bmfw_main bg_white sfBox pad30">
+        <div class="top_box">
+            <div class="top_title">精神障碍个人信息补充表</div>
+            <div class="l_gray">确诊日期：<span class="mar_r">2020-02-29</span><span class="green mar_r">随访方式：门诊</span>随访医生：李大夫</div>
+        </div>
+        <ul class="consUl">
+            <li class="consLi">
+                <div class="cons-label">确诊日期</div>
+                <div class="cons-txt sfz" id="sfrq1" name="sfrq">{{doctorDetail.sfrq}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">随访方式</div>
+                <div class="cons-txt sfz" id="sffsName1" name="sffsName">{{doctorDetail.sffsName}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">监护人姓名</div>
+                <div class="cons-txt sfz" id="jhrxm" name="jhrxm">{{doctorDetail.jhrxm}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">与患者关系</div>
+                <div class="cons-txt sfz" id="yhzgx" name="yhzgx">{{doctorDetail.yhzgx}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">监护人住址</div>
+                <div class="cons-txt sfz" id="jhrjtzz" name="jhrjtzz">{{doctorDetail.jhrjtzz}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">监护人电话</div>
+                <div class="cons-txt sfz" id="jhrlxfs" name="jhrlxfs">{{doctorDetail.jhrlxfs}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">辖区村（居）委会联系人、电话</div>
+                <div class="cons-txt sfz" id="jwhlxr" name="jwhlxr">{{doctorDetail.jwhlxr}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">辖区村（居）委会联系电话</div>
+                <div class="cons-txt sfz" id="jwhlxdh" name="jwhlxdh">{{doctorDetail.jwhlxdh}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">户  别</div>
+                <div class="cons-txt sfz" id="hb" name="hb">{{doctorDetail.hb}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">就业情况</div>
+                <div class="cons-txt sfz" id="jyqk" name="jyqk">{{doctorDetail.jyqk}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">知情同意</div>
+                <div class="cons-txt sfz" id="zqty" name="zqty">{{doctorDetail.zqty}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">初次发病时间</div>
+                <div class="cons-txt sfz" id="scbfsj_str" name="scbfsj_str">{{doctorDetail.scbfsj}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">既往主要症状</div>
+                <div class="cons-txt sfz" id="zz" name="zz">{{doctorDetail.zz}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">其他症状</div>
+                <div class="cons-txt sfz" id="qtzz" name="qtzz">{{doctorDetail.qtzz}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">既往关锁情况</div>
+                <div class="cons-txt sfz" id="gszk" name="gszk">{{doctorDetail.gszk}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">既往治疗情况</div>
+                <div class="cons-txt tizheng">
+                    <div style="">
+                        <span class="span-label">门诊</span>
+                        <span id="mz" name="mz" class="sfz">{{mz}}/</span>
+                    </div>
+                    <div>
+                        <span class="span-label">首次抗精神病药治疗时间</span>
+                        <span id="dyczlsj_str" name="dyczlsj_str" class="sfz">{{doctorDetail.dyczlsj}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">住院</span>
+                        <span id="zy" name="zy" class="sfz">{{doctorDetail.zy}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">曾住精神专科医院/综合医院精神专科</span>
+                        <span id="czjszkyycs" name="czjszkyycs" class="sfz">{{doctorDetail.czjszkyycs}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">目前诊断情况</div>
+                <div class="cons-txt tizheng">
+                    <div style="">
+                        <span class="span-label">诊断</span>
+                        <span id="mqzdqk" name="mqzdqk" class="sfz">{{mqzdqk}}/</span>
+                    </div>
+                    <div>
+                        <span class="span-label">确诊医院</span>
+                        <span id="qzyy" name="qzyy" class="sfz">{{doctorDetail.qzyy}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">确诊日期</span>
+                        <span id="qzrq_str" name="qzrq" class="sfz">{{doctorDetail.qzrq}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">最近一次治疗效果</div>
+                <div class="cons-txt sfz" id="zhyczlxg" name="zhyczlxg">{{doctorDetail.zhyczlxg}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">危险行为</div>
+                <div class="cons-txt tizheng">
+                    <div style="">
+                        <span class="span-label">轻度滋事次数</span>
+                        <span id="qdzs" name="qdzs" class="sfz">{{qdzs}}/</span>
+                    </div>
+                    <div>
+                        <span class="span-label">肇事次数</span>
+                        <span id="zs" name="zs" class="sfz">{{doctorDetail.zs}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">肇祸次数</span>
+                        <span id="zh" name="zh" class="sfz">{{doctorDetail.zh}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">其他危害行为次数</span>
+                        <span id="qtwhxw" name="qtwhxw" class="sfz">{{doctorDetail.qtwhxw}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">自伤次数</span>
+                        <span id="zshang" name="zshang" class="sfz">{{doctorDetail.zshang}}</span>
+                    </div>
+                    <div>
+                        <span class="span-label">自杀未遂次数</span>
+                        <span id="zsws" name="zsws" class="sfz">{{doctorDetail.zsws}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">经济状况</div>
+                <div class="cons-txt sfz" id="jjzk" name="jjzk">{{doctorDetail.jjzk}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">专科医生的意见 (如果有请记录)</div>
+                <div class="cons-txt sfz" id="zkysjy" name="zkysjy">{{doctorDetail.zkysjy}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">填表日期</div>
+                <div class="cons-txt sfz" id="tbsj" name="tbsj">{{doctorDetail.tbsj}}</div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">医生签字</div>
+                <div class="cons-txt">
+                    <div class="consQianm">
+                        <div>医生未上传手写签名</div>
+                    </div>
+                </div>
+            </li>
+            <li class="consLi">
+                <div class="cons-label">患者（家属）签名</div>
+                <div class="cons-txt">
+                    <div class="consQianm">
+                        <div>医生未上传手写签名</div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="layui-col-md4">
+        <div class="bg_white bmfw_main pad30" style="margin-left: 30px">
+            <div class="bm_title"><div class="hetBox">随访记录</div> <div class="date_r hetBox font_s gray"><input type="text" class="layui-input" id="getDate"><i class="iconfont icon-tubiaozhizuo- iconJ"></i></div></div>
+            <!--<div class="bm_title">随访记录 <div><span><input type="text" class="layui-input" id="year" placeholder="yyyy"></span></div></div>-->
+            <ul class="health_list">
+                <li class="myFlex tit_mar">
+                    <span class="bg_lightgreen font_d health_num">03</span>
+                    <div class="data_plan">
+                        <div class="green font_e serialNum">严重精神障碍随访记录表</div>
+                        <div class="font_s l_gray">确诊日期：2019-10-10</div>
+                    </div>
+                </li>
+            </ul>
+            <div id="getPage" class="rightPage"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        layui.use(['laydate', 'laypage', 'layer', 'table'], function() {
+            var laydate = layui.laydate;
+            var table = layui.table;
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+            var myDate = new Date();
+            $("#getDate").val(myDate.getFullYear())
+            //年选择器
+            // lay('#getDate').on('click', function(e) { //假设 test1 是一个按钮
+            $("#getDate").click(function () {
+                $(".iconJ").addClass("iconTrans")
+            })
+            laydate.render({
+                elem: '#getDate',
+                type: 'year',
+                btns: ['now','confirm'],
+                max: getNowFormatDate(),
+                done: function (value, dates, edate) {
+                    $(".iconJ").removeClass("iconTrans")
+                }
+            });
+            function getNowFormatDate() {
+                var date = new Date();
+                var seperator1 = "-";
+                var seperator2 = ":";
+                var month = date.getMonth() + 1;
+                var strDate = date.getDate();
+                if (month >= 1 && month <= 9) {
+                    month = "0" + month;
+                }
+                if (strDate >= 0 && strDate <= 9) {
+                    strDate = "0" + strDate;
+                }
+                var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+                    + " " + date.getHours() + seperator2 + date.getMinutes()
+                    + seperator2 + date.getSeconds();
+                return currentdate;
+            }
+            // 记录
+            var jsonParam = {
+                // sfzh: '370122195005303028',
+                sfzh: localStorage.getItem("sfzh"),
+                pageNo: 1,
+                pageSize :10,
+                // year: $("#getDate").val()
+            }
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green")
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray")
+                getDetails($(this).attr("ids"))
+            })
+            getList()
+            function getList() {
+                getAjax('/follow/jsb/getJsbSfList', jsonParam, function (resultMsg) {
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html = ''
+                    if (resultMsg.data.list.length == 0 || resultMsg.data.list == undefined) {
+                        html += '<li>暂无数据</li>'
+                    } else {
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo * (resultMsg.data.list.length - i)
+                            if (item.num < 10) {
+                                item.num = '0' + item.num
+                            }
+                            html+='<li class="myFlex tit_mar" ids="'+item.id+'">' +
+                                '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                                '<div class="data_plan">' +
+                                '<div class="green font_e serialNum">严重精神障碍随访记录表</div>' +
+                                '<div class="font_s l_gray">确诊日期：'+item.sfrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        getDetails(resultMsg.data.list[0].id)
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            }
+            hosPage.jump = function (obj) {
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/follow/jsb/getJsbSfList', jsonParam, function (resultMsg) {
+                    var html =''
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+='<li class="myFlex tit_mar" ids="'+item.id+'">' +
+                                '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                                '<div class="data_plan">' +
+                                '<div class="green font_e serialNum">精神障碍补充表</div>' +
+                                '<div class="font_s l_gray">确诊日期：'+item.sfrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        getDetails(resultMsg.data.list[0].id)
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+            };
+            function getDetails(id) {
+                var jsonParams = {
+                    id : id,
+                }
+                getAjax('/follow/jsb/getYzJsbSfInfo', jsonParams, function (resultMsg) {
+                    var item = resultMsg.data
+                    var html =''
+                    html+='<div class="top_title">精神障碍补充表</div>' +
+                        '<div class="l_gray">确诊日期：<span class="mar_r">'+item.sfrqStr+'</span><span class="green mar_r">随访方式：'+item.sffs+'</span>随访医生：'+item.sfys+'</div>'
+                    $(".top_box").html(html)
+                    for (var i = 0;i < $('.consUl .sfz').length; i++) {
+                        var ids = $('.consUl .sfz').eq(i).attr('id');
+                        if(resultMsg.data !== undefined){
+                            if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                $('#' + ids).html(resultMsg.data[ids])
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }else{
+                            $('#' + ids).html("暂无数据")
+                        }
+                    }
+                    var tableobj = {
+                        elem: '#mqyyTable',
+                        cellMinWidth: 80,
+                        even: true,
+                        cols: [[
+                            {field:'ywmc', title: '药物名称',minWidth:100}
+                            ,{field:'ywjl', title: '用法',minWidth:100}
+                            ,{field:'ywpc', title: '每次剂量(mg)',minWidth:100}
+                        ]],
+                        data: []
+                    };
+                    tableobj.data = resultMsg.data.drugList;
+                    table.render(tableobj);
+                    var tableobjs = {
+                        elem: '#yyzdTable',
+                        cellMinWidth: 80,
+                        even: true,
+                        cols: [[
+                            {field:'ywmc', title: '药物名称',minWidth:100}
+                            ,{field:'ywjl', title: '用法',minWidth:100}
+                            ,{field:'ywpc', title: '每次剂量(mg)',minWidth:100}
+                        ]],
+                        data: []
+                    };
+                    tableobjs.data = resultMsg.data.drugList;
+                    table.render(tableobjs);
+                })
+            }
+        })
+    })
+</script>
+</html>

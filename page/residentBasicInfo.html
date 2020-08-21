@@ -1,0 +1,411 @@
+<!--居民基本信息-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <style>
+        .layui-tab{
+            margin-top: 0;
+        }
+        .layui-tab-title{
+            margin-bottom: 20px;
+        }
+        .layui-tab-title li{
+            min-width: 120px;
+            margin-right: 50px;
+            font-size: 18px;
+        }
+        .layui-tab-brief>.layui-tab-title .layui-this{
+            color: #4C4D4C;
+        }
+    </style>
+</head>
+<body>
+    <div class="body-box">
+        <div class="layui-row showLoading">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> >居民基本信息</div>
+            <div class="pad30 bg_white">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" >
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">基本档案</li>
+                        <li id="jws">既往史</li>
+                        <li id="jzs">家族史</li>
+                        <li>家庭情况</li>
+                        <li id="shhj">生活环境</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <div class="layui-tab-item layui-show">
+                            <ul class="infoUl info_jbxx">
+                                <li>
+                                    <div class="liLabel">姓名</div>
+                                    <div class="sfz" id="hzmc" name="hzmc"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">性别</div>
+                                    <div class="sfz" id="xb" name="xb"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">联系人姓名</div>
+                                    <div class="sfz" id="lxr" name="lxr"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">联系人电话</div>
+                                    <div class="sfz" id="lxdh" name="lxdh"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">出生日期</div>
+                                    <div class="sfz" id="csrq" name="csrq"></div>
+                                </li>
+                                <!--<li>-->
+                                <!--<div class="liLabel">是否死亡</div>-->
+                                <!--<div id="overFlg" name="overFlg">否</div>-->
+                                <!--</li>-->
+                                <li>
+                                    <div class="liLabel">身份证号</div>
+                                    <div class="sfz" id="sfzh" name="sfzh"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">工作单位</div>
+                                    <div class="sfz" id="gzdw" name="gzdw"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">本人电话</div>
+                                    <div class="sfz" id="sj" name="sj"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">常住类型</div>
+                                    <div class="sfz" id="jzlxText" name="jzlxText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">民族</div>
+                                    <div class="sfz" id="mzText" name="mzText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">文化程度</div>
+                                    <div class="sfz" id="whcdText" name="whcdText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">所属区划</div>
+                                    <div id="ssqh">
+                                        <span id="ssshengbh" name="ssshengbh"></span><!--省-->
+                                        <span id="sssbh" name="sssbh"></span><!--市-->
+                                        <span id="ssxbh" name="ssxbh"></span><!--县-->
+                                        <span id="ssxzbh" name="ssxzbh"></span><!--镇-->
+                                        <span id="sscbh" name="sscbh"></span><!--村-->
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">家庭地址</div>
+                                    <div class="sfz" id="jtzz" name="jtzz"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">现住址</div>
+                                    <div class="sfz" id="xzz" name="xzz"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">血型</div>
+                                    <div class="liMoreRow">
+                                        <div>
+                                            <span>ABO型</span>
+                                            <span class="sfz" id="xuexingText" name="xuexingText"></span>
+                                        </div>
+                                        <div>
+                                            <span>rh阴性</span>
+                                            <span class="sfz" id="rhText" name="rhText"></span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">职业</div>
+                                    <div class="sfz" id="gzText" name="gzText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">婚姻状况</div>
+                                    <div class="sfz" id="hyqkText" name="hyqkText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">医疗费用支付方式</div>
+                                    <div class="liMoreRow">
+                                        <span class="sfz" id="zffsText" name="zffsText"></span>
+                                        其他：<span class="sfz" id="qtfkfs" name="zffsText"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">药物过敏史</div>
+                                    <div>
+                                        <span class="sfz" id="ywgmsText" name="ywgmsText"></span>
+                                        其他：<span class="sfz" id="qtgmfy" name="ywgmsText"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">暴露史</div>
+                                    <div class="sfz" id="blsText" name="blsText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">人群分类</div>
+                                    <div class="sfz" id="rqlxText" name="rqlxText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">遗传病史</div>
+                                    <div>
+                                        <span class="sfz" id="cjqkText"></span>
+                                        疾病名称：<span class="sfz" id="qtjbms"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">残疾情况</div>
+                                    <div class="sfz" id="diseasenditionex"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-item">
+                            <ul class="infoUl info_jbxx">
+                                <li>
+                                    <div class="liLabel">疾病</div>
+                                    <div id="sick">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">手术</div>
+                                    <div id="operation">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">外伤</div>
+                                    <div id="trauma">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">输血</div>
+                                    <div id="blood">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-item">
+                            <ul class="infoUl info_jzs">
+                                <li>
+                                    <div class="liLabel">父亲</div>
+                                    <div>
+                                        <div class="sfz" id="fqbsText" name="fqbsText"></div>
+                                        其他：<span class="sfz" id="fqdqtbs" name="fqdqtbs"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">母亲</div>
+                                    <div>
+                                        <div class="sfz" id="mqbsText" name="mqbsText"></div>
+                                        其他：<span class="sfz" id="mqdqtbs" name="mqdqtbs"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">兄弟姐妹</div>
+                                    <div>
+                                        <div class="sfz" id="xdjmdbsText" name="xdjmdbsText"></div>
+                                        其他：<span class="sfz" id="xdjmdqtbs" name="xdjmdqtbs"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">子女</div>
+                                    <div>
+                                        <div class="sfz" id="znbsText" name="znbsText"></div>
+                                        其他：<span class="sfz" id="znqtbs" name="znqtbs"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-item">
+                            <ul class="infoUl info_jbxx">
+                                <li>
+                                    <div class="liLabel">户主姓名</div>
+                                    <div class="sfz" id="hzxm" name="hzxm"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">身份证号</div>
+                                    <div class="sfz" id="hzsfzh" name="hzsfzh"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">家庭人口数</div>
+                                    <div class="sfz" id="jtrks" name="jtrks"></div>
+                                </li>
+<!--                                <li>-->
+<!--                                    <div class="liLabel">家庭结构</div>-->
+<!--                                    <div id="jtjg" name="jtjg"></div>-->
+<!--                                </li>-->
+                                <li>
+                                    <div class="liLabel">居住情况</div>
+                                    <div class="sfz" id="jzqk" name="jzqk"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="layui-tab-item">
+                            <ul class="infoUl info_shhj">
+                                <li>
+                                    <div class="liLabel">厨房排风设施</div>
+                                    <div id="cfpfcsText" name="cfpfcsText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">燃料类型</div>
+                                    <div id="rllxText" name="rllxText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">饮水</div>
+                                    <div id="yslxText" name="yslxText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">厕所</div>
+                                    <div id="cslxText" name="cslxText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">禽畜栏</div>
+                                    <div id="qxlText" name="qxlText"></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script>
+    $(function () {
+        layui.use(['layer','element'], function(){
+            layer.load(0, {shade: false});
+            var jsonParam = {
+                sfzh:localStorage.getItem("sfzh"),
+            };
+            function getResidentInfo() {
+                getAjax('/health/archive/getArchiveDetailBySfzh',jsonParam,function (resultMsg) {
+                    layer.closeAll();
+                    $('.showLoading').css('opacity','1');
+                    for (var i = 0;i < $('.info_jbxx .sfz').length; i++) {
+                        var ids = $('.info_jbxx .sfz').eq(i).attr('id');
+                        if(resultMsg.data !== undefined){
+                            if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                $('#' + ids).html(resultMsg.data[ids])
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }else{
+                            $('#' + ids).html("暂无数据")
+                        }
+                    }
+                    // $('#cjqkText').html(resultMsg.data.cjqkText == ''?'暂无数据':resultMsg.data.cjqkText);
+                    // $('#qtjbms').html(resultMsg.data.qtjbms == ''?'暂无数据':resultMsg.data.qtjbms);
+                    // $('#rhText').html(resultMsg.data.rhText == ''?'暂无数据':resultMsg.data.rhText);
+                    // $('#xuexingText').html(resultMsg.data.xuexingText == ''?'暂无数据':resultMsg.data.xuexingText);
+                    // $('#sheng').html(resultMsg.data.sheng == ''?'暂无数据':resultMsg.data.sheng);
+                    // $('#sbh').html(resultMsg.data.sbh == ''?'暂无数据':resultMsg.data.sbh);
+                    // $('#dqbh').html(resultMsg.data.dqbh == ''?'暂无数据':resultMsg.data.dqbh);
+                    // $('#xzbh').html(resultMsg.data.xzbh == ''?'暂无数据':resultMsg.data.xzbh);
+                    // $('#cz').html(resultMsg.data.cz == ''?'暂无数据':resultMsg.data.cz);
+                    $('#ssshengbh').html(resultMsg.data.ssshengbh == ''?'暂无数据':resultMsg.data.ssshengbh);
+                    $('#sssbh').html(resultMsg.data.sssbh == ''?'暂无数据':resultMsg.data.sssbh);
+                    $('#ssxbh').html(resultMsg.data.ssxbh == ''?'暂无数据':resultMsg.data.ssxbh);
+                    $('#ssxzbh').html(resultMsg.data.ssxzbh == ''?'暂无数据':resultMsg.data.ssxzbh);
+                    $('#sscbh').html(resultMsg.data.sscbh == ''?'暂无数据':resultMsg.data.sscbh);
+                    if(resultMsg.data.ssshengbh == ''&& resultMsg.data.sssbh==''&&resultMsg.data.ssxbh==''&&resultMsg.data.ssxzbh==''&&resultMsg.data.sscbh==''){
+                       $('#ssqh').html('暂无数据')
+                    }
+                    $('#jws').click(function () {
+                        getAjax('/health/archive/getBSxxDetail',{jmId:localStorage.getItem('jmid')},function (resultMsg) {
+                            //既往史
+                            var jwsArr = resultMsg.data;
+                            var sickStr = '';
+                            var operationStr = '';
+                            var traumaStr = '';
+                            var bloodStr = '';
+                            $("#sick").html("");
+                            $("#operation").html("");
+                            $("#trauma").html("");
+                            $("#blood").html("");
+                            for(var i = 0; i < jwsArr.length; i++){
+                                    var jwsName = (jwsArr[i].jblxText != '' && jwsArr[i].jblxText)  ? jwsArr[i].jblxText : "暂无数据";
+                                    var jwsTime = (jwsArr[i].qzsj != '' && jwsArr[i].qzsj) ? jwsArr[i].qzsj : "暂无数据";
+                                    if(jwsArr[i].jblx == '1'){
+                                        sickStr += '<div class="jiwangDiv">'+
+                                            '<div class="infotxt">'+jwsName+'</div>'+
+                                            '<div class="infotime" id="qzsj" name="qzsj">'+
+                                            '<span style="margin-right: 40px">确诊时间：</span>'+jwsTime+
+                                            '</div>'+
+                                            '</div>';
+                                    }else if(jwsArr[i].jblx == '2' && jwsArr[i].jbmc !== ''){
+                                        operationStr += '<div class="jiwangDiv">'+
+                                            '<div class="infotxt">名称：'+jwsName+'</div>'+
+                                            '<div class="infotime" id="qzsj" name="qzsj">'+
+                                            '<span style="margin-right: 40px">时间：</span>'+jwsTime+
+                                            '</div>'+
+                                            '</div>';
+                                    }else if(jwsArr[i].jblx == '3' && jwsArr[i].jbmc !== ''){
+                                        traumaStr += '<div class="jiwangDiv">'+
+                                            '<div class="infotxt">名称：'+jwsName+'</div>'+
+                                            '<div class="infotime" id="qzsj" name="qzsj">'+
+                                            '<span style="margin-right: 40px">时间：</span>'+jwsTime+
+                                            '</div>'+
+                                            '</div>';
+                                    }else if(jwsArr[i].jblx == '4' && jwsArr[i].jbmc !== ''){
+                                        bloodStr += '<div class="jiwangDiv">'+
+                                            '<div class="infotxt">原因：'+jwsName+'</div>'+
+                                            '<div class="infotime" id="qzsj" name="qzsj">'+
+                                            '<span style="margin-right: 40px">时间：</span>'+jwsTime+
+                                            '</div>'+
+                                            '</div>';
+                                    }
+
+                                }
+                            sickStr = (sickStr == '' ? '暂无数据' : sickStr);
+                            operationStr = (operationStr == '' ? '暂无数据' : operationStr);
+                            traumaStr = (traumaStr == '' ? '暂无数据' : traumaStr);
+                            bloodStr = (bloodStr == '' ? '暂无数据' : bloodStr);
+                            $("#sick").append(sickStr);
+                            $("#operation").append(operationStr);
+                            $("#trauma").append(traumaStr);
+                            $("#blood").append(bloodStr);
+                        })
+                    })
+                    //家族史
+                    $('#jzs').click(function () {
+                        getAjax('/health/archive/getJZSxxDetail',{jmId:localStorage.getItem('jmid')},function (resultMsg) {
+                            for (var i = 0;i < $('.info_jzs .sfz').length; i++) {
+                                var ids = $('.info_jzs .sfz').eq(i).attr('id');
+                                if(resultMsg.data !== undefined){
+                                    if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                        $('#' + ids).html(resultMsg.data[ids])
+                                    }else{
+                                        $('#' + ids).html("暂无数据")
+                                    }
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }
+                        })
+                    })
+                    //生活环境
+                    $('#shhj').click(function () {
+                        getAjax('/health/archive/getSHfsDetail',{jmId:localStorage.getItem('jmid')},function (resultMsg) {
+                            for (var i = 0;i < $('.info_shhj li').length; i++) {
+                                var ids = $('.info_shhj li').eq(i).find('div').eq(1).attr('id');
+                                if(resultMsg.data !== undefined){
+                                    if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                        $('#' + ids).html(resultMsg.data[ids])
+                                    }else{
+                                        $('#' + ids).html("暂无数据")
+                                    }
+                                }else{
+                                    $('#' + ids).html("暂无数据")
+                                }
+                            }
+                        })
+                    })
+                });
+            }
+            getResidentInfo();
+        })
+    })
+</script>
+</html>

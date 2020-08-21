@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>系统消息</title>
+    <style>
+        .pad_r{
+            padding: 10px 30px; min-height: 500px;
+        }
+        .infoList li{
+            padding: 20px 0; border-bottom: 1px solid #EBEDED; font-size: 16px; cursor: pointer;
+        }
+        .infoList li span:nth-child(1){
+            display: inline-block; width: 80%;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            white-space: nowrap;
+        }
+        .infoList li span:nth-child(2){
+            float: right; font-size: 14px; color: #797D7B;
+        }
+        .infoList li i{
+            color: #CACCCC !important;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="">
+            <div class="title_href">当前位置：<a href="#">系统消息</a></div>
+            <div class="bg_white mar_r pad_r">
+                <ul class="infoList">
+                    <!--<li>-->
+                        <!--<span><i class="iconfont icon-dian"></i>中共中央、国务院向社会公布的关于深化医药卫生体制改革的意见消息简介消国务院向社会公布的关于深化医药卫生体制改革的意见消息简介消息简介消息简介消息简介消息简介消息简介消息简介国务院向社会公布的关于深化医药卫生体制改革的意见消息简介消息简介消息简介消息简介消息简介消息简介消息简介息简介消息简介消息简介消息简介消息简介消息简介...</span>-->
+                        <!--<span>2019-12-21</span>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<span><i class="iconfont icon-dian"></i>中共中央、国务院向社会公布的关于深化医药卫生体制改革的意见消息简介消国务院向社会公布的关于深化医药卫生体制改革的意见消息简介消息简介消息简介消息简介消息简介消息简介消息简介国务院向社会公布的关于深化医药卫生体制改革的意见消息简介消息简介消息简介消息简介消息简介消息简介消息简介息简介消息简介消息简介消息简介消息简介消息简介...</span>-->
+                        <!--<span>2019-12-21</span>-->
+                    <!--</li>-->
+                </ul>
+                <div id="getPage" style="text-align: right"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script type="text/javascript">
+    layui.use(['laypage', 'layer'], function() {
+        var laypage = layui.laypage
+            , layer = layui.layer;
+       layui.layer.load();
+        var hosPage = {
+            elem: 'getPage'
+            ,prev: '<em><<</em>'
+            ,next: '<em>>></em>'
+            , count: 100
+            , limit: 10  //得到每页显示的条数
+            , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            ,layout: ['count', 'prev', 'page', 'next']
+            ,jump: function(obj){}
+        };
+        var jsonParam = {
+            pageNo: 1,
+            pageSize: 10,
+            status: '3,4'
+        }
+        getList()
+        function getList() {
+            getAjax('/system/front/getNewsPage', jsonParam, function (resultMsg) {
+               layui.layer.closeAll()
+               $(".showLoading").css("opacity",'1')
+                hosPage.count = resultMsg.data.count;
+                laypage.render(hosPage);
+                var html = ""
+                if(resultMsg.data.list){
+                    $.each(resultMsg.data.list,function (i, item) {
+                        html+=' <li ids="'+item.id+'">' +
+                            '<span><i class="iconfont icon-dian"></i>'+item.title+'</span>' +
+                            '<span>'+item.pubTime+'</span>' +
+                            '</li>'
+                    }) 
+                }else{
+                    html += '<li>暂无数据</li>'
+                }
+                $(".infoList").html(html)
+            })
+        }
+        hosPage.jump = function (obj) {
+           layui.layer.load();
+           jsonParam.pageSize = obj.limit;
+            jsonParam.pageNo = obj.curr;
+            getAjax('/system/front/getNewsPage', jsonParam, function (resultMsg) {
+               layui.layer.closeAll()
+               $(".showLoading").css("opacity",'1')
+                var html = ""
+                if(resultMsg.data.list){
+                    $.each(resultMsg.data.list,function (i, item) {
+                        html+=' <li ids="'+item.id+'">' +
+                            '<span><i class="iconfont icon-dian"></i>'+item.title+'</span>' +
+                            '<span>'+item.pubTime+'</span>' +
+                            '</li>'
+                    })
+                }else{
+                    html += '<li>暂无数据</li>'
+                }
+                $(".infoList").html(html)
+            })
+        };
+        $(".infoList").on("click","li",function () {
+            var id = $(this).attr("ids")
+            window.location.href = "systemInfoDet.html?id="+id
+        })
+    })
+</script>
+</html>

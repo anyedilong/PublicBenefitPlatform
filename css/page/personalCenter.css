@@ -1,0 +1,128 @@
+.yqlj{
+    display: none;
+}
+.rz_bg{
+    background: url("../../img/img_user_bg.png");
+}
+.rz_top{
+    height: 180px;
+    display: flex;
+    align-items: center;
+}
+.rz_tx{
+    width:108px;
+    height:108px;
+    border-radius: 50%;
+}
+.rz_tx_x{
+    width:43px;
+    height:43px;
+    border-radius: 50%;
+}
+.rz_xx{
+    margin-left: 30px;
+}
+.rz_xx p{
+    font-size: 24px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+}
+.rz_tab{
+    margin-bottom: 30px;
+}
+.rz_tab a{
+    display: inline-block;
+    width: 130px;
+    line-height: 60px;
+    text-align: center;
+    margin-right: 60px;
+}
+.rz_tab a:first-child{
+    margin-left: 50px;
+}
+.rz_tab a.active{
+    color: #01B887;
+    border-bottom: 2px solid #01B887;
+}
+.rz_title{
+    font-size:24px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #CFCFCF;
+}
+.rz_gr{
+    padding: 30px;
+    background: #fff;
+    margin-bottom: 20px;
+}
+.rz_ul>li{
+    border-bottom: 1px solid #CFCFCF;
+}
+.rz_li_t{
+    display: flex;
+    line-height: 70px;
+    justify-content: space-between;
+}
+.rz_col{
+    display: none;
+    border-top: 1px dashed rgba(205,205,205,1);
+    padding: 20px 0;
+}
+.ul_zl>li{
+    line-height: 40px;
+    color: #9C9E9D;
+}
+.ul_zl>li>span:first-child{
+    display: inline-block;
+    width: 75px;
+    text-align: right;
+    margin-right: 20px;
+}
+.xg{
+    text-decoration: underline;
+    margin-left: 80px;
+    color: #01B887;
+    cursor:pointer;
+}
+.gr_form .layui-form-label{
+    width: 70px;
+    padding: 9px 0;
+}
+.gr_form .layui-input-block{
+    margin-left: 90px;
+}
+.gr_form .layui-input{
+    width: 350px;
+}
+.gr_form .layui-btn-warm{
+    width: 96px;
+}
+.send_yzm .layui-input-inline{
+    float: left;
+}
+.send_yzm .layui-input{
+    width: 300px;
+    height: 44px;
+    border-radius: 0;
+}
+.send_yzm .layui-btn{
+    width: 120px;
+    border-radius: 0;
+    font-size: 14px;
+    float: left;
+    margin-left: 0;
+    padding: 0;
+}
+.send_yzm .layui-btn-primary{
+    background: #ebebeb;
+    border: none;
+    opacity: 1;
+}
+.send_yzm .layui-btn-primary:hover{
+    background: #ebebeb;
+}
+.btn_count {
+    display: none;
+}
+.marginb_25{
+    margin-bottom: 25px;
+}

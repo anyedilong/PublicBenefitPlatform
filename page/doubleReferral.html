@@ -1,0 +1,238 @@
+<!--双向转诊-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="layui-col-md8 bmfw_main">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> >双向转诊</div>
+            <div class="bg_white mar_r pad30">
+                <div class="top_box">
+                    <div class="top_title" id="zzTitle">双向转诊单（转出）</div>
+                    <div class="l_gray">转诊日期：<span class="mar_r" id="zzrq"></span>转诊医生：<span id="zzys"></span></div>
+                </div>
+                <ul class="infoUl info_zz">
+                    <li>
+                        <div class="liLabel">档案编号</div>
+                        <div id="dno" name="hzmc"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">患者姓名</div>
+                        <div id="name" name="name"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">患者性别</div>
+                        <div id="sex" name="sex"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">联系电话</div>
+                        <div id="telephone" name="telephone"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">转出医院</div>
+                        <div id="orgName" name="orgName"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">转出科室</div>
+                        <div id="depName" name="depName"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">就诊日期</div>
+                        <div id="checkTime" name="checkTime"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接诊医院</div>
+                        <div id="accOrgName" name="accOrgName"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接诊科室</div>
+                        <div id="accDepName" name="accDepName"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接诊医生</div>
+                        <div id="accDocName" name="accDocName"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">主诉</div>
+                        <div id="zs" name="firstImpression"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">现病史</div>
+                        <div id="xbs" name="xbs"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">既往史</div>
+                        <div id="jwz" name="jwz"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">过敏史</div>
+                        <div id="gms" name="firstImpression"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">家族史</div>
+                        <div id="jzs" name="xbs"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">查体</div>
+                        <div id="ct" name="jwz"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">辅助检查</div>
+                        <div id="fzjc" name="firstImpression"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">治疗经过</div>
+                        <div id="zljg" name="xbs"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class=" bg_white bmfw_main pad20">
+                <div class="bm_title">转诊记录</div>
+                <ul class="health_list"></ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        $(".health_list").on("click","li",function () {
+            $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+            $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+        });
+        layui.use(['laypage','layer'], function(){
+           var laypage = layui.laypage
+              ,layer = layui.layer;
+            var zzId = '';
+            var zzType = '';
+            // 转诊记录分页
+            var hosPage = {
+                elem: 'getPage'
+                , count: 100
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+            var jsonParam = {
+                sfzh:localStorage.getItem("sfzh"),
+                // sfzh:'450311194503071773',
+                pageNo:1,
+                pageSize:10
+            };
+            //获取列表
+            getZZList();
+            function getZZList(){
+                getAjax('/treat/turn/getTurnPage',jsonParam,function (resultMsg) {
+                    hosPage.count = resultMsg.data.count;
+                    laypage.render(hosPage);
+                    var html = '';
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>';
+                    }else{
+                        $.each(resultMsg.data.list,function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'" types="'+item.type+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum">'+item.billName+'</div>' +
+                                '<div class="font_s l_gray fontNum">转诊日期：<span class="jcrq">'+item.createTime+'</span></div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                    }
+                    $(".health_list").html(html);
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                    zzId = resultMsg.data.list[0].id;
+                    zzType = resultMsg.data.list[0].type;
+                    getZZDetails(zzId,zzType);
+                });
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            }
+            //分页跳转
+            hosPage.jump = function (obj) {
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/treat/turn/getTurnPage', jsonParam, function (resultMsg) {
+                    var html ='';
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list,function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="tit_mar clearfix" ids="'+item.id+'" types="'+item.type+'">' +
+                                '<span class="bg_green font_d health_num fl">'+item.num+'</span>' +
+                                '<div class="data_plan fl">' +
+                                '<div class="a_gray font_e serialNum">'+item.billName+'</div>' +
+                                '<div class="font_s l_gray fontNum">转诊日期：<span class="jcrq">'+item.createTime+'</span></div>' +
+                                '</div>' +
+                                '</li>'
+                        });
+                        zzId = resultMsg.data.list[0].id;
+                        zzType = resultMsg.data.list[0].type;
+                    }
+                    $(".health_list").html(html)
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            };
+            //获取转诊详情
+            function getZZDetails(id,type) {
+                var jsonParam2 = {
+                    id:id,
+                    type:type
+                };
+                getAjax('/treat/turn/getTurnDetail',jsonParam2,function (resultMsg) {
+                    if(resultMsg.data.type == 1){
+                        $('#zzTitle').html('双向转诊单(转出)');
+                    }else if(resultMsg.data.type == 2){
+                        $('#zzTitle').html('双向转诊单(回转单)');
+                    }
+                    $('#zzrq').html(resultMsg.data.updateTime);
+                    $('#zzys').html(resultMsg.data.docName);
+                    for (var i = 0;i < $('.info_zz li').length; i++) {
+                        var ids = $('.info_zz li').eq(i).find('div').eq(1).attr('id');
+                        if(resultMsg.data !== undefined){
+                            if(resultMsg.data[ids] != "" && resultMsg.data[ids]){
+                                $('#' + ids).html(resultMsg.data[ids])
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }else{
+                            $('#' + ids).html("暂无数据")
+                        }
+                    }
+
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            }
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green");
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray");
+                zzId = $(this).attr("ids");
+                zzType = $(this).attr("types");
+                getZZDetails(zzId,zzType);
+            });
+        })
+    })
+</script>
+</html>

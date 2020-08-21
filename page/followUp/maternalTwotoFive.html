@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>第2~5次产前随访服务记录表</title>
+    <script src="../../js/page/commen.js"></script>
+</head>
+<body>
+    <div class="top_box">
+        <div class="top_title">第2~5次产前随访服务记录表</div>
+        <div class="l_gray">随访日期：<span class="mar_r">2020-02-29</span>随访医生：李大夫</div>
+    </div>
+    <ul class="consUl">
+        <li class="consLi">
+            <div class="cons-label">日期</div>
+            <div class="cons-txt" id="sfrq" name="sfrq">{{doctorDetail.sfrq}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">孕周</div>
+            <div class="cons-txt" id="yz" name="yz">{{doctorDetail.yz}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">主诉</div>
+            <div class="cons-txt" id="zs" name="zs">{{doctorDetail.zs}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">体重(kg)</div>
+            <div class="cons-txt" id="tz" name="tz">{{doctorDetail.tz}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">宫底高度(cm)</div>
+            <div class="cons-txt" id="gdgd" name="gdgd">{{doctorDetail.gdgd}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">腹围(cm)</div>
+            <div class="cons-txt" id="fw" name="fw">{{doctorDetail.fw}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">胎位</div>
+            <div class="cons-txt" id="tw" name="tw">{{doctorDetail.tw}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">胎心率(次/分钟)</div>
+            <div class="cons-txt" id="txl" name="txl">{{doctorDetail.txl}}</div>
+        </li>
+        <li class="consLi">g
+            <div class="cons-label">血压(mmHg)</div>
+            <div class="cons-txt"><span id="dxy" name="dxy">{{doctorDetail.dxy}}</span>/<span id="gxy" name="gxy">{{doctorDetail.gxy}}</span></div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">血红蛋白(g/L)</div>
+            <div class="cons-txt" id="xhdb" name="xhdb">{{doctorDetail.xhdb}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">尿蛋白</div>
+            <div class="cons-txt" id="ndb" name="ndb">{{doctorDetail.ndb}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">其他辅助检查</div>
+            <div class="cons-txt" id="qtfzjc" name="qtfzjc">{{doctorDetail.qtfzjc}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">分类</div>
+            <div class="cons-txt" id="flName" name="flName">{{doctorDetail.flName}}<span style="margin-left: 15px;" v-if="doctorDetail.flName == '异常'" id="qtycfl" name="qtycfl">{{doctorDetail.qtycfl}}</span></div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">指导</div>
+            <div class="cons-txt" id="zdName" name="zdName">{{doctorDetail.zdName}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">转诊</div>
+            <div class="cons-txt" id="ywzzName" name="ywzzName">{{doctorDetail.ywzzName}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">转诊原因</div>
+            <div class="cons-txt" id="zzyy" name="zzyy">{{doctorDetail.zzyy}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">机构及科室</div>
+            <div class="cons-txt" id="jgjks" name="jgjks">{{doctorDetail.jgjks}}</div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">随访照片</div>
+            <div class="cons-txt">
+                <div class="consPic">
+                    <div><img src="../../../assets/img/noload.png"></div>
+                </div>
+            </div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">医生签字</div>
+            <div class="cons-txt">
+                <div class="consQianm">
+                    <div>医生未上传手写签名</div>
+                </div>
+            </div>
+        </li>
+        <li class="consLi">
+            <div class="cons-label">下次随访日期</div>
+            <div class="cons-txt" id="xcsfrq" name="xcsfrq">{{doctorDetail.xcsfrq}}</div>
+        </li>
+    </ul>
+<script>
+
+</script>
+</body>
+</html>

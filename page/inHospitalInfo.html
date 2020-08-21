@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>住院信息</title>
+    <style>
+        .myFlex{
+            justify-content:space-between;
+        }
+        .myFlex .layui-btn {
+            width: 150px !important;
+        }
+        .layui-tab-title{
+            margin-bottom: 20px;
+        }
+        .layui-tab-title li{
+            font-size: 18px;
+        }
+        .cons-table{
+            height: 40px; line-height: 40px;
+        }
+        .infoUl {
+            margin-top: 0 !important;
+        }
+       #yzBox{
+          padding: 30px;
+       }
+       .yzInfo li{
+          margin-right: 30px;
+       }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="layui-col-md8">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a><a href="#" class="getDetail"> >住院信息</a></div>
+            <div class="bg_white mar_r pad30">
+                <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">登记信息</li>
+                        <li>病案首页</li>
+                        <li>住院明细</li>
+                        <li>住院诊断</li>
+                        <li>住院医嘱</li>
+                    </ul>
+                    <div class="layui-tab-content">
+                        <!--登记信息-->
+                        <div class="layui-tab-item layui-show">
+                            <ul class="infoUl floatUl djInfo">
+                                <li>
+                                    <div class="liLabel">医院名称</div>
+                                    <div class="cons-txt" id="orgName" name="orgName"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">姓名</div>
+                                    <div class="cons-txt" id="name" name="name"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">身份证号</div>
+                                    <div class="cons-txt" id="sfzh" name="sfzh"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">性别</div>
+                                    <div class="cons-txt" id="sex" name="sex"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">年龄</div>
+                                    <div class="cons-txt" id="age" name="age"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">出生日期</div>
+                                    <div class="cons-txt" id="bornDate" name="bornDate"></div>
+                                </li>
+                                <!--<li>-->
+                                    <!--<div class="liLabel">职业</div>-->
+                                    <!--<div class="cons-txt" id="occupation" name="occupation"></div>-->
+                                <!--</li>-->
+                                <li>
+                                    <div class="liLabel">入籍所在地</div>
+                                    <div class="cons-txt" id="birthplace" name="birthplace"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">工作单位</div>
+                                    <div class="cons-txt" id="workingzOrg" name="workingzOrg"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院日期</div>
+                                    <div class="cons-txt" id="admissionDate" name="admissionDate"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院方式</div>
+                                    <div class="cons-txt" id="admissionTypeText" name="admissionTypeText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">科室名称</div>
+                                    <div class="cons-txt" id="depName" name="depName"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">病室</div>
+                                    <div class="cons-txt" id="ward" name="ward"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院时情况</div>
+                                    <div class="cons-txt" id="dmissionSituatio" name="dmissionSituatio"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院登记码</div>
+                                    <div class="cons-txt" id="arId" name="arId"></div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--病案首页-->
+                        <div class="layui-tab-item">
+                            <ul class="infoUl floatUl basyInfo">
+                                <li>
+                                    <div class="liLabel">医院机构名称</div>
+                                    <div class="cons-txt" id="orgName1" name="orgName"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">住院次数</div>
+                                    <div class="cons-txt" id="inpatientTimes" name="inpatientTimes"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">病案号</div>
+                                    <div class="cons-txt" id="caseNum" name="caseNum"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">住院号</div>
+                                    <div class="cons-txt" id="admissionNum" name="admissionNum"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">婚姻情况</div>
+                                    <div class="cons-txt" id="maritalStatus" name="maritalStatus"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">职业</div>
+                                    <div class="cons-txt" id="occupation" name="occupation"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">民族</div>
+                                    <div class="cons-txt" id="nation" name="nation"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">国籍</div>
+                                    <div class="cons-txt" id="countryText" name="countryText"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">工作单位名称</div>
+                                    <div class="cons-txt" id="workingOrg" name="workingOrg"></div>
+                                </li>
+                                <!--<li>-->
+                                    <!--<div class="liLabel">入院日期</div>-->
+                                    <!--<div class="cons-txt" id="admissionDate" name="admissionDate"></div>-->
+                                <!--</li>-->
+                                <li>
+                                    <div class="liLabel">出院日期</div>
+                                    <div class="cons-txt" id="dischargeDate" name="dischargeDate"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">实际住院天数</div>
+                                    <div class="cons-txt" id="inpatientDay" name="inpatientDay"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">损伤和中毒外部原因</div>
+                                    <div class="cons-txt" id="injuryCause" name="injuryCause"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">病案质量代码</div>
+                                    <div class="cons-txt" id="caseQuality" name="caseQuality"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">死亡患者尸检</div>
+                                    <div class="cons-txt" id="isAutopsy" name="isAutopsy"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">ABO血型</div>
+                                    <div class="cons-txt" id="bloodAbo" name="bloodAbo"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">rh血型</div>
+                                    <div class="cons-txt" id="bloodRh" name="bloodRh"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">活动发生日期</div>
+                                    <div class="cons-txt" id="effectiveTime" name="effectiveTime"></div>
+                                </li>
+                                <!--<li>-->
+                                    <!--<div class="liLabel">创建时间</div>-->
+                                    <!--<div class="cons-txt" id="admissionDate" name="admissionDate"></div>-->
+                                <!--</li>-->
+                                <li>
+                                    <div class="liLabel">所属行政区划</div>
+                                    <div class="cons-txt" id="districtCode" name="districtCode"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院途径</div>
+                                    <div class="cons-txt" id="admissionType" name="admissionType"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">新生儿出生体重</div>
+                                    <div class="cons-txt" id="birthBodyWeight" name="birthBodyWeight"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">新生儿入院体重</div>
+                                    <div class="cons-txt" id="admissionBodyWeight" name="admissionBodyWeight"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">病理号</div>
+                                    <div class="cons-txt" id="pathologyNum" name="pathologyNum"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">药物过敏标志</div>
+                                    <div class="cons-txt" id="isAllergy" name="isAllergy"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">离院方式</div>
+                                    <div class="cons-txt" id="dischargeType" name="dischargeType"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">拟接收医疗机构名称</div>
+                                    <div class="cons-txt" id="receiveOrgName" name="receiveOrgName"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">是否有出院31天内再住院计划</div>
+                                    <div class="cons-txt" id="isReadmission" name="isReadmission"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">再住院目的</div>
+                                    <div class="cons-txt" id="readmissionPurpose" name="readmissionPurpose"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院前昏迷天数</div>
+                                    <div class="cons-txt" id="priorComaDays" name="priorComaDays"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院前昏迷小时数</div>
+                                    <div class="cons-txt" id="priorComaHours" name="priorComaHours"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院前昏迷分钟数</div>
+                                    <div class="cons-txt" id="priorComaMinutes" name="priorComaMinutes"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院后昏迷天数</div>
+                                    <div class="cons-txt" id="alterComaDays" name="alterComaDays"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院后昏迷小时数</div>
+                                    <div class="cons-txt" id="alterComaHours" name=""alterComaHours></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">入院后昏迷分钟数</div>
+                                    <div class="cons-txt" id="alterComaMinutes" name="alterComaMinutes"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">病案首页类型</div>
+                                    <div class="cons-txt" id="homeType" name="homeType"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">质控日期</div>
+                                    <div class="cons-txt" id="qcDate" name="qcDate"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">治疗类别</div>
+                                    <div class="cons-txt" id="treateType" name="treateType"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">实施临床路径</div>
+                                    <div class="cons-txt" id="pathwayType" name="pathwayType"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">使用医疗机构中药制剂</div>
+                                    <div class="cons-txt" id="isUseHerb" name="isUseHerb"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">使用中医诊疗设备</div>
+                                    <div class="cons-txt" id="isUseEquip" name=""></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">使用中医诊疗技术</div>
+                                    <div class="cons-txt" id="isUseTech" name="isUseTech"></div>
+                                </li>
+                                <li>
+                                    <div class="liLabel">辩证施护</div>
+                                    <div class="cons-txt" id="isDialectialNursting" name="isDialectialNursting"></div>
+                                </li>
+                            </ul>
+                            <ul class="consUl basyUI">
+                                <li class="msg">
+                                    <div class="cons-table">科别</div>
+                                    <div class="cons-txt">
+                                        <table id="kbTable"></table>
+                                    </div>
+                                </li>
+                                <!--<li class="msg">-->
+                                    <!--<div class="cons-table">住院费用</div>-->
+                                    <!--<div class="cons-txt">-->
+                                        <!--<table id="zyfyTable"></table>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <li class="msg">
+                                    <div class="cons-table">医生信息</div>
+                                    <div class="cons-txt">
+                                        <table id="ysxxTable"></table>
+                                    </div>
+                                </li>
+                                <!--<li class="msg">-->
+                                    <!--<div class="cons-table">地址</div>-->
+                                    <!--<div class="cons-txt">-->
+                                        <!--<table id="dzTable"></table>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                                <li class="msg">
+                                    <div class="cons-table">手术</div>
+                                    <div class="cons-txt">
+                                        <table id="ssTable"></table>
+                                    </div>
+                                </li>
+                                <li class="msg">
+                                    <div class="cons-table">手术操作医师</div>
+                                    <div class="cons-txt">
+                                        <table id="ssczysTable"></table>
+                                    </div>
+                                </li>
+                                <li class="msg">
+                                    <div class="cons-table">电话</div>
+                                    <div class="cons-txt">
+                                        <table id="dhTable"></table>
+                                    </div>
+                                </li>
+                                <li class="msg">
+                                    <div class="cons-table">诊断</div>
+                                    <div class="cons-txt">
+                                        <table id="zdTable"></table>
+                                    </div>
+                                </li>
+                                <li class="msg">
+                                    <div class="cons-table">过敏药物</div>
+                                    <div class="cons-txt">
+                                        <table id="gmywTable"></table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--住院明细-->
+                        <div class="layui-tab-item">
+                            <ul class="inHosInfo">
+                                <li class="font_l listInfo">
+                                    <div class="">
+                                        <div class="flag">
+                                            明
+                                        </div>
+                                        <div class="getinfo">
+                                            <div class="">项目名称</div>
+                                            <div class="gray font_s">项目类别</div>
+                                        </div>
+                                        <div class="dateShow">
+                                            <span class="gray font_s">2020-10-22</span>
+                                            <i class="iconfont icon-youjiantou gray font_s"></i>
+                                        </div>
+                                    </div>
+                                    <ul class="infoUl consUl zymxInfo">
+                                        <li class="msg">
+                                            <div class="liLabel">项目类型</div>
+                                            <div class="cons-txt zyz"></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">项目名称</div>
+                                            <div class="cons-txt zyz" ></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">标识号</div>
+                                            <div class="cons-txt zyz"></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">检验时间</div>
+                                            <div class="cons-txt zyz"></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">项目代码</div>
+                                            <div class="cons-txt zyz"></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">检验值</div>
+                                            <div class="cons-txt zyz"></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">单位</div>
+                                            <div class="cons-txt zyz"></div>
+                                        </li>
+                                        <li class="msg">
+                                            <div class="liLabel">参考值</div>
+                                            <div class="cons-txt">
+                                                <span class="zyz"></span>-
+                                                <span class="zyz"></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                   <ul class="infoUl consUl zymxInfo">
+                                      <li class="msg">
+                                         <div class="liLabel">项目名称</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.drugName}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">项目类别</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.drugCode}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">药品分类</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.drugClassCode}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">剂型名称</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.formName}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">规格</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.spec}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">单位</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.unit}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">数量</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.quantity}}</div>
+                                      </li>
+                                      <li class="msg">
+                                         <div class="liLabel">发药日期</div>
+                                         <div class="cons-txt zyz">{{zymxDetail.issueDate}}</div>
+                                      </li>
+                                   </ul>
+                                </li>
+                            </ul>
+                            <!--<ul class="infoUl consUl zymxInfo">-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">项目类型</div>-->
+                                    <!--<div class="cons-txt zyz" id="itemType" name="itemType"></div>-->
+                                <!--</li>-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">项目名称</div>-->
+                                    <!--<div class="cons-txt zyz" id="itemName" name="itemName"></div>-->
+                                <!--</li>-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">标识号</div>-->
+                                    <!--<div class="cons-txt zyz" id="id" name="id"></div>-->
+                                <!--</li>-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">检验时间</div>-->
+                                    <!--<div class="cons-txt zyz" id="diagnosisTime" name="diagnosisTime"></div>-->
+                                <!--</li>-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">项目代码</div>-->
+                                    <!--<div class="cons-txt zyz" id="itemCode" name="itemCode"></div>-->
+                                <!--</li>-->
+
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">检验值</div>-->
+                                    <!--<div class="cons-txt zyz" id="itemValue" name="itemValue"></div>-->
+                                <!--</li>-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">单位</div>-->
+                                    <!--<div class="cons-txt zyz" id="itemUnit" name="itemUnit"></div>-->
+                                <!--</li>-->
+                                <!--<li class="msg">-->
+                                    <!--<div class="liLabel">参考值</div>-->
+                                    <!--<div class="cons-txt">-->
+                                        <!--<span id="minValue" name="minValue" class="zyz"></span>- -->
+                                        <!--<span id="maxValue" name="maxValue" class="zyz"></span>-->
+                                    <!--</div>-->
+                                <!--</li>-->
+                            <!--</ul>-->
+                        </div>
+                        <!--住院诊断-->
+                        <div class="layui-tab-item">
+                            <table id="zyzzTable"></table>
+                        </div>
+                        <!--住院医嘱-->
+                        <div class="layui-tab-item">
+                           <ul class="yzlist">
+                              <!--<li class="tit_mar clearfix">-->
+                                 <!--<span class="bg_green font_d health_num fl">03</span>-->
+                                 <!--<div class="data_plan fl">-->
+                                    <!--<div class="green font_e serialNum fontNum">乙肝疫苗<span class="font_s l_gray fr">2019-10-20</span></div>-->
+                                    <!--<div class="font_s l_gray fontNum">入院时间：2019-10-20</div>-->
+                                 <!--</div>-->
+                              <!--</li>-->
+                           </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class=" bg_white bmfw_main pad20">
+                <div class="bm_title">住院记录</div>
+                <ul class="health_list">
+                    <!--<li class="tit_mar clearfix">-->
+                        <!--<span class="bg_green font_d health_num fl">03</span>-->
+                        <!--<div class="data_plan fl">-->
+                            <!--<div class="green font_e serialNum fontNum">乙肝疫苗</div>-->
+                            <!--<div class="font_s l_gray fontNum">入院时间：2019-10-20</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div id="yzBox">
+   <ul class="clearfix yzInfo">
+      <li class="fl">
+         姓名：<span id="nameyz" name="name">--</span>
+      </li>
+      <li class="fl">
+         住院次数：<span id="inpatientTimesyz" name="inpatientTimes">--</span>
+      </li>
+      <li class="fl">
+         住院号：<span id="admissionNumyz" name="admissionNum">--</span>
+      </li>
+      <li class="fl">
+         科室：<span id="depNameyz" name="depName">--</span>
+      </li>
+      <li class="fl">
+         病室：<span id="wardyz" name="ward">--</span>
+      </li>
+      <li class="fl">
+         床号：<span id="sickbedNum" name="sickbedNum">--</span>
+      </li>
+   </ul>
+   <div style="margin: 10px 0">
+      医嘱医生：<span id="yzys"></span>
+   </div>
+   <div style="margin-bottom: 30px">
+      医嘱科室：<span id="yzks"></span>
+   </div>
+   <table id="cqyzTable"></table>
+</div>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script src="../js/page/inHospitalInfo.js"></script>
+</html>

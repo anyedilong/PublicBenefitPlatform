@@ -1,0 +1,116 @@
+<!--双向转诊-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+</head>
+<body>
+    <div class="body-box showLoading">
+        <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> > 家庭医生签约协议</div>
+        <div class="bg_white pad30">
+            <div class="top_box marginb_10">
+                <button type="button" id="viewXy" class="layui-btn layui-btn-warm layui-btn-radius fr" style="width: 150px;">查看完整协议</button>
+                <div class="top_title" id="qyTit"></div>
+                <div class="l_gray">签约期限：<span class="mar_r" id="qyqx"></span>责任医生：<span id="zrys"></span></div>
+            </div>
+            <ul class="infoUl">
+                <li>
+                    <div class="liLabel">团队名称</div>
+                    <div id="teamName" name="teamName"></div>
+                </li>
+                <li>
+                    <div class="liLabel">团队长</div>
+                    <div id="tdz" name="hzmc"></div>
+                </li>
+                <li>
+                    <div class="liLabel">团队电话</div>
+                    <div id="teamTelephone" name="teamTelephone"></div>
+                </li>
+                <li>
+                    <div class="liLabel">团队成员</div>
+                    <div id="tdcy" name="xb">
+<!--                            <div id="hzmc" name="hzmc">李大虾 <span class="layui-badge layui-bg-green bg_green">医生</span></div>-->
+<!--                            <div id="hzmc" name="hzmc">李大虾 <span class="layui-badge layui-bg-green bg_green">护士</span></div>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="liLabel">所属机构</div>
+                    <div id="orgName" name="orgName"></div>
+                </li>
+                <li>
+                    <div class="liLabel">服务包名称</div>
+                    <div id="fwb" name="xb">
+<!--                            <div>服务包名称</div>-->
+<!--                            <div>服务包名称</div>-->
+                    </div>
+                </li>
+                <li>
+                    <div class="liLabel">附件</div>
+                    <div id="" name="csrq">图片路径暂没有</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        layui.use(['form','table', 'laypage'], function() {
+           // var loads = layui.layer.load();
+            var qyId = '';
+            getSignxy();
+
+            function getSignxy() {
+                var jsonParam = {
+                    // sfzh: localStorage.getItem("sfzh"),
+                   jmId: localStorage.getItem('jmid'),
+                    signType:'1'
+                };
+                // getAjax('/sign/querySignFamily', jsonParam, function (resultMsg) {
+                getAjax('/health/sign/getSignInfo', jsonParam, function (resultMsg) {
+                    qyId = resultMsg.data.id;
+                   // $('#qyTit').html(resultMsg.data.signUserName?resultMsg.data.signUserName:'暂无数据');
+                   $('#qyTit').html(localStorage.getItem('name') + '的家庭医生签约协议');
+                    // $('#qyTit').html(resultMsg.data.signUserName + '的家庭医生签约协议');
+                    $('#teamName').html(resultMsg.data.sysTeam.teamName?resultMsg.data.sysTeam.teamName:'暂无数据');
+                    $('#tdz').html(resultMsg.data.sysTeam.teamLeaderId?resultMsg.data.sysTeam.teamLeaderId:'暂无数据');
+                    $('#teamTelephone').html(resultMsg.data.teamTelephone?resultMsg.data.teamTelephone:'暂无数据');
+                    $('#orgName').html(resultMsg.data.orgName?resultMsg.data.orgName:'暂无数据');
+                    $('#orgAddress').html(resultMsg.data.adderss?resultMsg.data.adderss:'暂无数据');
+                    $('#qyqx').html(resultMsg.data.signTime + '至' + resultMsg.data.renewEndTime);
+                     $('#zrys').html(resultMsg.data.responsibleUser?resultMsg.data.responsibleUser:'暂无数据');
+                    var html = '';
+                    var html2 = '';
+                    // if(resultMsg.data.team.teamUsers.length == 0){
+                    if(resultMsg.data.sysTeam.teamUserList.length == 0){
+                        html='暂无数据'
+                    }else{
+                        $.each(resultMsg.data.sysTeam.teamUserList, function (i, item) {
+                            html += ' <div>' + item.userId + ' <span class="layui-badge layui-bg-green bg_green">' + item.teamRoleName + '</span></div>';
+                        });
+                    }
+                    $('#tdcy').html(html);
+                    if(resultMsg.data.servicePackageList){
+                       $.each(resultMsg.data.servicePackageList, function (i, item) {
+                          html2 += ' <div>' + item.packageName + '</div>';
+                       });
+                    }else{
+                       html2 += ' <div>暂无数据</div>';
+                    }
+                    $('#fwb').html(html2)
+                });
+               // layui.layer.close(loads);
+               $('.showLoading').css('opacity','1');
+            }
+
+            $('#viewXy').click(function () {
+                window.location.href = 'contractProtocalDetails.html';
+            })
+        })
+    })
+</script>
+</html>

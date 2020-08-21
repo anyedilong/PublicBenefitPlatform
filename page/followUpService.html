@@ -1,0 +1,123 @@
+<!--随访服务-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <style>
+        .sf_box{
+            float: left;
+            width: calc(100% - 120px);
+            height: 950px;
+            /*overflow: auto;*/
+        }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> >随访服务</div>
+            <div class="mar_r pad30">
+                <div class="clearfix">
+                    <ul class="leftTab">
+                        <!--<li class="litab bg_green"><a href="#">严重精神障碍</a></li>-->
+                        <!--<li class="litab"><a href="#">精神障碍补充表</a></li>-->
+                    </ul>
+                    <div class="sf_box">
+                        <iframe src="followUp/mentalDisease.html" frameborder="0" width="100%" height="100%" id="followIframe"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<!--<script src="../js/page/followUpService.js"></script>-->
+<script type="text/javascript">
+    $(function () {
+       layui.use('layer', function() {
+          // 获取人群类型
+          getType();
+          function getType(){
+             // getAjax('/customer/queryRqlxBySfzh', {sfzh: localStorage.getItem('sfzh')}, function (resultMsg) {
+             getAjax('/health/archive/queryRqlxBySfzh', {sfzh: localStorage.getItem('sfzh')}, function (resultMsg) {
+                 if(resultMsg.data){
+                     // 1.一般人群 2.儿童 3.孕产妇 4.老年人 5.重精神病 6.高血压 7.糖尿病 8.冠心病 9.脑卒中 14.肺结核 15.传染病
+                     var list = resultMsg.data.split(',');
+                     var typeList = [];
+                     var html = '';
+                     $.each(list, function (i, item) {
+                         if(item === '2'){
+                             typeList.push('儿童')
+                         }else if(item === '3'){
+                             typeList.push('孕产妇')
+                         }else if(item === '4'){
+                             typeList.push('老年人')
+                         }else if(item === '5'){
+                             typeList.push('严重精神障碍')
+                         }else if(item === '6'){
+                             typeList.push('高血压')
+                         }else if(item === '7'){
+                             typeList.push('糖尿病')
+                         }else if(item === '8'){
+                             typeList.push('冠心病')
+                         }else if(item === '9'){
+                             typeList.push('脑卒中')
+                         }else if(item === '14'){
+                             typeList.push('肺结核')
+                             typeList.push('肺结核首次')
+                         }
+                     });
+                     $.each(typeList, function (i, item) {
+                         html += '<li class="litab"><a href="#">'+ item +'</a></li>'
+                     });
+                     var str = typeList[0];
+                     getFollow(str);
+                     $('.leftTab').html(html);
+                     $(".leftTab li:first-child").addClass("bg_green")
+                 }
+             })
+          }
+
+           $(".leftTab").on("click","li",function () {
+               var str = $(this).find("a").text();
+               $(this).addClass("bg_green").siblings().removeClass("bg_green");
+               getFollow(str)
+           });
+          function getFollow(str){
+             if(str === "严重精神障碍"){
+                $("#followIframe").attr("src","followUp/mentalDisease.html")
+             }
+             else if(str === "高血压"){
+                $("#followIframe").attr("src","followUp/hypertension.html")
+             }
+             else if(str === "糖尿病"){
+                $("#followIframe").attr("src","followUp/diabetes.html")
+             } else if(str === "脑卒中"){
+                $("#followIframe").attr("src","followUp/stroke.html")
+             }else if(str === "肺结核"){
+                $("#followIframe").attr("src","followUp/phthisis.html")
+             }else if(str === "肺结核首次"){
+                $("#followIframe").attr("src","followUp/phthisisFirst.html")
+             }else if(str === "冠心病"){
+                 $("#followIframe").attr("src","followUp/coronaryHeartDisease.html")
+             }else if(str === "儿童"){
+                $("#followIframe").attr("src","followUp/child.html")
+             }else if(str === "孕产妇"){
+                $("#followIframe").attr("src","followUp/maternalFirsr.html")
+             } else if(str === "老年人"){
+                $("#followIframe").attr("src","followUp/oldPeopleSelfcare.html")
+             }
+              // else if(str === "中医药健康管理"){
+             //    $("#followIframe").attr("src","followUp/oldPeopleMedicine.html")
+             // }
+          }
+       })
+    })
+</script>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <script src="../js/cryptojs.js"></script>
+    <style>
+        .bm_title{
+            font-size: 24px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #EBEDED;
+            margin-bottom: 50px;
+        }
+        .bmfw_box{
+            margin-bottom: 50px;
+        }
+        .bmfw_box>div{
+            float: left;
+            text-align: center;
+        }
+        .bmfw_box p{
+            font-size: 18px;
+            margin-top: 15px;
+        }
+        .bmfw_box>div:first-child{
+            margin-left: 6%;
+        }
+        .bmfw_box>div:not(:last-child){
+            margin-right: 12%;
+        }
+        @media screen and (max-width: 1450px) {
+            .bmfw_box>div:not(:last-child){
+                margin-right: 10%;
+            }
+        }
+        .pad30{
+            padding: 30px;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="layui-col-md12 pad30 bg_white">
+            <div class="bm_title">健康信息</div>
+            <div class="bmfw_box clearfix">
+                <div class="a_gray cursorP" id="tjb">
+                    <div class="square bg_lightblue">
+                        <span class="iconfont icon-icon_severice_tj"></span>
+                    </div>
+                    <p>健康体检表</p>
+                </div>
+                <div class="a_gray cursorP" id="jbxx">
+                    <div class="square bg_blue">
+                        <span class="iconfont icon-icon_severice_health"></span>
+                    </div>
+                    <p>居民基本信息</p>
+                </div>
+                <div class="a_gray cursorP" id="zyy">
+                    <div class="square bg_lightgreen">
+                        <span class="iconfont icon-icon_severice_zy"></span>
+                    </div>
+                    <p>中医药健康管理</p>
+                </div>
+                <div class="a_gray cursorP" id="zlnl">
+                    <div class="square bg_yellow">
+                        <span class="iconfont icon-icon_severice_old"></span>
+                    </div>
+                    <p>自理能力评估</p>
+                </div>
+            </div>
+            <div class="bm_title">家庭医生签约服务</div>
+            <div class="bmfw_box clearfix">
+                <div class="a_gray cursorP" id="qyxy">
+                    <div class="square bg_blue">
+                        <span class="iconfont icon-icon_severice_qy"></span>
+                    </div>
+                    <p>我的签约</p>
+                </div>
+                <div class="a_gray cursorP" id="qyfw">
+                    <div class="square bg_lightgreen">
+                        <span class="iconfont icon-icon_severice_fw"></span>
+                    </div>
+                    <p>我的履约</p>
+                </div>
+            </div>
+            <div class="bm_title">其他服务</div>
+            <div class="bmfw_box clearfix">
+                <div class="a_gray cursorP" id="yygh">
+                    <div class="square bg_yellow">
+                        <span class="iconfont icon-icon_severice_yy"></span>
+                    </div>
+                    <p>预约挂号</p>
+                </div>
+                <div class="a_gray cursorP" id="sffw">
+                    <div class="square bg_lightblue">
+                        <span class="iconfont icon-icon_severice_sf"></span>
+                    </div>
+                    <p>随访服务</p>
+                </div>
+                <div class="a_gray cursorP" id="mzxx">
+                    <div class="square bg_lightgreen">
+                        <span class="iconfont icon-icon_severice_mz1"></span>
+                    </div>
+                    <p>门诊信息</p>
+                </div>
+                <div class="a_gray cursorP" id="zyxx">
+                    <div class="square bg_blue">
+                        <span class="iconfont icon-icon_severice_zhuy"></span>
+                    </div>
+                    <p>住院信息</p>
+                </div>
+            </div>
+            <div class="bmfw_box clearfix">
+                <div class="a_gray cursorP" id="jybg">
+                    <div class="square bg_blue">
+                        <span class="iconfont icon-icon_severice_jy"></span>
+                    </div>
+                    <p>检验报告</p>
+                </div>
+                <div class="a_gray cursorP" id="jcbg">
+                    <div class="square bg_lightgreen">
+                        <span class="iconfont icon-icon_severice_jc"></span>
+                    </div>
+                    <p>检查报告</p>
+                </div>
+                <div class="a_gray cursorP" id="sxzz">
+                    <div class="square bg_lightblue">
+                        <span class="iconfont icon-icon_severice_zz"></span>
+                    </div>
+                    <p>双向转诊</p>
+                </div>
+                <div class="a_gray cursorP" id="jzxx">
+                    <div class="square bg_yellow">
+                        <span class="iconfont icon-icon_severice_ym"></span>
+                    </div>
+                    <p>已接种信息</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        layui.use(['layer'], function(){
+            var layer = layui.layer;
+            var jsonParam = {
+                sfzh: localStorage.getItem("sfzh"),
+                pageNo: 1,
+                pageSize:10,
+            };
+            //体检表
+            $('#tjb').click(function () {
+               verifyLogin(function () {
+                   jsonParam.jmId=localStorage.getItem("jmid");
+                    getAjax('/health/check/getCheckPage', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list.length == 0){
+                            layer.msg('您暂时没有健康体检数据！')
+                        }else{
+                            window.location.href = 'healthForm.html';
+                        }
+                    })
+                })
+            });
+            //基本信息
+            $('#jbxx').click(function () {
+                verifyLogin(function () {
+                    getAjax('/health/archive/getArchiveDetailBySfzh', jsonParam, function (resultMsg) {
+                        if(resultMsg.data){
+                            window.location.href = 'residentBasicInfo.html';
+                        }else{
+                            layer.msg('您暂时没有档案数据！')
+                        }
+                    })
+                })
+            });
+            //中医药
+            $('#zyy').click(function () {
+               jsonParam.jmid = localStorage.getItem("jmid")
+                verifyLogin(function () {
+                    getAjax('/health/follow/getLnrZyyList', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list){
+                            if(resultMsg.data.list.length == 0){
+                                layer.msg('您暂时没有中医药健康管理数据！')
+                            }else{
+                                window.location.href = 'TCMHealthManage.html';
+                            }
+                        }else{
+                            layer.msg('您暂时没有中医药健康管理数据！')
+                        }
+                    })
+                })
+            });
+            //自理能力
+            $('#zlnl').click(function () {
+               jsonParam.jmid = localStorage.getItem("jmid")
+                verifyLogin(function () {
+                    getAjax('/health/follow/getJkpgList', jsonParam, function (resultMsg) {
+                       if(resultMsg.data.list !== null){
+                          if(resultMsg.data.list.length == 0){
+                             layer.msg('您暂时没有自理能力评估数据！')
+                          }else{
+                             window.location.href = 'oldPeopleSelf.html';
+                          }
+                       }else{
+                          layer.msg('您暂时没有自理能力评估数据！')
+                       }
+                    })
+                })
+            });
+            //签约协议
+            $('#qyxy').click(function () {
+                var param={
+                    jmId: localStorage.getItem("jmid"),
+                    // signType:'1'
+                };
+                verifyLogin(function () {
+                    getAjax('/health/sign/getSignInfo',param,function (resultMsg) {
+                        if(resultMsg.data){
+                            window.location.href = 'contractProtocal.html';
+                        }else{
+                            layer.msg('您暂时没有签约数据！')
+                        }
+                    })
+                })
+            });
+            //签约服务
+            $('#qyfw').click(function () {
+                var param={
+                    jmId: localStorage.getItem("jmid"),
+                };
+                verifyLogin(function () {
+                    getAjax('/health/sign/getSignServiceList', param, function (resultMsg) {
+                        if(resultMsg.data.length == 0){
+                            layer.msg('您暂时没有履约数据！')
+                        }else{
+                            window.location.href = 'contractSigning.html';
+                        }
+                    })
+                })
+            });
+            $('#yygh').click(function () {
+                goAppointmentDoctor();
+            });
+            //随访服务
+            $('#sffw').click(function () {
+                verifyLogin(function () {
+                    getAjax('/health/archive/queryRqlxBySfzh', jsonParam, function (resultMsg) {
+                        if(resultMsg.data){
+                            window.location.href = 'followUpService.html';
+                        }else{
+                            layer.msg('您暂时没有随访信息数据！')
+                        }
+                    })
+                })
+            });
+            //门诊信息
+            $('#mzxx').click(function () {
+                verifyLogin(function () {
+                    getAjax('/region/outpatient/getOutpatientPage', jsonParam, function (resultMsg) {
+                        if (resultMsg.data.list.length == 0) {
+                            layer.msg('您暂时没有门诊信息数据！')
+                        } else {
+                            window.location.href = 'outpatientInformation.html';
+                        }
+                    })
+                })
+            });
+            //住院信息
+            $('#zyxx').click(function () {
+                verifyLogin(function () {
+                    getAjax('/region/hospital/getHospitalPage', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list.length == 0){
+                            layer.msg('您暂时没有住院信息数据！')
+                        }else{
+                            window.location.href = 'inHospitalInfo.html';
+                        }
+                    })
+                })
+            });
+            //检查报告
+            $('#jcbg').click(function () {
+                verifyLogin(function () {
+                    getAjax('/region/outpatient/getJcList', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list.length == 0){
+                            layer.msg('您暂时没有检查报告数据！')
+                        }else{
+                            window.location.href = 'checkReport.html';
+                        }
+                    })
+                })
+            });
+            //检验报告
+            $('#jybg').click(function () {
+                verifyLogin(function () {
+                    getAjax('/region/outpatient/getJyList', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list.length == 0){
+                            layer.msg('您暂时没有检验报告数据！')
+                        }else{
+                            window.location.href = 'inspectionReport.html';
+                        }
+                    })
+                })
+            });
+            //双向转诊
+            $('#sxzz').click(function () {
+                verifyLogin(function () {
+                    getAjax('/treat/turn/getTurnPage', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list.length == 0){
+                            layer.msg('您暂时没有双向转诊数据！')
+                        }else{
+                            window.location.href = 'doubleReferral.html';
+                        }
+                    })
+                })
+            });
+            //接种信息
+                $('#jzxx').click(function () {
+                verifyLogin(function () {
+                    getAjax('/jzs/getJzsList', jsonParam, function (resultMsg) {
+                        if(resultMsg.data.list.length == 0){
+                            layer.msg('您暂时没有已接种信息数据！')
+                        }else{
+                            window.location.href = 'vaccination.html';
+                        }
+                    })
+                })
+
+            });
+            function encrypt (word){
+                var key = CryptoJS.enc.Utf8.parse("BhZ+FDMne1+xfU7kIihiLHd-EtXwYiKE");
+                var srcs = CryptoJS.enc.Utf8.parse(word);
+                var encrypted = CryptoJS.AES.encrypt(srcs, key, {mode:CryptoJS.mode.ECB,padding: CryptoJS.pad.Pkcs7});
+                return encrypted.toString();
+            }
+        })
+    })
+</script>
+</html>

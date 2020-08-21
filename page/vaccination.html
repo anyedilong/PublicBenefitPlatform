@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>疫苗接种</title>
+    <style>
+        .flexJ{
+            justify-content:space-between;
+        }
+        .myFlex .layui-btn {
+            width: 150px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box showLoading">
+    <div class="layui-row">
+        <div class="layui-col-md8 bmfw_main">
+            <div class="title_href">当前位置：<a href="convenientService.html">便民服务</a> <a href="#" id="getList">>疫苗接种</a></div>
+            <div class="bg_white mar_r pad30">
+                <div class="top_box">
+                    <div class="myFlex flexJ">
+                        <div class="top_title">疫苗接种信息</div>
+                        <button type="button" class="layui-btn layui-btn-warm layui-btn-radius toReference">儿童疫苗参考</button>
+                    </div>
+                    <div class="l_gray tj_title">
+                        接种人： --  年龄：--
+                    </div>
+                </div>
+                <ul class="infoUl">
+                    <li>
+                        <div class="liLabel">疫苗名称</div>
+                        <div id="bacterinName" name="bacterinName"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">疫苗剂次</div>
+                        <div id="needleNo" name="needleNo"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">疫苗批号</div>
+                        <div id="bacterinNo" name="bacterinNo"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接种部位</div>
+                        <div id="immuSite" name="immuSite"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接种医生</div>
+                        <div id="jzys" name="jzys"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接种日期</div>
+                        <div id="immuDate" name="immuDate"></div>
+                    </li>
+                    <li>
+                        <div class="liLabel">接种机构</div>
+                        <div id="orgName" name="orgName"></div>
+                    </li>
+                    <!--<li>-->
+                        <!--<div class="liLabel">接种次数</div>-->
+                        <!--<div id="needleNo" name="needleNo">{{doctorDetail.needleNo}}</div>-->
+                    <!--</li>-->
+                    <li>
+                        <div class="liLabel">备注</div>
+                        <div id="otherInfo" name="otherInfo"></div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="layui-col-md4">
+            <div class="right_height"></div>
+            <div class=" bg_white bmfw_main pad20">
+                <div class="bm_title">接种记录</div>
+                <ul class="health_list">
+                    <!--<li class="myFlex tit_mar">-->
+                        <!--<span class="bg_green font_d health_num">03</span>-->
+                        <!--<div class="data_plan">-->
+                            <!--<div class="green font_e serialNum ">乙肝疫苗</div>-->
+                            <!--<div class="font_s l_gray ">接种时间：2019-10-20</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li class="myFlex tit_mar">-->
+                        <!--<span class="bg_green font_d health_num">02</span>-->
+                        <!--<div class="data_plan">-->
+                            <!--<div class="a_gray font_e serialNum ">乙肝疫苗</div>-->
+                            <!--<div class="font_s l_gray ">接种时间：2019-10-20</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <div id="getPage" class="rightPage"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script>
+    $(function () {
+        layui.use(['form','laydate', 'table', 'laypage', 'layer'], function() {
+            var laydate = layui.laydate;
+            var form = layui.form;
+            var table = layui.table;
+            var laypage = layui.laypage
+                ,layer = layui.layer;
+           layer.load();
+            $("#getList").click(function () {
+
+            })
+            // 疫苗参考
+            $(".toReference").click(function () {
+                window.location.href = "vaccineReference.html"
+            })
+            // 接种记录分页
+            var hosPage = {
+                elem: 'getPage'
+                , count: 0
+                , layout: ['prev', 'next']
+                , limit: 10  //得到每页显示的条数
+                , curr: 1 //得到当前页，以便向服务端请求对应页的数据。
+            };
+           var jsonParam = {
+              // sfzh: '452132195011090617',
+              // sfzh: localStorage.getItem("sfzh"),
+              jmid: localStorage.getItem('jmid'),
+              pageNo: 1,
+           }
+            getJmid()
+           function getJmid(){
+              layer.load();
+              let params = {
+                 sfzh: localStorage.getItem('sfzh'),
+              };
+              getAjax('/health/archive/getArchiveDetailBySfzh', params, function (resultMsg) {
+                 localStorage.setItem('jmid',resultMsg.data.id)
+                 getList();
+              })
+              layer.closeAll();
+              $('.showLoading').css('opacity','1');
+           }
+            // 接种记录
+
+            var jzId = '' //右侧接种记录显示id
+            $(".health_list").on("click","li",function () {
+                $(this).find(".serialNum").removeClass("a_gray").addClass("green")
+                $(this).siblings().find(".serialNum").removeClass("green").addClass("a_gray")
+                jzId = $(this).attr("ids")
+                getDetails(jzId)
+            })
+            function getList() {
+               layer.load();
+                // getAjax('/jzs/getJzsList', jsonParam, function (resultMsg) {
+                getAjax('/yfjz/getList', jsonParam, function (resultMsg) {
+                    hosPage.count = resultMsg.data.total;
+                    laypage.render(hosPage);
+                    var html =''
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="myFlex tit_mar" ids="'+item.id+'">' +
+                                '<span class="bg_lightgreen font_d health_num">'+item.num+'</span>' +
+                                '<div class="data_plan">' +
+                                '<div class="a_gray font_e serialNum ">'+item.bacterinName+'</div>' +
+                                '<div class="font_s l_gray ">接种时间：'+item.immuDate+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        jzId = resultMsg.data.list[0].id
+                        getDetails(jzId)
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            }
+            hosPage.jump = function (obj) {
+               layer.load();
+                jsonParam.pageSize = obj.limit;
+                jsonParam.pageNo = obj.curr;
+                getAjax('/jzs/getJzsList', jsonParam, function (resultMsg) {
+                    var html =''
+                    if(resultMsg.data.list.length == 0 || resultMsg.data.list == undefined){
+                        html += '<li>暂无数据</li>'
+                    }else{
+                        $.each(resultMsg.data.list, function (i, item) {
+                            item.num = jsonParam.pageNo*(resultMsg.data.list.length - i)
+                            if(item.num < 10){
+                                item.num = '0'+item.num
+                            }
+                            html+=' <li class="myFlex tit_mar">' +
+                                '<span class="bg_green font_d health_num">'+item.num+'</span>' +
+                                '<div class="data_plan">' +
+                                '<div class="a_gray font_e serialNum ">'+item.ypmc+'</div>' +
+                                '<div class="font_s l_gray ">接种时间：'+item.jzymrq+'</div>' +
+                                '</div>' +
+                                '</li>'
+                        })
+                        jzId = resultMsg.data.list[0].id
+                        getDetails(jzId)
+                    }
+                    $(".health_list").html(html)
+                    $(".health_list li").eq(0).find(".serialNum").removeClass("a_gray").addClass("green");
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            };
+
+            // // 体检数据对比
+            function getDetails(id) {
+               layer.load();
+                var jsonParams = {
+                    id : id
+                }
+                // getAjax('/jzs/getJzsDetails', jsonParams, function (resultMsg) {
+                getAjax('/yfjz/getInfo', jsonParams, function (resultMsg) {
+                    var item = resultMsg.data
+                    var html =''
+                   // if(item.name == undefined){
+                   //    item.name = '暂无数据'
+                   // }
+                   // if(item.nl == undefined){
+                   //    item.nl = '暂无数据'
+                   // }
+                   var name = localStorage.getItem('name')
+                   var UUserCard = localStorage.getItem('sfzh')
+                   var myDate = new Date();
+                   var month = myDate.getMonth() + 1;
+                   var day = myDate.getDate();
+                   var age = myDate.getFullYear() - UUserCard.substring(6, 10) - 1;
+                   if (UUserCard.substring(10, 12) < month || UUserCard.substring(10, 12) == month && UUserCard.substring(12, 14) <= day) {
+                      age++;
+                   }
+                   // alert(age);
+                    html+=' <div class="l_gray tj_title">接种人：'+name+'   年龄：'+age+'岁</div>'
+                    $(".tj_title").html(html)
+                    for (var i = 0;i < $('.infoUl li').length; i++) {
+                        var ids = $('.infoUl li').eq(i).find('div').eq(1).attr('id');
+                        if(item !== undefined){
+                            if(item[ids] != "" && item[ids]){
+                                $('#' + ids).html(item[ids])
+                            }else{
+                                $('#' + ids).html("暂无数据")
+                            }
+                        }else{
+                            $('#' + ids).html("暂无数据")
+                        }
+                    }
+                })
+               layer.closeAll();
+               $('.showLoading').css('opacity','1');
+            }
+        })
+    })
+</script>
+</html>

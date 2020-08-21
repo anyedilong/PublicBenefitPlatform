@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+    <script src="../js/page/head.js"></script>
+    <link rel="stylesheet" href="../css/page/healthForm.css">
+    <title>系统消息详情</title>
+    <style>
+        .pad_r{
+            padding: 10px 30px; min-height: 500px;
+        }
+        .content{
+            padding-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="body-box">
+    <div class="layui-row">
+        <div class="">
+            <div class="title_href">当前位置：<a href="systemInfo.html">系统消息</a><a href="#">>系统消息详情</a></div>
+            <div class="bg_white mar_r pad_r">
+                <div class="top_box bt_content">
+                    <div class="top_title">暂无数据</div>
+                    <div class="l_gray tj_title">
+                        发布时间：暂无数据 <span class="mar">发布人：暂无数据</span><span class="green">发布机构：暂无数据</span>
+                    </div>
+                </div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/page/foot.js"></script>
+<script src="../js/page/index.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var ids = GetQueryString('id');
+        var jsonParam={
+            id : ids
+        }
+        getAjax('/system/front/getNewsInfo', jsonParam, function (resultMsg) {
+            var item = resultMsg.data
+            var html = ''
+            html+= '<div class="top_title">'+item.title+'</div>' +
+                '<div class="l_gray tj_title">' +
+                '发布时间：'+item.pubTime+'<span class="mar">发布人：'+item.createUser+'</span><span class="green">发布机构：'+item.orgName+'</span>' +
+                '</div>'
+            $(".bt_content").html(html)
+            $(".content").html(resultMsg.data.content)
+        })
+    })
+</script>
+</html>
